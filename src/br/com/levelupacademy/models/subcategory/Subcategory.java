@@ -1,6 +1,7 @@
 package br.com.levelupacademy.models.subcategory;
 
 import br.com.levelupacademy.models.category.Category;
+import br.com.levelupacademy.validators.Validations;
 
 public class Subcategory {
 
@@ -13,7 +14,9 @@ public class Subcategory {
     private Category category;
 
     public Subcategory(String name, String code, String description, String studyGuide, boolean active, int order, Category category) {
+        Validations.cantBeEmptyOrNull(name,"name can't be empty or null");
         this.name = name;
+        Validations.codeValidation(code,"Invalid characters");
         this.code = code;
         this.description = description;
         this.studyGuide = studyGuide;

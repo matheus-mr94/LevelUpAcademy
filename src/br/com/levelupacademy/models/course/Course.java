@@ -1,5 +1,7 @@
 package br.com.levelupacademy.models.course;
 
+import br.com.levelupacademy.validators.Validations;
+
 public class Course {
 
     private String name;
@@ -12,10 +14,14 @@ public class Course {
     private String developedSkills;
 
     public Course(String name, String code, Integer estimatedTime, String target, String instructor, String syllabus, String developedSkills) {
+        Validations.cantBeEmptyOrNull(name,"name can't be empty or null");
         this.name = name;
+        Validations.codeValidation(code,"Invalid characters");
         this.code = code;
+        Validations.sizeValidation(estimatedTime, "estimated time should be between 1 and 20");
         this.estimatedTime = estimatedTime;
         this.target = target;
+        Validations.cantBeEmptyOrNull(instructor,"Course should have an instructor name");
         this.instructor = instructor;
         this.syllabus = syllabus;
         this.developedSkills = developedSkills;

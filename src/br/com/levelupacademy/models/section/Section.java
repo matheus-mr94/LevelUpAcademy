@@ -1,25 +1,28 @@
 package br.com.levelupacademy.models.section;
 
 import br.com.levelupacademy.models.course.Course;
+import br.com.levelupacademy.validators.Validations;
 
 public class Section {
 
-    private String sectionName;
+    private String name;
     private String code;
     private int order;
     private boolean active = false;
     private boolean test = false;
     private Course course;
 
-    public Section(String sectionName, String code, int order, Course course) {
-        this.sectionName = sectionName;
+    public Section(String name, String code, int order, Course course) {
+        Validations.cantBeEmptyOrNull(name,"name can't be empty or null");
+        this.name = name;
+        Validations.codeValidation(code,"Invalid characters");
         this.code = code;
         this.order = order;
         this.course = course;
     }
 
-    public String getSectionName() {
-        return sectionName;
+    public String getName() {
+        return name;
     }
 
     public String getCode() {
