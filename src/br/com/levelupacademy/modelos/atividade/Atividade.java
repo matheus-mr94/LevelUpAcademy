@@ -6,7 +6,7 @@ public class Atividade {
 
     private String titulo;
     private String codigo;
-    private boolean estaAtiva = false;
+    private boolean ativa = false;
     //TODO ordem que será exibido
     private Secao secao;
 
@@ -24,8 +24,8 @@ public class Atividade {
         return codigo;
     }
 
-    public boolean isEstaAtiva() {
-        return estaAtiva;
+    public boolean isAtiva() {
+        return ativa;
     }
 
     public Secao getSecao() {

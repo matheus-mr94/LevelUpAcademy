@@ -6,18 +6,18 @@ public class Categoria {
     private String codigo;
     private String descricao;
     private String guiaDeEstudo;
-    private boolean estaAtiva = false;
+    private boolean ativa = false;
     //TODO ordem que será exibido
     private String url;
     private String corHexadecimal;
 
 
-    public Categoria(String nome, String codigo, String descricao, String guiaDeEstudo, boolean estaAtiva, String url, String corHexadecimal) {
+    public Categoria(String nome, String codigo, String descricao, String guiaDeEstudo, boolean ativa, String url, String corHexadecimal) {
         this.nome = nome;
         this.codigo = codigo;
         this.descricao = descricao;
         this.guiaDeEstudo = guiaDeEstudo;
-        this.estaAtiva = estaAtiva;
+        this.ativa = ativa;
         this.url = url;
         this.corHexadecimal = corHexadecimal;
     }
@@ -34,8 +34,8 @@ public class Categoria {
     public String getGuiaDeEstudo() {
         return guiaDeEstudo;
     }
-    public boolean isEstaAtiva() {
-        return estaAtiva;
+    public boolean isAtiva() {
+        return ativa;
     }
     public String getUrl() {
         return url;
