@@ -10,11 +10,11 @@ public class Category {
     private String studyGuide;
     private boolean active = false;
     private int order;
-    private String url;
+    private String urlImage;
     private String hexCode;
 
 
-    public Category(String name, String code, String description, String studyGuide, int order, String url, String hexCode) {
+    public Category(String name, String code, String description, String studyGuide, int order, String urlImage , String hexCode) {
         Validations.cantBeEmptyOrNull(name,"name can't be empty or null");
         this.name = name;
         Validations.cantBeEmptyOrNull(code,"Code can't be empty or null");
@@ -23,7 +23,7 @@ public class Category {
         this.description = description;
         this.studyGuide = studyGuide;
         this.order = order;
-        this.url = url;
+        this.urlImage = urlImage ;
         this.hexCode = hexCode;
     }
 
@@ -51,11 +51,25 @@ public class Category {
         return order;
     }
 
-    public String getUrl() {
-        return url;
+    public String getUrlImage() {
+        return urlImage;
     }
 
     public String getHexCode() {
         return hexCode;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ", description='" + description + '\'' +
+                ", studyGuide='" + studyGuide + '\'' +
+                ", active=" + active +
+                ", order=" + order +
+                ", urlImage='" + urlImage + '\'' +
+                ", hexCode='" + hexCode + '\'' +
+                '}';
     }
 }

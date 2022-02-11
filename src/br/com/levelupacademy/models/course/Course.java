@@ -56,4 +56,18 @@ public class Course {
     public String getDevelopedSkills() {
         return developedSkills;
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ", estimatedTime=" + estimatedTime +
+                ", visible=" + visible +
+                ", target='" + target + '\'' +
+                ", instructor='" + instructor + '\'' +
+                ", syllabus='" + syllabus + '\'' +
+                ", developedSkills='" + developedSkills + '\'' +
+                '}';
+    }
 }

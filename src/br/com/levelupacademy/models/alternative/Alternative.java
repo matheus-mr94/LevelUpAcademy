@@ -40,4 +40,15 @@ public class Alternative {
     public Question getQuestion() {
         return question;
     }
+
+    @Override
+    public String toString() {
+        return "Alternative{" +
+                "text='" + text + '\'' +
+                ", order=" + order +
+                ", correct=" + correct +
+                ", justification='" + justification + '\'' +
+                ", question=" + question +
+                '}';
+    }
 }

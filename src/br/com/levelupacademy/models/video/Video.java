@@ -29,4 +29,13 @@ public class Video extends Activity {
     public String getTranscription() {
         return transcription;
     }
+
+    @Override
+    public String toString() {
+        return "Video{" +
+                "url='" + url + '\'' +
+                ", time=" + time +
+                ", transcription='" + transcription + '\'' +
+                '}';
+    }
 }

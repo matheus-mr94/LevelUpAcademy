@@ -16,17 +16,19 @@ public class Question extends Activity {
         this.statement = statement;
     }
 
-    public Question(String title, String code, int order, Section section, String statement, AnswerType answerType) {
-        super(title, code, order, section);
-        this.statement = statement;
-        this.answerType = answerType;
-    }
-
     public String getStatement() {
         return statement;
     }
 
     public AnswerType getAnswerType() {
         return answerType;
+    }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "statement='" + statement + '\'' +
+                ", answerType=" + answerType +
+                '}';
     }
 }

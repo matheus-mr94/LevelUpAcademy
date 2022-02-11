@@ -45,4 +45,16 @@ public class Section {
     public Course getCourse() {
         return course;
     }
+
+    @Override
+    public String toString() {
+        return "Section{" +
+                "name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ", order=" + order +
+                ", active=" + active +
+                ", test=" + test +
+                ", course=" + course +
+                '}';
+    }
 }

@@ -17,4 +17,11 @@ public class Explanation extends Activity {
     public String getText() {
         return text;
     }
+
+    @Override
+    public String toString() {
+        return "Explanation{" +
+                "text='" + text + '\'' +
+                '}';
+    }
 }

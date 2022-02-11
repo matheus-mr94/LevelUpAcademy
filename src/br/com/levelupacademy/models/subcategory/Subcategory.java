@@ -53,4 +53,17 @@ public class Subcategory {
     public Category getCategory() {
         return category;
     }
+
+    @Override
+    public String toString() {
+        return "Subcategory{" +
+                "name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ", description='" + description + '\'' +
+                ", studyGuide='" + studyGuide + '\'' +
+                ", active=" + active +
+                ", order=" + order +
+                ", category=" + category +
+                '}';
+    }
 }
