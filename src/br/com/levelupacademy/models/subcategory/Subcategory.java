@@ -14,7 +14,7 @@ public class Subcategory {
     private Category category;
 
     public Subcategory(String name, String code, String description, String studyGuide, boolean active, int order, Category category) {
-        Validations.cantBeEmptyOrNull(name,"name can't be empty or null");
+        Validations.cantBeEmptyOrNull(name,"Name can't be empty or null");
         this.name = name;
         Validations.codeValidation(code,"Invalid characters");
         this.code = code;
@@ -22,6 +22,7 @@ public class Subcategory {
         this.studyGuide = studyGuide;
         this.active = active;
         this.order = order;
+        Validations.objectValidation(category, "Subcategory should have a category");
         this.category = category;
     }
 

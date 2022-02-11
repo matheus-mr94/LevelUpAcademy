@@ -1,6 +1,7 @@
 package br.com.levelupacademy.models.alternative;
 
 import br.com.levelupacademy.models.question.Question;
+import br.com.levelupacademy.validators.Validations;
 
 public class Alternative {
 
@@ -11,10 +12,12 @@ public class Alternative {
     private Question question;
 
     public Alternative(String text, int order, boolean correct, String justification, Question question) {
+        Validations.cantBeEmptyOrNull(text, "Text can't be empty or null");
         this.text = text;
         this.order = order;
         this.correct = correct;
         this.justification = justification;
+        Validations.objectValidation(question,"Should be associate with a question");
         this.question = question;
     }
 

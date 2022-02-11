@@ -17,6 +17,7 @@ public class Category {
     public Category(String name, String code, String description, String studyGuide, int order, String url, String hexCode) {
         Validations.cantBeEmptyOrNull(name,"name can't be empty or null");
         this.name = name;
+        Validations.cantBeEmptyOrNull(code,"Code can't be empty or null");
         Validations.codeValidation(code,"Invalid characters");
         this.code = code;
         this.description = description;

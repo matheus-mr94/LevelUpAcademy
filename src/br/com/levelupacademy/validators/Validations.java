@@ -10,6 +10,11 @@ public class Validations {
             throw new IllegalArgumentException(error);
         }
     }
+    public static void cantBeNull(Integer field, String error) {
+        if(field == null) {
+            throw new NullPointerException(error);
+        }
+    }
 
     public static void codeValidation(String code, String error) {
         if(!code.matches("[a-z0-9^-]+")) {
@@ -20,6 +25,12 @@ public class Validations {
     public static void sizeValidation(int field, String error) {
         if(field < 1 || field > 20) {
             throw new IllegalArgumentException(error);
+        }
+    }
+
+    public static void objectValidation(Object object, String error) {
+        if(object == null) {
+            throw new NullPointerException(error);
         }
     }
 

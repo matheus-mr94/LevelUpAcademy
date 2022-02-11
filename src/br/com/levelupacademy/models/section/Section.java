@@ -18,6 +18,7 @@ public class Section {
         Validations.codeValidation(code,"Invalid characters");
         this.code = code;
         this.order = order;
+        Validations.objectValidation(course, "Must have a course");
         this.course = course;
     }
 

@@ -11,11 +11,13 @@ public abstract class Activity {
     private int order;
     private Section section;
 
-    public Activity(String title, String code, Section section) {
-        Validations.cantBeEmptyOrNull(title,"title can't be empty or null");
+    public Activity(String title, String code, int order, Section section) {
+        Validations.cantBeEmptyOrNull(title,"Title can't be empty or null");
         this.title = title;
         Validations.codeValidation(code,"Invalid characters");
         this.code = code;
+        this.order = order;
+        Validations.objectValidation(section,"Activity must have a section");
         this.section = section;
     }
 
