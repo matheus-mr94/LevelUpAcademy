@@ -1,24 +1,25 @@
 package br.com.levelupacademy.models.section;
 
 import br.com.levelupacademy.models.course.Course;
-import br.com.levelupacademy.validators.Validations;
+
+import static br.com.levelupacademy.validators.Validations.*;
 
 public class Section {
 
     private String name;
     private String code;
-    private int order;
-    private boolean active = false;
-    private boolean test = false;
+    private int orderInSystem;
+    private boolean active;
+    private boolean exam;
     private Course course;
 
-    public Section(String name, String code, int order, Course course) {
-        Validations.cantBeEmptyOrNull(name,"name can't be empty or null");
+    public Section(String name, String code, int orderInSystem, Course course) {
+        cantBeEmptyOrNull(name,"name can't be empty or null");
         this.name = name;
-        Validations.codeValidation(code,"Invalid characters");
+        codeValidation(code,"Invalid characters");
         this.code = code;
-        this.order = order;
-        Validations.objectValidation(course, "Must have a course");
+        this.orderInSystem = orderInSystem;
+        objectIsNotNull(course, "Must have a course");
         this.course = course;
     }
 
@@ -30,16 +31,16 @@ public class Section {
         return code;
     }
 
-    public int getOrder() {
-        return order;
+    public int getOrderInSystem() {
+        return orderInSystem;
     }
 
     public boolean isActive() {
         return active;
     }
 
-    public boolean isTest() {
-        return test;
+    public boolean isExam() {
+        return exam;
     }
 
     public Course getCourse() {
@@ -51,9 +52,9 @@ public class Section {
         return "Section{" +
                 "name='" + name + '\'' +
                 ", code='" + code + '\'' +
-                ", order=" + order +
+                ", order=" + orderInSystem +
                 ", active=" + active +
-                ", test=" + test +
+                ", test=" + exam +
                 ", course=" + course +
                 '}';
     }

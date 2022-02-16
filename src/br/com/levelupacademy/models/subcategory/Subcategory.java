@@ -1,7 +1,8 @@
 package br.com.levelupacademy.models.subcategory;
 
 import br.com.levelupacademy.models.category.Category;
-import br.com.levelupacademy.validators.Validations;
+
+import static br.com.levelupacademy.validators.Validations.*;
 
 public class Subcategory {
 
@@ -10,19 +11,19 @@ public class Subcategory {
     private String description;
     private String studyGuide;
     private boolean active;
-    private int order;
+    private int orderInSystem;
     private Category category;
 
-    public Subcategory(String name, String code, String description, String studyGuide, boolean active, int order, Category category) {
-        Validations.cantBeEmptyOrNull(name,"Name can't be empty or null");
+    public Subcategory(String name, String code, String description, String studyGuide, boolean active, int orderInSystem, Category category) {
+        cantBeEmptyOrNull(name,"Name can't be empty or null");
         this.name = name;
-        Validations.codeValidation(code,"Invalid characters");
+        codeValidation(code,"Invalid characters");
         this.code = code;
         this.description = description;
         this.studyGuide = studyGuide;
         this.active = active;
-        this.order = order;
-        Validations.objectValidation(category, "Subcategory should have a category");
+        this.orderInSystem = orderInSystem;
+        objectIsNotNull(category, "Subcategory should have a category");
         this.category = category;
     }
 
@@ -46,8 +47,8 @@ public class Subcategory {
         return active;
     }
 
-    public int getOrder() {
-        return order;
+    public int getOrderInSystem() {
+        return orderInSystem;
     }
 
     public Category getCategory() {
@@ -62,7 +63,7 @@ public class Subcategory {
                 ", description='" + description + '\'' +
                 ", studyGuide='" + studyGuide + '\'' +
                 ", active=" + active +
-                ", order=" + order +
+                ", order=" + orderInSystem +
                 ", category=" + category +
                 '}';
     }

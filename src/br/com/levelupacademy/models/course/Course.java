@@ -1,32 +1,40 @@
 package br.com.levelupacademy.models.course;
 
-import br.com.levelupacademy.validators.Validations;
+import br.com.levelupacademy.models.subcategory.Subcategory;
+
+import static br.com.levelupacademy.validators.Validations.*;
 
 public class Course {
 
+    private static final int MINIMUM_TIME_TO_FINISH = 1;
+    private static final int MAXIMUM_TIME_TO_FINISH = 20;
+
     private String name;
     private String code;
-    private Integer estimatedTime;
-    private boolean visible = false;
+    private Integer estimatedTimeInHours;
+    private boolean visible;
     private String target;
     private String instructor;
     private String syllabus;
     private String developedSkills;
+    private Subcategory subcategory;
 
-    public Course(String name, String code, Integer estimatedTime, String target, String instructor, String syllabus, String developedSkills) {
-        Validations.cantBeEmptyOrNull(name,"name can't be empty or null");
+    public Course(String name, String code, Integer estimatedTimeInHours, String target, String instructor, String syllabus, String developedSkills, Subcategory subcategory) {
+        cantBeEmptyOrNull(name,"name can't be empty or null");
         this.name = name;
-        Validations.cantBeEmptyOrNull(code,"Code can't be empty or null");
-        Validations.codeValidation(code,"Invalid characters");
+        cantBeEmptyOrNull(code,"Code can't be empty or null");
+        codeValidation(code,"Invalid characters");
         this.code = code;
-        Validations.cantBeNull(estimatedTime, "Estimated time can't be empty or null");
-        Validations.sizeValidation(estimatedTime, "estimated time should be between 1 and 20");
-        this.estimatedTime = estimatedTime;
+        cantBeNull(estimatedTimeInHours, "Estimated time can't be empty or null");
+        sizeValidation(estimatedTimeInHours, MINIMUM_TIME_TO_FINISH, MAXIMUM_TIME_TO_FINISH,"estimated time should be between 1 and 20");
+        this.estimatedTimeInHours = estimatedTimeInHours;
         this.target = target;
-        Validations.cantBeEmptyOrNull(instructor,"Course must have an instructor name");
+        cantBeEmptyOrNull(instructor,"Course must have an instructor name");
         this.instructor = instructor;
         this.syllabus = syllabus;
         this.developedSkills = developedSkills;
+        objectIsNotNull(subcategory, "Subcategory can't be null");
+        this.subcategory = subcategory;
     }
 
     public String getName() {
@@ -37,8 +45,8 @@ public class Course {
         return code;
     }
 
-    public Integer getEstimatedTime() {
-        return estimatedTime;
+    public Integer getEstimatedTimeInHours() {
+        return estimatedTimeInHours;
     }
 
     public String getTarget() {
@@ -62,7 +70,7 @@ public class Course {
         return "Course{" +
                 "name='" + name + '\'' +
                 ", code='" + code + '\'' +
-                ", estimatedTime=" + estimatedTime +
+                ", estimatedTime=" + estimatedTimeInHours +
                 ", visible=" + visible +
                 ", target='" + target + '\'' +
                 ", instructor='" + instructor + '\'' +

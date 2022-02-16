@@ -12,13 +12,13 @@ import br.com.levelupacademy.models.video.Video;
 
 public class Test {
     public static void main(String[] args) {
-        Course java = new Course("Java", "aab2", 5, "iniciantes", "sergio", "emeneta", "orientacao a objetos");
+        Category category = new Category("categoria", "abcd1", "descrição", "guia de estudos", 1, "linkdaimagem.com", "#fff");
+        Subcategory subcategory = new Subcategory("subcategoria", "aa52z", "descrição", "guia de estudos", false, 1, category);
+        Course java = new Course("Java", "aab2", 5, "iniciantes", "sergio", "ementa", "orientacao a objetos",subcategory);
         Section section = new Section("Nome", "3",1, java);
         Video video = new Video("video", "1", 4, section, "www.alura.com.br", 5, "transcrição");
         Question question = new Question("dúvida", "1ab", 1, section, "enunciado");
         Alternative alternative = new Alternative("texto", 1, true, "ta certa", question);
-        Category category = new Category("categoria", "abcd1", "descrição", "guia de estudos", 1, "linkdaimagem.com", "#fff");
-        Subcategory subcategory = new Subcategory("subcategoria", "aa52z", "descrição", "guia de estudos", false, 1, category);
         Explanation explanation = new Explanation("explicacao", "mza1", 1, section, "texto");
 
         System.out.println(java);

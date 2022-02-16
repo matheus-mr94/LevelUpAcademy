@@ -1,18 +1,18 @@
 package br.com.levelupacademy.models.question;
 
-import br.com.levelupacademy.enums.AnswerType;
 import br.com.levelupacademy.models.activity.Activity;
 import br.com.levelupacademy.models.section.Section;
-import br.com.levelupacademy.validators.Validations;
+
+import static br.com.levelupacademy.validators.Validations.cantBeEmptyOrNull;
 
 public class Question extends Activity {
 
     private String statement;
-    private AnswerType answerType = AnswerType.ONLY_ANSWER;
+    private QuestionType questionType = QuestionType.SINGLE_CHOICE;
 
     public Question(String title, String code, int order, Section section, String statement) {
         super(title, code, order, section);
-        Validations.cantBeEmptyOrNull(statement, "The statement can't be empty or null");
+        cantBeEmptyOrNull(statement, "The statement can't be empty or null");
         this.statement = statement;
     }
 
@@ -20,15 +20,15 @@ public class Question extends Activity {
         return statement;
     }
 
-    public AnswerType getAnswerType() {
-        return answerType;
+    public QuestionType getAnswerType() {
+        return questionType;
     }
 
     @Override
     public String toString() {
         return "Question{" +
                 "statement='" + statement + '\'' +
-                ", answerType=" + answerType +
+                ", answerType=" + questionType +
                 '}';
     }
 }

@@ -22,13 +22,13 @@ public class Validations {
         }
     }
 
-    public static void sizeValidation(int field, String error) {
-        if(field < 1 || field > 20) {
+    public static void sizeValidation(int field, int start, int end, String error) {
+        if(field < start || field > end) {
             throw new IllegalArgumentException(error);
         }
     }
 
-    public static void objectValidation(Object object, String error) {
+    public static void objectIsNotNull(Object object, String error) {
         if(object == null) {
             throw new NullPointerException(error);
         }

@@ -1,23 +1,25 @@
 package br.com.levelupacademy.models.alternative;
 
 import br.com.levelupacademy.models.question.Question;
-import br.com.levelupacademy.validators.Validations;
+
+import static br.com.levelupacademy.validators.Validations.cantBeEmptyOrNull;
+import static br.com.levelupacademy.validators.Validations.objectIsNotNull;
 
 public class Alternative {
 
     private String text;
-    private int order;
+    private int orderInSystem;
     private boolean correct;
     private String justification;
     private Question question;
 
-    public Alternative(String text, int order, boolean correct, String justification, Question question) {
-        Validations.cantBeEmptyOrNull(text, "Text can't be empty or null");
+    public Alternative(String text, int orderInSystem, boolean correct, String justification, Question question) {
+        cantBeEmptyOrNull(text, "Text can't be empty or null");
         this.text = text;
-        this.order = order;
+        this.orderInSystem = orderInSystem;
         this.correct = correct;
         this.justification = justification;
-        Validations.objectValidation(question,"Should be associate with a question");
+        objectIsNotNull(question,"Should be associate with a question");
         this.question = question;
     }
 
@@ -25,8 +27,8 @@ public class Alternative {
         return text;
     }
 
-    public int getOrder() {
-        return order;
+    public int getOrderInSystem() {
+        return orderInSystem;
     }
 
     public boolean isCorrect() {
@@ -45,7 +47,7 @@ public class Alternative {
     public String toString() {
         return "Alternative{" +
                 "text='" + text + '\'' +
-                ", order=" + order +
+                ", order=" + orderInSystem +
                 ", correct=" + correct +
                 ", justification='" + justification + '\'' +
                 ", question=" + question +

@@ -2,19 +2,20 @@ package br.com.levelupacademy.models.video;
 
 import br.com.levelupacademy.models.activity.Activity;
 import br.com.levelupacademy.models.section.Section;
-import br.com.levelupacademy.validators.Validations;
+
+import static br.com.levelupacademy.validators.Validations.cantBeEmptyOrNull;
 
 public class Video extends Activity {
 
     private String url;
-    private Integer time;
+    private Integer durationInMinutes;
     private String transcription;
 
-    public Video(String title, String code,int order, Section section, String url, Integer time, String transcription) {
+    public Video(String title, String code, int order, Section section, String url, Integer durationInMinutes, String transcription) {
         super(title, code, order, section);
-        Validations.cantBeEmptyOrNull(url, "Url can't be empty or null");
+        cantBeEmptyOrNull(url, "Url can't be empty or null");
         this.url = url;
-        this.time = time;
+        this.durationInMinutes = durationInMinutes;
         this.transcription = transcription;
     }
 
@@ -22,8 +23,8 @@ public class Video extends Activity {
         return url;
     }
 
-    public Integer getTime() {
-        return time;
+    public Integer getDurationInMinutes() {
+        return durationInMinutes;
     }
 
     public String getTranscription() {
@@ -34,7 +35,7 @@ public class Video extends Activity {
     public String toString() {
         return "Video{" +
                 "url='" + url + '\'' +
-                ", time=" + time +
+                ", time=" + durationInMinutes +
                 ", transcription='" + transcription + '\'' +
                 '}';
     }
