@@ -23,30 +23,6 @@ public class Section {
         this.course = course;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public int getOrderInSystem() {
-        return orderInSystem;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public boolean isExam() {
-        return exam;
-    }
-
-    public Course getCourse() {
-        return course;
-    }
-
     @Override
     public String toString() {
         return "Section{" +

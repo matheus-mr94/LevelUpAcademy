@@ -16,14 +16,6 @@ public class Question extends Activity {
         this.statement = statement;
     }
 
-    public String getStatement() {
-        return statement;
-    }
-
-    public QuestionType getAnswerType() {
-        return questionType;
-    }
-
     @Override
     public String toString() {
         return "Question{" +

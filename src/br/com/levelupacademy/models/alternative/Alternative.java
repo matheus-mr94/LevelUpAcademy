@@ -23,26 +23,6 @@ public class Alternative {
         this.question = question;
     }
 
-    public String getText() {
-        return text;
-    }
-
-    public int getOrderInSystem() {
-        return orderInSystem;
-    }
-
-    public boolean isCorrect() {
-        return correct;
-    }
-
-    public String getJustification() {
-        return justification;
-    }
-
-    public Question getQuestion() {
-        return question;
-    }
-
     @Override
     public String toString() {
         return "Alternative{" +

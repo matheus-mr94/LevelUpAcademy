@@ -22,23 +22,4 @@ public abstract class Activity {
         this.section = section;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public int getOrder() {
-        return order;
-    }
-
-    public Section getSection() {
-        return section;
-    }
 }

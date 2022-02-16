@@ -27,34 +27,6 @@ public class Subcategory {
         this.category = category;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public int getOrderInSystem() {
-        return orderInSystem;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
     @Override
     public String toString() {
         return "Subcategory{" +

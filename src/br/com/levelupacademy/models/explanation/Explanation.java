@@ -15,10 +15,6 @@ public class Explanation extends Activity {
         this.text = text;
     }
 
-    public String getText() {
-        return text;
-    }
-
     @Override
     public String toString() {
         return "Explanation{" +

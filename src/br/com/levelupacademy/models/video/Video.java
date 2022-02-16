@@ -19,18 +19,6 @@ public class Video extends Activity {
         this.transcription = transcription;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public Integer getDurationInMinutes() {
-        return durationInMinutes;
-    }
-
-    public String getTranscription() {
-        return transcription;
-    }
-
     @Override
     public String toString() {
         return "Video{" +
