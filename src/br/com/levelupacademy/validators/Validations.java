@@ -17,7 +17,7 @@ public class Validations {
     }
 
     public static void codeValidation(String code, String error) {
-        if(!code.matches("[a-z0-9^-]+")) {
+        if(!code.matches("[a-z0-9-]+")) {
             throw new IllegalArgumentException(error);
         }
     }
