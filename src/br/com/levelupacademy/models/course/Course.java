@@ -37,34 +37,6 @@ public class Course {
         this.subcategory = subcategory;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public Integer getEstimatedTimeInHours() {
-        return estimatedTimeInHours;
-    }
-
-    public String getTarget() {
-        return target;
-    }
-
-    public String getInstructor() {
-        return instructor;
-    }
-
-    public String getSyllabus() {
-        return syllabus;
-    }
-
-    public String getDevelopedSkills() {
-        return developedSkills;
-    }
-
     @Override
     public String toString() {
         return "Course{" +
