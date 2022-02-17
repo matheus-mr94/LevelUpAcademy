@@ -15,11 +15,11 @@ public class Alternative {
 
     public Alternative(String text, int orderInSystem, boolean correct, String justification, Question question) {
         cantBeEmptyOrNull(text, "Text can't be empty or null");
+        objectIsNotNull(question,"Should be associate with a question");
         this.text = text;
         this.orderInSystem = orderInSystem;
         this.correct = correct;
         this.justification = justification;
-        objectIsNotNull(question,"Should be associate with a question");
         this.question = question;
     }
 

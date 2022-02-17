@@ -16,14 +16,14 @@ public class Subcategory {
 
     public Subcategory(String name, String code, String description, String studyGuide, boolean active, int orderInSystem, Category category) {
         cantBeEmptyOrNull(name,"Name can't be empty or null");
-        this.name = name;
         codeValidation(code,"Invalid characters");
+        objectIsNotNull(category, "Subcategory should have a category");
+        this.name = name;
         this.code = code;
         this.description = description;
         this.studyGuide = studyGuide;
         this.active = active;
         this.orderInSystem = orderInSystem;
-        objectIsNotNull(category, "Subcategory should have a category");
         this.category = category;
     }
 

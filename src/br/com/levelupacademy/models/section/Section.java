@@ -15,11 +15,11 @@ public class Section {
 
     public Section(String name, String code, int orderInSystem, Course course) {
         cantBeEmptyOrNull(name,"name can't be empty or null");
-        this.name = name;
         codeValidation(code,"Invalid characters");
+        objectIsNotNull(course, "Must have a course");
+        this.name = name;
         this.code = code;
         this.orderInSystem = orderInSystem;
-        objectIsNotNull(course, "Must have a course");
         this.course = course;
     }
 

@@ -17,9 +17,9 @@ public class Category {
 
     public Category(String name, String code, String description, String studyGuide, int orderInSystem, String urlImage , String hexCode) {
         cantBeEmptyOrNull(name,"name can't be empty or null");
-        this.name = name;
         cantBeEmptyOrNull(code,"Code can't be empty or null");
         codeValidation(code,"Invalid characters");
+        this.name = name;
         this.code = code;
         this.description = description;
         this.studyGuide = studyGuide;

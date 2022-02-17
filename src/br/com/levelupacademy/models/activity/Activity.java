@@ -14,11 +14,11 @@ public abstract class Activity {
 
     public Activity(String title, String code, int orderInSystem, Section section) {
         cantBeEmptyOrNull(title,"Title can't be empty or null");
-        this.title = title;
         codeValidation(code,"Invalid characters");
+        objectIsNotNull(section,"Activity must have a section");
+        this.title = title;
         this.code = code;
         this.orderInSystem = orderInSystem;
-        objectIsNotNull(section,"Activity must have a section");
         this.section = section;
     }
 
