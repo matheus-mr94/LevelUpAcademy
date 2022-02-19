@@ -15,7 +15,7 @@ public class Category {
     private String hexCode;
 
 
-    public Category(String name, String code, String description, String studyGuide, int orderInSystem, String urlImage , String hexCode) {
+    public Category(String name, String code, String description, String studyGuide,boolean active, int orderInSystem, String urlImage , String hexCode) {
         cantBeEmptyOrNull(name,"name can't be empty or null");
         cantBeEmptyOrNull(code,"Code can't be empty or null");
         codeValidation(code,"Invalid characters");
@@ -23,6 +23,7 @@ public class Category {
         this.code = code;
         this.description = description;
         this.studyGuide = studyGuide;
+        this.active = active;
         this.orderInSystem = orderInSystem;
         this.urlImage = urlImage ;
         this.hexCode = hexCode;
