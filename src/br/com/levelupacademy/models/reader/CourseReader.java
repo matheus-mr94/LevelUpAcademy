@@ -43,7 +43,7 @@ public class CourseReader {
                         courses.add(course);
                     }
                 }
-                }
+            }
                 scan.close();
                 for (Course course : courses) {
                     System.out.println(course);

@@ -8,7 +8,7 @@ public class CourseValidations {
             if(!name.isEmpty() && !code.isEmpty() && !instructor.isEmpty() && !subcategoryName.isEmpty()){
                 return true;
             }else {
-                System.out.println("The file wasn't read correctly");
+            System.out.println("The file wasn't read correctly, some field is empty");
                 return false;
             }
         }
