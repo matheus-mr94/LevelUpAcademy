@@ -1,15 +1,16 @@
 package br.com.levelupacademy.validators;
 
+import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.subcategory.Subcategory;
 
 import static br.com.levelupacademy.validators.Validations.*;
 
-public class CourseValidations {
+public class SubcategoryValidations {
 
-    public static boolean courseIsValid(String name, String code, String instructor,  Subcategory subcategory) {
-        if(isCourseValid(name,code,instructor) && subcategory != null) {
+    public static boolean subcategoryIsValid(String name, String code, Category category) {
+        if(isSubcategoryValid(name, code, category)) {
             return true;
-        } else {
+        }else {
             System.out.println("The file wasn't read correctly, some field is empty");
             return false;
         }
@@ -23,15 +24,16 @@ public class CourseValidations {
         codeValidation(code,"Invalid characters");
         return true;
     }
-    private static boolean isInstructorValid(String instructor) {
-        cantBeEmptyOrNull(instructor,"Instructor can't be empty or null");
+
+    private static boolean isCategoryValid(Category category) {
+        objectIsNotNull(category,"Course can't be empty or null");
         return true;
     }
 
-    private static boolean isCourseValid(String name, String code, String instructor) {
+    private static boolean isSubcategoryValid(String name, String code, Category category) {
         isNameValid(name);
         isCodeValid(code);
-        isInstructorValid(instructor);
+        isCategoryValid(category);
         return true;
     }
 }

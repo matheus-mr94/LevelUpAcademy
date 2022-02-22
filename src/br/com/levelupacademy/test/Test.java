@@ -7,16 +7,17 @@ import br.com.levelupacademy.models.explanation.Explanation;
 import br.com.levelupacademy.models.question.Question;
 import br.com.levelupacademy.models.reader.CategoryReader;
 import br.com.levelupacademy.models.reader.CourseReader;
+import br.com.levelupacademy.models.reader.SubcategoryReader;
 import br.com.levelupacademy.models.section.Section;
-import br.com.levelupacademy.models.subcategory.Subcategory;
 import br.com.levelupacademy.models.video.Video;
 
 import java.io.IOException;
+import java.util.List;
 
 public class Test {
     public static void main(String[] args) throws IOException {
         Category category = new Category("categoria", "abcd1", "descrição", "guia de estudos", false, 1, "#linkdaimagem.com","#fff");
-        Subcategory subcategory = new Subcategory("subcategoria", "aa52z", "descrição", "guia de estudos", false, 1, category);
+        br.com.levelupacademy.models.subcategory.Subcategory subcategory = new br.com.levelupacademy.models.subcategory.Subcategory("subcategoria", "aa52z", "descrição", "guia de estudos", false, 1, category);
         Course java = new Course("Java","1254",20,"Iniciantes",true,"Sérgio","ementa","OOP",subcategory);
         Section section = new Section("Nome", "3",1, java);
         Video video = new Video("video", "1", 4, section, "www.alura.com.br", 5, "transcrição");
@@ -33,9 +34,15 @@ public class Test {
 //        System.out.println(subcategory);
 //        System.out.println(explanation);
 
-//        CategoryReader categoryReader = new CategoryReader();
-//        categoryReader.readArchive("/home/matheus/Documentos/entradas/categoria.csv");
+        CategoryReader categoryReader = new CategoryReader();
+        List<Category> categories = categoryReader.readArchive("/home/matheus/Documentos/entradas/categoria.csv");
+        System.out.println("\n" + "============================");
+        SubcategoryReader subcategoryReader = new SubcategoryReader();
+        List<br.com.levelupacademy.models.subcategory.Subcategory> subcategories = subcategoryReader.readArchive("/home/matheus/Documentos/entradas/subcategoria.csv", categories);
+        System.out.println("\n" + "============================");
         CourseReader courseReader = new CourseReader();
-        courseReader.readArchive("/home/matheus/Documentos/entradas/curso.csv");
+        courseReader.readArchive("/home/matheus/Documentos/entradas/curso.csv",subcategories);
+
+
     }
 }

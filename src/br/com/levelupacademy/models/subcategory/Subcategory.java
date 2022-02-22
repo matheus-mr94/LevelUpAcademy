@@ -27,9 +27,8 @@ public class Subcategory {
         this.category = category;
     }
 
-    public Subcategory(String name) {
-        cantBeEmptyOrNull(name,"Name can't be empty or null");
-        this.name = name;
+    public String getCode() {
+        return code;
     }
 
     @Override

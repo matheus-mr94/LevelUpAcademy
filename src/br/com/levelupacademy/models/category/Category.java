@@ -29,6 +29,10 @@ public class Category {
         this.hexCode = hexCode;
     }
 
+    public String getCode() {
+        return code;
+    }
+
     @Override
     public String toString() {
         return "Category{" +

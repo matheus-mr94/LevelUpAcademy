@@ -13,7 +13,7 @@ import static br.com.levelupacademy.validators.Validations.verifyIntegerNumber;
 
 public class  CategoryReader {
 
-    public void readArchive(String filePath) throws IOException {
+    public List<Category> readArchive(String filePath) throws IOException {
         try {
 
             List<Category> categories = new ArrayList<>();
@@ -43,6 +43,8 @@ public class  CategoryReader {
             for (Category category : categories) {
                 System.out.println(category);
             }
+
+            return categories;
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException("File not found");
 
