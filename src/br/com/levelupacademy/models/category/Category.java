@@ -29,6 +29,34 @@ public class Category {
         this.hexCode = hexCode;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getStudyGuide() {
+        return studyGuide;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public int getSequence() {
+        return sequence;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public String getHexCode() {
+        return hexCode;
+    }
+
     public String getCode() {
         return code;
     }

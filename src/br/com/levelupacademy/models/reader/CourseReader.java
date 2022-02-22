@@ -15,7 +15,7 @@ import static br.com.levelupacademy.validators.Validations.verifyIntegerNumber;
 
 public class CourseReader {
 
-    public void readArchive(String filePath, List<br.com.levelupacademy.models.subcategory.Subcategory> subcategories) throws FileNotFoundException {
+    public List<Course> readArchive(String filePath, List<br.com.levelupacademy.models.subcategory.Subcategory> subcategories) throws FileNotFoundException {
         try {
 
             List<Course> courses = new ArrayList<>();
@@ -56,7 +56,7 @@ public class CourseReader {
                 for (Course course : courses) {
                     System.out.println(course);
                 }
-
+                return courses;
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException("File not found");
 

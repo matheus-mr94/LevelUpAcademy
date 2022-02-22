@@ -1,7 +1,7 @@
 package br.com.levelupacademy.models.reader;
 
 import br.com.levelupacademy.models.category.Category;
-import br.com.levelupacademy.validators.SubcategoryValidations;
+import br.com.levelupacademy.models.subcategory.Subcategory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,11 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static br.com.levelupacademy.validators.SubcategoryValidations.subcategoryIsValid;
 import static br.com.levelupacademy.validators.Validations.verifyIntegerNumber;
 
 public class SubcategoryReader {
 
-    public List<br.com.levelupacademy.models.subcategory.Subcategory> readArchive(String filePath, List<Category> categories) throws IOException {
+    public List<Subcategory> readArchive(String filePath, List<Category> categories) throws IOException {
         try {
 
             List<br.com.levelupacademy.models.subcategory.Subcategory> subCategories = new ArrayList<>();
@@ -41,15 +42,15 @@ public class SubcategoryReader {
                         }
                     }
 
-                    if (SubcategoryValidations.subcategoryIsValid(name, code, category)) {
-                        br.com.levelupacademy.models.subcategory.Subcategory subcategory = new br.com.levelupacademy.models.subcategory.Subcategory(name, code, description, "", active, sequenceInSystem, category);
+                    if (subcategoryIsValid(name, code, category)) {
+                        Subcategory subcategory = new Subcategory(name, code, description, "", active, sequenceInSystem, category);
                         subCategories.add(subcategory);
                     }
                 }
             }
                 scan.close();
 
-            for (br.com.levelupacademy.models.subcategory.Subcategory subcategory : subCategories) {
+            for (Subcategory subcategory : subCategories) {
                     System.out.println(subcategory);
                 }
             return subCategories;

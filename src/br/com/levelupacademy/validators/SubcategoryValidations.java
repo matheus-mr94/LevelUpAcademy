@@ -1,7 +1,6 @@
 package br.com.levelupacademy.validators;
 
 import br.com.levelupacademy.models.category.Category;
-import br.com.levelupacademy.models.subcategory.Subcategory;
 
 import static br.com.levelupacademy.validators.Validations.*;
 
