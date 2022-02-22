@@ -10,12 +10,12 @@ public class Category {
     private String description;
     private String studyGuide;
     private boolean active;
-    private int orderInSystem;
+    private int sequence;
     private String urlImage;
     private String hexCode;
 
 
-    public Category(String name, String code, String description, String studyGuide,boolean active, int orderInSystem, String urlImage , String hexCode) {
+    public Category(String name, String code, String description, String studyGuide, boolean active, int sequence, String urlImage , String hexCode) {
         cantBeEmptyOrNull(name,"name can't be empty or null");
         cantBeEmptyOrNull(code,"Code can't be empty or null");
         codeValidation(code,"Invalid characters");
@@ -24,7 +24,7 @@ public class Category {
         this.description = description;
         this.studyGuide = studyGuide;
         this.active = active;
-        this.orderInSystem = orderInSystem;
+        this.sequence = sequence;
         this.urlImage = urlImage ;
         this.hexCode = hexCode;
     }
@@ -37,7 +37,7 @@ public class Category {
                 ", description='" + description + '\'' +
                 ", studyGuide='" + studyGuide + '\'' +
                 ", active=" + active +
-                ", order=" + orderInSystem +
+                ", order=" + sequence +
                 ", urlImage='" + urlImage + '\'' +
                 ", hexCode='" + hexCode + '\'' +
                 '}';

@@ -8,18 +8,18 @@ public class Section {
 
     private String name;
     private String code;
-    private int orderInSystem;
+    private int sequence;
     private boolean active;
     private boolean exam;
     private Course course;
 
-    public Section(String name, String code, int orderInSystem, Course course) {
+    public Section(String name, String code, int sequence, Course course) {
         cantBeEmptyOrNull(name,"name can't be empty or null");
         codeValidation(code,"Invalid characters");
         objectIsNotNull(course, "Must have a course");
         this.name = name;
         this.code = code;
-        this.orderInSystem = orderInSystem;
+        this.sequence = sequence;
         this.course = course;
     }
 
@@ -28,7 +28,7 @@ public class Section {
         return "Section{" +
                 "name='" + name + '\'' +
                 ", code='" + code + '\'' +
-                ", order=" + orderInSystem +
+                ", order=" + sequence +
                 ", active=" + active +
                 ", test=" + exam +
                 ", course=" + course +

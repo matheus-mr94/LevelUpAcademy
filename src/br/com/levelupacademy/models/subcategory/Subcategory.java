@@ -11,10 +11,10 @@ public class Subcategory {
     private String description;
     private String studyGuide;
     private boolean active;
-    private int orderInSystem;
+    private int sequence;
     private Category category;
 
-    public Subcategory(String name, String code, String description, String studyGuide, boolean active, int orderInSystem, Category category) {
+    public Subcategory(String name, String code, String description, String studyGuide, boolean active, int sequence, Category category) {
         cantBeEmptyOrNull(name,"Name can't be empty or null");
         codeValidation(code,"Invalid characters");
         objectIsNotNull(category, "Subcategory should have a category");
@@ -23,8 +23,13 @@ public class Subcategory {
         this.description = description;
         this.studyGuide = studyGuide;
         this.active = active;
-        this.orderInSystem = orderInSystem;
+        this.sequence = sequence;
         this.category = category;
+    }
+
+    public Subcategory(String name) {
+        cantBeEmptyOrNull(name,"Name can't be empty or null");
+        this.name = name;
     }
 
     @Override
@@ -35,7 +40,7 @@ public class Subcategory {
                 ", description='" + description + '\'' +
                 ", studyGuide='" + studyGuide + '\'' +
                 ", active=" + active +
-                ", order=" + orderInSystem +
+                ", order=" + sequence +
                 ", category=" + category +
                 '}';
     }

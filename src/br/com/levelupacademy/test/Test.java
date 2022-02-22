@@ -6,6 +6,7 @@ import br.com.levelupacademy.models.course.Course;
 import br.com.levelupacademy.models.explanation.Explanation;
 import br.com.levelupacademy.models.question.Question;
 import br.com.levelupacademy.models.reader.CategoryReader;
+import br.com.levelupacademy.models.reader.CourseReader;
 import br.com.levelupacademy.models.section.Section;
 import br.com.levelupacademy.models.subcategory.Subcategory;
 import br.com.levelupacademy.models.video.Video;
@@ -16,7 +17,7 @@ public class Test {
     public static void main(String[] args) throws IOException {
         Category category = new Category("categoria", "abcd1", "descrição", "guia de estudos", false, 1, "#linkdaimagem.com","#fff");
         Subcategory subcategory = new Subcategory("subcategoria", "aa52z", "descrição", "guia de estudos", false, 1, category);
-        Course java = new Course("Java", "aab2", 5, "iniciantes", "sergio", "ementa", "orientacao a objetos",subcategory);
+        Course java = new Course("Java","1254",20,"Iniciantes",true,"Sérgio","ementa","OOP",subcategory);
         Section section = new Section("Nome", "3",1, java);
         Video video = new Video("video", "1", 4, section, "www.alura.com.br", 5, "transcrição");
         Question question = new Question("dúvida", "1ab", 1, section, "enunciado");
@@ -32,7 +33,9 @@ public class Test {
 //        System.out.println(subcategory);
 //        System.out.println(explanation);
 
-        CategoryReader reader = new CategoryReader();
-        reader.readArchive("/home/matheus/Documentos/entradas/categorias.csv");
+//        CategoryReader categoryReader = new CategoryReader();
+//        categoryReader.readArchive("/home/matheus/Documentos/entradas/categoria.csv");
+        CourseReader courseReader = new CourseReader();
+        courseReader.readArchive("/home/matheus/Documentos/entradas/curso.csv");
     }
 }
