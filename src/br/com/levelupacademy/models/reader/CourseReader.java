@@ -3,7 +3,6 @@ package br.com.levelupacademy.models.reader;
 
 import br.com.levelupacademy.models.course.Course;
 import br.com.levelupacademy.models.subcategory.Subcategory;
-import br.com.levelupacademy.validators.CourseValidations;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,7 +14,7 @@ import static br.com.levelupacademy.validators.Validations.verifyIntegerNumber;
 
 public class CourseReader {
 
-    public List<Course> readArchive(String filePath, List<br.com.levelupacademy.models.subcategory.Subcategory> subcategories) throws FileNotFoundException {
+    public List<Course> readArchive(String filePath, List<Subcategory> subcategories) throws FileNotFoundException {
         try {
 
             List<Course> courses = new ArrayList<>();
@@ -46,10 +45,13 @@ public class CourseReader {
                         }
                     }
 
-                    if(CourseValidations.courseIsValid(name,code,instructor,subcategory)) {
+                    try{
                         Course course = new Course(name, code, estimatedTimeInHours, target, visible, instructor, syllabus, developedSkills, subcategory);
                         courses.add(course);
+                    } catch (NullPointerException e){
+                        System.out.println("The file wasn't read correctly, some field is empty");
                     }
+//
                 }
             }
                 scan.close();

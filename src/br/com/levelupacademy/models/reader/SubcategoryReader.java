@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static br.com.levelupacademy.validators.SubcategoryValidations.subcategoryIsValid;
 import static br.com.levelupacademy.validators.Validations.verifyIntegerNumber;
 
 public class SubcategoryReader {
@@ -18,7 +17,7 @@ public class SubcategoryReader {
     public List<Subcategory> readArchive(String filePath, List<Category> categories) throws IOException {
         try {
 
-            List<br.com.levelupacademy.models.subcategory.Subcategory> subCategories = new ArrayList<>();
+            List<Subcategory> subCategories = new ArrayList<>();
             File archive = new File(filePath);
             Scanner scan = new Scanner(archive, "UTF-8");
             scan.nextLine();
@@ -42,9 +41,11 @@ public class SubcategoryReader {
                         }
                     }
 
-                    if (subcategoryIsValid(name, code, category)) {
+                    try {
                         Subcategory subcategory = new Subcategory(name, code, description, "", active, sequenceInSystem, category);
                         subCategories.add(subcategory);
+                    } catch (NullPointerException e) {
+                        System.out.println("The file wasn't read correctly, some field is empty");
                     }
                 }
             }

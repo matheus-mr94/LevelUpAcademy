@@ -50,26 +50,6 @@ public class Course {
         return estimatedTimeInHours;
     }
 
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public String getTarget() {
-        return target;
-    }
-
-    public String getInstructor() {
-        return instructor;
-    }
-
-    public String getSyllabus() {
-        return syllabus;
-    }
-
-    public String getDevelopedSkills() {
-        return developedSkills;
-    }
-
     public Subcategory getSubcategory() {
         return subcategory;
     }

@@ -31,16 +31,12 @@ public class Subcategory {
         return name;
     }
 
-    public String getCode() {
-        return code;
-    }
-
     public String getDescription() {
         return description;
     }
 
-    public String getStudyGuide() {
-        return studyGuide;
+    public String getCode() {
+        return code;
     }
 
     public boolean isActive() {

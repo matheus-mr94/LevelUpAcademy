@@ -4,6 +4,7 @@ import br.com.levelupacademy.models.alternative.Alternative;
 import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.course.Course;
 import br.com.levelupacademy.models.explanation.Explanation;
+import br.com.levelupacademy.models.output.Output;
 import br.com.levelupacademy.models.question.Question;
 import br.com.levelupacademy.models.reader.CategoryReader;
 import br.com.levelupacademy.models.reader.CourseReader;
@@ -44,6 +45,8 @@ public class Test {
         CourseReader courseReader = new CourseReader();
         List<Course> courses = courseReader.readArchive("/home/matheus/Documentos/entradas/curso.csv", subcategories);
 
+        Output output = new Output();
+        output.outputWriter(categories,subcategories,courses);
 
 
     }

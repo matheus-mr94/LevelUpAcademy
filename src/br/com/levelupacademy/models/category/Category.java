@@ -37,18 +37,6 @@ public class Category {
         return description;
     }
 
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public int getSequence() {
-        return sequence;
-    }
-
     public String getUrlImage() {
         return urlImage;
     }
