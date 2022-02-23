@@ -95,7 +95,7 @@ public class Output {
        }
 
        private static String findCoursesNamesForSubcategory(List<Course> courses, Subcategory subcategory) {
-            return courses.stream()
+          return courses.stream()
                     .filter(course -> course.getSubcategory().equals(subcategory))
                     .map(Course::getName)
                     .collect(Collectors.joining(", "));

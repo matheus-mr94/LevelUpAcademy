@@ -51,7 +51,7 @@ public class CourseReader {
                     } catch (NullPointerException e){
                         System.out.println("The file wasn't read correctly, some field is empty");
                     }
-//
+
                 }
             }
                 scan.close();
