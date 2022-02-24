@@ -15,7 +15,7 @@ public final class HtmlWriter {
 
     public static void outputWriter(List<Category> categories, List<Subcategory> subcategories, List<Course> courses) throws IOException {
 
-        List<Subcategory> activeSubcategories= subcategories.stream()
+        List<Subcategory> activeSubcategories = subcategories.stream()
                 .filter(Subcategory::isActive).sorted(Comparator.comparing(Subcategory::getSequence)).toList();
 
 

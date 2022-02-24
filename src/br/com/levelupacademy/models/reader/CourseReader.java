@@ -12,14 +12,13 @@ import java.util.Scanner;
 
 import static br.com.levelupacademy.validators.Validations.getIntegerNumberOrZeroFrom;
 
-public class CourseReader implements AutoCloseable {
+public class CourseReader {
 
     public List<Course> readArchive(String filePath, List<Subcategory> subcategories) throws FileNotFoundException {
 
 
             List<Course> courses = new ArrayList<>();
-            File archive = new File(filePath);
-            try (Scanner scan = new Scanner(archive, "UTF-8")) {
+            try (Scanner scan = new Scanner(new File(filePath), "UTF-8")) {
             scan.nextLine();
 
             while (scan.hasNext()) {
@@ -49,7 +48,7 @@ public class CourseReader implements AutoCloseable {
                         Course course = new Course(name, code, estimatedTimeInHours, target, visible, instructor, syllabus, developedSkills, subcategory);
                         courses.add(course);
                     } catch (NullPointerException e){
-                        System.out.println("The file wasn't read correctly, some field is empty");
+                        e.printStackTrace();
                     }
                 }
             }
@@ -59,8 +58,4 @@ public class CourseReader implements AutoCloseable {
         return courses;
     }
 
-    @Override
-    public void close() throws Exception {
-
-    }
 }

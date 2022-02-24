@@ -11,14 +11,13 @@ import java.util.Scanner;
 
 import static br.com.levelupacademy.validators.Validations.getIntegerNumberOrZeroFrom;
 
-public class SubcategoryReader implements AutoCloseable {
+public class SubcategoryReader {
 
     public List<Subcategory> readArchive(String filePath, List<Category> categories) {
 
 
         List<Subcategory> subcategories = new ArrayList<>();
-        File archive = new File(filePath);
-        try (Scanner scan = new Scanner(archive, "UTF-8")) {
+        try (Scanner scan = new Scanner(new File(filePath), "UTF-8")) {
             scan.nextLine();
 
             while (scan.hasNext()) {
@@ -44,7 +43,7 @@ public class SubcategoryReader implements AutoCloseable {
                         Subcategory subcategory = new Subcategory(name, code, description, "", active, sequenceInSystem, category);
                         subcategories.add(subcategory);
                     } catch (NullPointerException e) {
-                        System.out.println("The file wasn't read correctly, some field is empty");
+                        e.printStackTrace();
                     }
                 }
             }
@@ -54,8 +53,4 @@ public class SubcategoryReader implements AutoCloseable {
         return subcategories;
     }
 
-    @Override
-    public void close() throws Exception {
-
-    }
 }

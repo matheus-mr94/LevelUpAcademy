@@ -11,14 +11,13 @@ import java.util.Scanner;
 
 import static br.com.levelupacademy.validators.Validations.getIntegerNumberOrZeroFrom;
 
-public class  CategoryReader implements AutoCloseable {
+public class  CategoryReader {
 
     public List<Category> readArchive(String filePath) throws IOException {
 
 
             List<Category> categories = new ArrayList<>();
-            File archive = new File(filePath);
-            try (Scanner scan = new Scanner(archive, "UTF-8")) {
+            try (Scanner scan = new Scanner(new File(filePath), "UTF-8")) {
             scan.nextLine();
 
             while (scan.hasNext()) {
@@ -43,10 +42,5 @@ public class  CategoryReader implements AutoCloseable {
             e.printStackTrace();
         }
         return categories;
-    }
-
-    @Override
-    public void close() throws Exception {
-
     }
 }
