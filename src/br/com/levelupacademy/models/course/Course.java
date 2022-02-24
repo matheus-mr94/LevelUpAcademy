@@ -54,6 +54,10 @@ public class Course {
         return subcategory;
     }
 
+    public String getCategoryCode() {
+        return subcategory.getCategoryCode();
+    }
+
     @Override
     public String toString() {
         return "Course{" +

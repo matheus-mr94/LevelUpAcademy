@@ -79,17 +79,17 @@ public final class HtmlWriter {
 
        private static int numberOfCoursesInCategory(List<Course> courses, String categoryCode) {
           return (int) courses.stream()
-                    .filter(course -> course.getSubcategory().getCategory().getCode().equals(categoryCode)).count();
+                    .filter(course -> course.getCategoryCode().equals(categoryCode)).count();
 
        }
 
        private static int totalEstimatedTimeInHours(List<Course> courses, String categoryCode){
           return courses.stream()
-                  .filter(course -> course.getSubcategory().getCategory().getCode().equals(categoryCode))
+                  .filter(course -> course.getCategoryCode().equals(categoryCode))
                   .mapToInt(Course::getEstimatedTimeInHours).sum();
        }
 
-       private static List<Subcategory> filterSubcategoryByCategory(List<Subcategory> subcategoryList, String categoryCode){
+       private static List<Subcategory> filterSubcategoryByCategory(List<Subcategory> subcategoryList, String categoryCode) {
           List<Subcategory> subcategoryLists = subcategoryList.stream()
                   .filter(subcategory -> subcategory.getCategoryCode().equals(categoryCode)).toList();
           return subcategoryLists;
