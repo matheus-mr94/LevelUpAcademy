@@ -11,10 +11,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Output {
+public final class HtmlWriter {
 
     public static void outputWriter(List<Category> categories, List<Subcategory> subcategories, List<Course> courses) throws IOException {
-        List<Subcategory> activeSubcategory= subcategories.stream()
+
+        List<Subcategory> activeSubcategories= subcategories.stream()
                 .filter(Subcategory::isActive).sorted(Comparator.comparing(Subcategory::getSequence)).toList();
 
 
@@ -39,7 +40,7 @@ public class Output {
                     numberOfCoursesInCategory(courses, category.getCode()),
                     totalEstimatedTimeInHours(courses, category.getCode()));
 
-            for (Subcategory subcategory : filterSubcategoryByCategory(activeSubcategory, category.getCode())) {
+            for (Subcategory subcategory : filterSubcategoryByCategory(activeSubcategories, category.getCode())) {
                 cReader += """
                             <dt>%s</dt>
                                 <dd>Descrição: %s</dd>
@@ -90,7 +91,7 @@ public class Output {
 
        private static List<Subcategory> filterSubcategoryByCategory(List<Subcategory> subcategoryList, String categoryCode){
           List<Subcategory> subcategoryLists = subcategoryList.stream()
-                  .filter(subcategory -> subcategory.getCategory().getCode().equals(categoryCode)).toList();
+                  .filter(subcategory -> subcategory.getCategoryCode().equals(categoryCode)).toList();
           return subcategoryLists;
        }
 

@@ -10,16 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static br.com.levelupacademy.validators.Validations.verifyIntegerNumber;
+import static br.com.levelupacademy.validators.Validations.getIntegerNumberOrZeroFrom;
 
 public class CourseReader {
 
     public List<Course> readArchive(String filePath, List<Subcategory> subcategories) throws FileNotFoundException {
-        try {
+
 
             List<Course> courses = new ArrayList<>();
             File archive = new File(filePath);
-            Scanner scan = new Scanner(archive, "UTF-8");
+            try (Scanner scan = new Scanner(archive, "UTF-8")) {
             scan.nextLine();
 
             while (scan.hasNext()) {
@@ -30,7 +30,7 @@ public class CourseReader {
                     String name = courseData[0];
                     String code = courseData[1].trim();
                     String estimatedTime = courseData[2];
-                    int estimatedTimeInHours = verifyIntegerNumber(estimatedTime);
+                    int estimatedTimeInHours = getIntegerNumberOrZeroFrom(estimatedTime);
                     boolean visible = courseData[3].equals("PÚBLICA") ? true : false;
                     String target = courseData[4];
                     String instructor = courseData[5];
@@ -45,23 +45,17 @@ public class CourseReader {
                         }
                     }
 
-                    try{
+                    try {
                         Course course = new Course(name, code, estimatedTimeInHours, target, visible, instructor, syllabus, developedSkills, subcategory);
                         courses.add(course);
                     } catch (NullPointerException e){
                         System.out.println("The file wasn't read correctly, some field is empty");
                     }
-
                 }
             }
-                scan.close();
-                for (Course course : courses) {
-                    System.out.println(course);
-                }
-                return courses;
         } catch (FileNotFoundException e) {
-            throw new FileNotFoundException("File not found");
-
+            e.printStackTrace();
         }
+        return courses;
     }
 }

@@ -9,16 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static br.com.levelupacademy.validators.Validations.verifyIntegerNumber;
+import static br.com.levelupacademy.validators.Validations.getIntegerNumberOrZeroFrom;
 
 public class  CategoryReader {
 
     public List<Category> readArchive(String filePath) throws IOException {
-        try {
+
 
             List<Category> categories = new ArrayList<>();
             File archive = new File(filePath);
-            Scanner scan = new Scanner(archive, "UTF-8");
+            try (Scanner scan = new Scanner(archive, "UTF-8")) {
             scan.nextLine();
 
             while (scan.hasNext()) {
@@ -28,7 +28,7 @@ public class  CategoryReader {
                     String name = categoryData[0];
                     String code = categoryData[1];
                     String sequence = categoryData[2];
-                    int sequenceInSystem = verifyIntegerNumber(sequence);
+                    int sequenceInSystem = getIntegerNumberOrZeroFrom(sequence);
                     String description = categoryData[3];
                     boolean active = categoryData[4].equals("ATIVA") ? true : false;
                     String urlImage = categoryData[5];
@@ -39,15 +39,9 @@ public class  CategoryReader {
 
                 }
             }
-            scan.close();
-            for (Category category : categories) {
-                System.out.println(category);
-            }
-
-            return categories;
         } catch (FileNotFoundException e) {
-            throw new FileNotFoundException("File not found");
-
+            e.printStackTrace();
         }
+        return categories;
     }
 }
