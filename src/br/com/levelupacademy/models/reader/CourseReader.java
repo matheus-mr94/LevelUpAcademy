@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 import static br.com.levelupacademy.validators.Validations.getIntegerNumberOrZeroFrom;
 
-public class CourseReader {
+public class CourseReader implements AutoCloseable {
 
     public List<Course> readArchive(String filePath, List<Subcategory> subcategories) throws FileNotFoundException {
 
@@ -57,5 +57,10 @@ public class CourseReader {
             e.printStackTrace();
         }
         return courses;
+    }
+
+    @Override
+    public void close() throws Exception {
+
     }
 }

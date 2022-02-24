@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 import static br.com.levelupacademy.validators.Validations.getIntegerNumberOrZeroFrom;
 
-public class  CategoryReader {
+public class  CategoryReader implements AutoCloseable {
 
     public List<Category> readArchive(String filePath) throws IOException {
 
@@ -43,5 +43,10 @@ public class  CategoryReader {
             e.printStackTrace();
         }
         return categories;
+    }
+
+    @Override
+    public void close() throws Exception {
+
     }
 }

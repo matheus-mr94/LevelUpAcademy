@@ -5,14 +5,13 @@ import br.com.levelupacademy.models.subcategory.Subcategory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import static br.com.levelupacademy.validators.Validations.getIntegerNumberOrZeroFrom;
 
-public class SubcategoryReader {
+public class SubcategoryReader implements AutoCloseable {
 
     public List<Subcategory> readArchive(String filePath, List<Category> categories) {
 
@@ -53,5 +52,10 @@ public class SubcategoryReader {
             e.printStackTrace();
         }
         return subcategories;
+    }
+
+    @Override
+    public void close() throws Exception {
+
     }
 }
