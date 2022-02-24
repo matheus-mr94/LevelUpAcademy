@@ -34,4 +34,9 @@ public class Validations {
         }
     }
 
+    public static int getIntegerNumberOrZeroFrom(String data) {
+        int integerNumber = data.equals("") ? 0 : Integer.parseInt(data.toString());
+        return integerNumber;
+    }
+
 }
