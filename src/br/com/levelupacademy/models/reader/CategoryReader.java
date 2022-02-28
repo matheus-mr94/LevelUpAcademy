@@ -43,4 +43,12 @@ public class  CategoryReader {
         }
         return categories;
     }
+
+    public static List<Category> showActiveCategories(List<Category> categories) {
+        List<Category> activeCategories = categories.stream()
+                .filter(Category::isActive).toList();
+
+        return activeCategories;
+    }
+
 }

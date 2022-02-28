@@ -49,6 +49,10 @@ public class Category {
         return code;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
     @Override
     public String toString() {
         return "Category{" +

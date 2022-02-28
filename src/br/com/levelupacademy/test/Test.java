@@ -39,6 +39,9 @@ public class Test {
             CategoryReader categoryReader = new CategoryReader();
             List<Category> categories = categoryReader.readArchive("/home/matheus/Documentos/entradas/categoria.csv");
             categories.forEach(c -> System.out.println(c));
+            System.out.println("==================");
+            List<Category> categoriesActive = categoryReader.showActiveCategories(categories);
+            categoriesActive.forEach(c -> System.out.println("Categorias ativas: " + c));
             System.out.println("\n" + "============================");
             SubcategoryReader subcategoryReader = new SubcategoryReader();
             List<Subcategory> subcategories = subcategoryReader.readArchive("/home/matheus/Documentos/entradas/subcategoria.csv", categories);
