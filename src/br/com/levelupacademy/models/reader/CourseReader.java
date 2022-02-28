@@ -64,7 +64,7 @@ public class CourseReader {
       return courses.stream().filter(c -> !c.isVisible()).toList();
     }
 
-    public static Set<String> showInstructorsWithCourses(List<Course> courses) {
+    public static Set<String> showInstructors(List<Course> courses) {
         return courses.stream().map(Course::getInstructor).collect(Collectors.toSet());
     }
 

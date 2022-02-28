@@ -51,6 +51,9 @@ public class Test {
             List<Subcategory> subcategoryList = subcategoryReader.showSubcategoriesWithoutDescription(subcategories);
             subcategoryList.forEach(s -> System.out.println("Subcategorias sem descrição " + s));
             System.out.println("\n" + "============================");
+            List<Subcategory> subcategoriesActive = subcategoryReader.showActiveSubcategoriesWithDescription(subcategories);
+            subcategoriesActive.forEach(s -> System.out.println("Subcategorias ativas com descrição: " + s));
+            System.out.println("======================");
             CourseReader courseReader = new CourseReader();
             List<Course> courses = courseReader.readArchive("/home/matheus/Documentos/entradas/curso.csv", subcategories);
             courses.forEach(c -> System.out.println(c));
@@ -58,7 +61,7 @@ public class Test {
             List<Course> coursesPrivates = courseReader.showPrivateCourses(courses);
             coursesPrivates.forEach(c -> System.out.println("Cursos com visibilidade privada: " + c));
             System.out.println("=============================");
-            Set<String> instructors = courseReader.showInstructorsWithCourses(courses);
+            Set<String> instructors = courseReader.showInstructors(courses);
             instructors.forEach(i -> System.out.println("Instrutor: " + i));
             HtmlWriter htmlWriter = new HtmlWriter();
             htmlWriter.outputWriter(categories, subcategories, courses);
