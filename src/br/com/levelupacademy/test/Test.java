@@ -15,6 +15,7 @@ import br.com.levelupacademy.models.video.Video;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 public class Test {
     public static void main(String[] args) {
@@ -53,7 +54,12 @@ public class Test {
             CourseReader courseReader = new CourseReader();
             List<Course> courses = courseReader.readArchive("/home/matheus/Documentos/entradas/curso.csv", subcategories);
             courses.forEach(c -> System.out.println(c));
-
+            System.out.println("============================");
+            List<Course> coursesPrivates = courseReader.showPrivateCourses(courses);
+            coursesPrivates.forEach(c -> System.out.println("Cursos com visibilidade privada: " + c));
+            System.out.println("=============================");
+            Set<String> instructors = courseReader.showInstructorsWithCourses(courses);
+            instructors.forEach(i -> System.out.println("Instrutor: " + i));
             HtmlWriter htmlWriter = new HtmlWriter();
             htmlWriter.outputWriter(categories, subcategories, courses);
 

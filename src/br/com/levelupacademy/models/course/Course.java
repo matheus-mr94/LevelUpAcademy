@@ -58,6 +58,14 @@ public class Course {
         return subcategory.getCategoryCode();
     }
 
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public String getInstructor() {
+        return instructor;
+    }
+
     @Override
     public String toString() {
         return "Course{" +

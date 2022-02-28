@@ -9,6 +9,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static br.com.levelupacademy.validators.Validations.getIntegerNumberOrZeroFrom;
 
@@ -56,6 +58,14 @@ public class CourseReader {
             e.printStackTrace();
         }
         return courses;
+    }
+
+    public static List<Course> showPrivateCourses(List<Course> courses) {
+      return courses.stream().filter(c -> !c.isVisible()).toList();
+    }
+
+    public static Set<String> showInstructorsWithCourses(List<Course> courses) {
+        return courses.stream().map(Course::getInstructor).collect(Collectors.toSet());
     }
 
 }
