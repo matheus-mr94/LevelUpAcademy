@@ -53,4 +53,8 @@ public class SubcategoryReader {
         return subcategories;
     }
 
+    public static List<Subcategory> showSubcategoriesWithoutDescription(List<Subcategory> subcategories) {
+         return subcategories.stream().filter(s -> s.getDescription().equals("")).toList();
+    }
+
 }

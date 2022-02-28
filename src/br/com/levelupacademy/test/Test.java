@@ -19,7 +19,7 @@ import java.util.List;
 public class Test {
     public static void main(String[] args) {
         Category category = new Category("categoria", "abcd1", "descrição", "guia de estudos", false, 1, "#linkdaimagem.com", "#fff");
-        br.com.levelupacademy.models.subcategory.Subcategory subcategory = new br.com.levelupacademy.models.subcategory.Subcategory("subcategoria", "aa52z", "descrição", "guia de estudos", false, 1, category);
+        Subcategory subcategory = new Subcategory("subcategoria", "aa52z", "descrição", "guia de estudos", false, 1, category);
         Course java = new Course("Java", "1254", 20, "Iniciantes", true, "Sérgio", "ementa", "OOP", subcategory);
         Section section = new Section("Nome", "3", 1, java);
         Video video = new Video("video", "1", 4, section, "www.alura.com.br", 5, "transcrição");
@@ -46,6 +46,9 @@ public class Test {
             SubcategoryReader subcategoryReader = new SubcategoryReader();
             List<Subcategory> subcategories = subcategoryReader.readArchive("/home/matheus/Documentos/entradas/subcategoria.csv", categories);
             subcategories.forEach(s -> System.out.println(s));
+            System.out.println("==================");
+            List<Subcategory> subcategoryList = subcategoryReader.showSubcategoriesWithoutDescription(subcategories);
+            subcategoryList.forEach(s -> System.out.println("Subcategorias sem descrição " + s));
             System.out.println("\n" + "============================");
             CourseReader courseReader = new CourseReader();
             List<Course> courses = courseReader.readArchive("/home/matheus/Documentos/entradas/curso.csv", subcategories);
