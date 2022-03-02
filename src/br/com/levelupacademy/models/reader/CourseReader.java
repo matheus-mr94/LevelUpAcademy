@@ -74,5 +74,6 @@ public class CourseReader {
                 Function.identity(),
                 instructor -> numberOfCoursesFromInstructors(courses, instructor)
         ));
+       //return courses.stream().collect(Collectors.groupingBy(Course::getInstructor, Collectors.counting())); outro modo de resolução
     }
 }
