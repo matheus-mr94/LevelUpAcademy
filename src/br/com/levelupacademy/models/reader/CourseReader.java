@@ -6,10 +6,8 @@ import br.com.levelupacademy.models.subcategory.Subcategory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static br.com.levelupacademy.validators.Validations.getIntegerNumberOrZeroFrom;
@@ -17,7 +15,6 @@ import static br.com.levelupacademy.validators.Validations.getIntegerNumberOrZer
 public class CourseReader {
 
     public List<Course> readArchive(String filePath, List<Subcategory> subcategories) throws FileNotFoundException {
-
 
             List<Course> courses = new ArrayList<>();
             try (Scanner scan = new Scanner(new File(filePath), "UTF-8")) {
@@ -60,12 +57,22 @@ public class CourseReader {
         return courses;
     }
 
-    public static List<Course> showPrivateCourses(List<Course> courses) {
-      return courses.stream().filter(c -> !c.isVisible()).toList();
+    public static List<Course> findPrivateCourses(List<Course> courses) {
+        return courses.stream().filter(c -> !c.isVisible()).toList();
     }
 
-    public static Set<String> showInstructors(List<Course> courses) {
+    public static Set<String> findInstructors(List<Course> courses) {
         return courses.stream().map(Course::getInstructor).collect(Collectors.toSet());
     }
 
+    public static int numberOfCoursesFromInstructors(List<Course> courses, String instructorName) {
+        return (int) courses.stream().filter(course -> course.getInstructor().equals(instructorName)).count();
+    }
+
+    public static Map<String,Integer> showNumberOfCoursesAndInstructors(List<Course> courses) {
+        return findInstructors(courses).stream().collect(Collectors.toMap(
+                Function.identity(),
+                instructor -> numberOfCoursesFromInstructors(courses, instructor)
+        ));
+    }
 }

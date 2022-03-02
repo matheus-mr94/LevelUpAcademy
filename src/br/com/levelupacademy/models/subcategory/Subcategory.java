@@ -47,12 +47,16 @@ public class Subcategory {
         return sequence;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
     public String getCategoryCode() {
         return category.getCode();
+    }
+
+    public boolean hasDescription(String description) {
+        if(description.isEmpty() || description.isBlank() || description.equals("")) {
+            return false;
+        } else {
+            return true;
+        }
     }
     @Override
     public String toString() {
