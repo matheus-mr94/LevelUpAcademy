@@ -51,12 +51,8 @@ public class Subcategory {
         return category.getCode();
     }
 
-    public boolean hasDescription(String description) {
-        if(description.isEmpty() || description.isBlank() || description.equals("")) {
-            return false;
-        } else {
-            return true;
-        }
+    public boolean hasDescription() {
+        return description != null && !description.isBlank();
     }
     @Override
     public String toString() {

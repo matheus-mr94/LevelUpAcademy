@@ -21,7 +21,7 @@ import java.util.Set;
 public class Test {
     public static void main(String[] args) {
         Category category = new Category("categoria", "abcd1", "descrição", "guia de estudos", false, 1, "#linkdaimagem.com", "#fff");
-        Subcategory subcategory = new Subcategory("subcategoria", "aa52z", "descrição", "guia de estudos", false, 1, category);
+        Subcategory subcategory = new Subcategory("subcategoria", "aa52z", "descricao", "guia de estudos", false, 1, category);
         Course java = new Course("Java", "1254", 20, "Iniciantes", true, "Sérgio", "ementa", "OOP", subcategory);
         Section section = new Section("Nome", "3", 1, java);
         Video video = new Video("video", "1", 4, section, "www.alura.com.br", 5, "transcrição");
@@ -73,7 +73,7 @@ public class Test {
             Set<String> instructors = courseReader.findInstructors(courses);
             instructors.forEach(i -> System.out.println("Instrutor: " + i));
             System.out.println("==============================");
-            Map<String, Integer> instructorsAndNumberOfCourses = courseReader.showNumberOfCoursesAndInstructors(courses);
+            Map<String, Integer> instructorsAndNumberOfCourses = courseReader.getCoursesAmountByInstructor(courses);
             instructorsAndNumberOfCourses.forEach((i,c) -> System.out.println(("Instrutor: " + i + " tem " + c + " curso(s)")));
             HtmlWriter htmlWriter = new HtmlWriter();
             htmlWriter.outputWriter(categories, subcategories, courses);

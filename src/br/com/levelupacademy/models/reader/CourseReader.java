@@ -69,7 +69,7 @@ public class CourseReader {
         return (int) courses.stream().filter(course -> course.getInstructor().equals(instructorName)).count();
     }
 
-    public static Map<String,Integer> showNumberOfCoursesAndInstructors(List<Course> courses) {
+    public static Map<String,Integer> getCoursesAmountByInstructor(List<Course> courses) {
         return findInstructors(courses).stream().collect(Collectors.toMap(
                 Function.identity(),
                 instructor -> numberOfCoursesFromInstructors(courses, instructor)
