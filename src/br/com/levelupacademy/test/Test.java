@@ -15,11 +15,13 @@ import br.com.levelupacademy.models.video.Video;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class Test {
     public static void main(String[] args) {
         Category category = new Category("categoria", "abcd1", "descrição", "guia de estudos", false, 1, "#linkdaimagem.com", "#fff");
-        br.com.levelupacademy.models.subcategory.Subcategory subcategory = new br.com.levelupacademy.models.subcategory.Subcategory("subcategoria", "aa52z", "descrição", "guia de estudos", false, 1, category);
+        Subcategory subcategory = new Subcategory("subcategoria", "aa52z", "descricao", "guia de estudos", false, 1, category);
         Course java = new Course("Java", "1254", 20, "Iniciantes", true, "Sérgio", "ementa", "OOP", subcategory);
         Section section = new Section("Nome", "3", 1, java);
         Video video = new Video("video", "1", 4, section, "www.alura.com.br", 5, "transcrição");
@@ -39,15 +41,40 @@ public class Test {
             CategoryReader categoryReader = new CategoryReader();
             List<Category> categories = categoryReader.readArchive("/home/matheus/Documentos/entradas/categoria.csv");
             categories.forEach(c -> System.out.println(c));
+            System.out.println("==================");
+            List<Category> categoriesActive = categoryReader.findActiveCategories(categories);
+            categoriesActive.forEach(c -> System.out.println("Categorias ativas: " + c));
             System.out.println("\n" + "============================");
             SubcategoryReader subcategoryReader = new SubcategoryReader();
             List<Subcategory> subcategories = subcategoryReader.readArchive("/home/matheus/Documentos/entradas/subcategoria.csv", categories);
             subcategories.forEach(s -> System.out.println(s));
+            System.out.println("==================");
+            List<Subcategory> subcategoryList = subcategoryReader.findSubcategoriesWithoutDescription(subcategories);
+            subcategoryList.forEach(s -> System.out.println("Subcategorias sem descrição " + s));
             System.out.println("\n" + "============================");
+
+            List<Subcategory> subcategoriesActive = subcategoryReader.findActiveSubcategoriesWithDescription(subcategories);
+            subcategoriesActive.forEach(s -> System.out.println("Subcategorias ativas com descrição: " + s));
+            System.out.println("Quantidade: " + subcategoriesActive.size());
+            System.out.println("======================");
             CourseReader courseReader = new CourseReader();
             List<Course> courses = courseReader.readArchive("/home/matheus/Documentos/entradas/curso.csv", subcategories);
             courses.forEach(c -> System.out.println(c));
+            System.out.println("============================");
 
+            List<Course> coursesPrivates = courseReader.findPrivateCourses(courses);
+            if(coursesPrivates.size() >=1) {
+                coursesPrivates.forEach(c -> System.out.println("Cursos com visibilidade privada: " + c));
+            } else {
+                System.out.println("Não há cursos privados");
+            }
+
+            System.out.println("=============================");
+            Set<String> instructors = courseReader.findInstructors(courses);
+            instructors.forEach(i -> System.out.println("Instrutor: " + i));
+            System.out.println("==============================");
+            Map<String, Integer> instructorsAndNumberOfCourses = courseReader.getCoursesAmountByInstructor(courses);
+            instructorsAndNumberOfCourses.forEach((i,c) -> System.out.println(("Instrutor: " + i + " tem " + c + " curso(s)")));
             HtmlWriter htmlWriter = new HtmlWriter();
             htmlWriter.outputWriter(categories, subcategories, courses);
 
