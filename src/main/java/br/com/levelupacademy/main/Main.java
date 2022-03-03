@@ -1,4 +1,4 @@
-package br.com.levelupacademy.test;
+package br.com.levelupacademy.main;
 
 import br.com.levelupacademy.models.alternative.Alternative;
 import br.com.levelupacademy.models.category.Category;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class Test {
+public class Main {
     public static void main(String[] args) {
         Category category = new Category("categoria", "abcd1", "descrição", "guia de estudos", false, 1, "#linkdaimagem.com", "#fff");
         Subcategory subcategory = new Subcategory("subcategoria", "aa52z", "descricao", "guia de estudos", false, 1, category);
