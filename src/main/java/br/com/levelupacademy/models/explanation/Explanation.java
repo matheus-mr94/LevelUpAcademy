@@ -9,8 +9,8 @@ public class Explanation extends Activity {
 
     private String text;
 
-    public Explanation(String title, String code, int order, Section section, String text) {
-        super(title, code, order, section);
+    public Explanation(String title, String code, int sequence, Section section, String text) {
+        super(title, code, sequence, section);
         cantBeEmptyOrNull(text, "Explanation should have a text, can't be empty or null");
         this.text = text;
     }

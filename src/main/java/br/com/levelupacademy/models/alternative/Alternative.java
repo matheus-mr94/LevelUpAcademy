@@ -8,16 +8,16 @@ import static br.com.levelupacademy.validators.Validations.objectIsNotNull;
 public class Alternative {
 
     private String text;
-    private int orderInSystem;
+    private int sequence;
     private boolean correct;
     private String justification;
     private Question question;
 
-    public Alternative(String text, int orderInSystem, boolean correct, String justification, Question question) {
+    public Alternative(String text, int sequence, boolean correct, String justification, Question question) {
         cantBeEmptyOrNull(text, "Text can't be empty or null");
         objectIsNotNull(question,"Should be associate with a question");
         this.text = text;
-        this.orderInSystem = orderInSystem;
+        this.sequence = sequence;
         this.correct = correct;
         this.justification = justification;
         this.question = question;
@@ -27,7 +27,7 @@ public class Alternative {
     public String toString() {
         return "Alternative{" +
                 "text='" + text + '\'' +
-                ", order=" + orderInSystem +
+                ", order=" + sequence +
                 ", correct=" + correct +
                 ", justification='" + justification + '\'' +
                 ", question=" + question +

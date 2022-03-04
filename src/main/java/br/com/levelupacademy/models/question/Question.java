@@ -10,8 +10,8 @@ public class Question extends Activity {
     private String statement;
     private QuestionType questionType = QuestionType.SINGLE_CHOICE;
 
-    public Question(String title, String code, int order, Section section, String statement) {
-        super(title, code, order, section);
+    public Question(String title, String code, int sequence, Section section, String statement) {
+        super(title, code, sequence, section);
         cantBeEmptyOrNull(statement, "The statement can't be empty or null");
         this.statement = statement;
     }

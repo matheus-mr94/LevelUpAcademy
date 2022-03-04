@@ -11,8 +11,8 @@ public class Video extends Activity {
     private Integer durationInMinutes;
     private String transcription;
 
-    public Video(String title, String code, int order, Section section, String url, Integer durationInMinutes, String transcription) {
-        super(title, code, order, section);
+    public Video(String title, String code, int sequence, Section section, String url, Integer durationInMinutes, String transcription) {
+        super(title, code, sequence, section);
         cantBeEmptyOrNull(url, "Url can't be empty or null");
         this.url = url;
         this.durationInMinutes = durationInMinutes;
