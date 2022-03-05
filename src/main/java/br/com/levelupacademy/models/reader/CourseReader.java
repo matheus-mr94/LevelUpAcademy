@@ -56,24 +56,4 @@ public class CourseReader {
         }
         return courses;
     }
-
-    public static List<Course> findPrivateCourses(List<Course> courses) {
-        return courses.stream().filter(c -> !c.isVisible()).toList();
-    }
-
-    public static Set<String> findInstructors(List<Course> courses) {
-        return courses.stream().map(Course::getInstructor).collect(Collectors.toSet());
-    }
-
-    public static int numberOfCoursesFromInstructors(List<Course> courses, String instructorName) {
-        return (int) courses.stream().filter(course -> course.getInstructor().equals(instructorName)).count();
-    }
-
-    public static Map<String,Integer> getCoursesAmountByInstructor(List<Course> courses) {
-        return findInstructors(courses).stream().collect(Collectors.toMap(
-                Function.identity(),
-                instructor -> numberOfCoursesFromInstructors(courses, instructor)
-        ));
-       //return courses.stream().collect(Collectors.groupingBy(Course::getInstructor, Collectors.counting())); outro modo de resolução
-    }
 }
