@@ -51,6 +51,11 @@ public class Subcategory {
         return category.getCode();
     }
 
+    public String getStudyGuide() {
+        return studyGuide;
+    }
+
+
     public boolean hasDescription() {
         return description != null && !description.isBlank();
     }

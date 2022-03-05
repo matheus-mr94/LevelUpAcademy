@@ -37,6 +37,10 @@ public class Category {
         return description;
     }
 
+    public String getStudyGuide() {
+        return studyGuide;
+    }
+
     public String getUrlImage() {
         return urlImage;
     }
@@ -51,6 +55,10 @@ public class Category {
 
     public boolean isActive() {
         return active;
+    }
+
+    public int getSequence() {
+        return sequence;
     }
 
     @Override

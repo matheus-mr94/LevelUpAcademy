@@ -66,6 +66,22 @@ public class Course {
         return instructor;
     }
 
+    public String getTarget() {
+        return target;
+    }
+
+    public String getSyllabus() {
+        return syllabus;
+    }
+
+    public String getDevelopedSkills() {
+        return developedSkills;
+    }
+
+    public String getSubcategoryCode() {
+        return subcategory.getCode();
+    }
+
     @Override
     public String toString() {
         return "Course{" +

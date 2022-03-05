@@ -5,6 +5,7 @@ import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.course.Course;
 import br.com.levelupacademy.models.explanation.Explanation;
 import br.com.levelupacademy.models.output.HtmlWriter;
+import br.com.levelupacademy.models.output.SqlWriter;
 import br.com.levelupacademy.models.question.Question;
 import br.com.levelupacademy.models.reader.CategoryReader;
 import br.com.levelupacademy.models.reader.CourseReader;
@@ -78,6 +79,8 @@ public class Main {
             HtmlWriter htmlWriter = new HtmlWriter();
             htmlWriter.outputWriter(categories, subcategories, courses);
 
+            SqlWriter sw = new SqlWriter();
+            sw.queryWriter(categories, subcategories, courses);
 
         } catch (IOException ex) {
             ex.printStackTrace();
