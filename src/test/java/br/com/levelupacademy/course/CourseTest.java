@@ -36,77 +36,57 @@ public class CourseTest {
     @ParameterizedTest
     @NullSource
     void shouldThrowNullPointerException(String input) {
-        assertThrows(NullPointerException.class,() -> {
-            Course course = new Course(input, "oop", 10,"iniciantes em java",
-                    true,"Nico", "ementa", "conhecimentos em OO",
-                    this.subcategory);
-        });
+        assertThrows(NullPointerException.class,() -> new Course(input, "oop", 10,
+                "iniciantes em java", true,"Nico", "ementa",
+                "conhecimentos em OO", this.subcategory));
 
-        assertThrows(NullPointerException.class,() -> {
-            Course course = new Course("Collections", "oop", 10,
-                    "iniciantes em java", true,"Nico", "ementa",
-                    "conhecimentos em OO", null);
-        });
+        assertThrows(NullPointerException.class,() -> new Course("Collections", "oop",
+                10, "iniciantes em java", true, "Nico",
+                "ementa", "conhecimentos em OO", null));
 
-        assertThrows(NullPointerException.class,() -> {
-            Course course = new Course("Java e orientação a objetos", "oop", 10,
-                    "iniciantes em java", true, input, "ementa",
-                    "conhecimentos em OO", this.subcategory);
-        });
+        assertThrows(NullPointerException.class,() -> new Course("Java e orientação a objetos", "oop",
+                10, "iniciantes em java", true, input, "ementa",
+                "conhecimentos em OO", this.subcategory));
 
-        assertThrows(NullPointerException.class,() -> {
-            Course course = new Course("Java e orientação a objetos", input, 10,
-                    "iniciantes em java", true,"Nico", "ementa",
-                    "conhecimentos em OO", this.subcategory);
-        });
+        assertThrows(NullPointerException.class,() -> new Course("Java e orientação a objetos", input,
+                10, "iniciantes em java", true,"Nico", "ementa",
+                    "conhecimentos em OO", this.subcategory));
 
-        assertThrows(NullPointerException.class,() -> {
-            Course course = new Course("Java e orientação a objetos", "oop", null,
-                    "iniciantes em java", true,"Nico", "ementa",
-                    "conhecimentos em OO", this.subcategory);
-        });
+        assertThrows(NullPointerException.class,() -> new Course("Java e orientação a objetos", "oop",
+                null, "iniciantes em java", true,"Nico", "ementa",
+                "conhecimentos em OO", this.subcategory));
     }
 
     @ParameterizedTest
     @EmptySource
     void shouldThrowIllegalArgumentException(String input) {
-        assertThrows(IllegalArgumentException.class,() -> {
-            Course course = new Course(input, "oop", 10,"iniciantes em java",
-                    true,"Nico", "ementa", "conhecimentos em OO",
-                    this.subcategory);
-        });
+        assertThrows(IllegalArgumentException.class,() -> new Course(input, "oop", 10,
+                "iniciantes em java", true,"Nico", "ementa",
+                "conhecimentos em OO", this.subcategory));
 
-        assertThrows(IllegalArgumentException.class,() -> {
-            Course course = new Course("Java e orientação a objetos", "oop", 10,
-                    "iniciantes em java", true,input, "ementa",
-                    "conhecimentos em OO", this.subcategory);
-        });
+        assertThrows(IllegalArgumentException.class,() -> new Course("Java e orientação a objetos",
+                "oop", 10, "iniciantes em java", true,input,
+                "ementa", "conhecimentos em OO", this.subcategory));
 
-        assertThrows(IllegalArgumentException.class,() -> {
-            Course course = new Course("Java e orientação a objetos", input, 10,
-                    "iniciantes em java", true,"Nico", "ementa",
-                    "conhecimentos em OO", this.subcategory);
-        });
+        assertThrows(IllegalArgumentException.class,() -> new Course("Java e orientação a objetos", input,
+                10, "iniciantes em java", true,"Nico", "ementa",
+                "conhecimentos em OO", this.subcategory));
     }
 
     @ParameterizedTest
     @CsvSource({"programação", "java_e_oop", "#java17","Programacao"})
     void shouldReturnIllegalArgumentException(String input) {
-        assertThrows(IllegalArgumentException.class,() -> {
-            Course course = new Course("Java e orientação a objetos", input, 10,
-                    "iniciantes em java", true,"Nico", "ementa",
-                    "conhecimentos em OO", this.subcategory);
-        });
+        assertThrows(IllegalArgumentException.class,() -> new Course("Java e orientação a objetos", input,
+                10, "iniciantes em java", true,"Nico", "ementa",
+                "conhecimentos em OO", this.subcategory));
     }
 
     @ParameterizedTest
     @CsvSource({"0","22","23","50"})
     void shouldReturnIllegalArgumentException(Integer input) {
-        assertThrows(IllegalArgumentException.class,() -> {
-            Course course = new Course("Java e orientação a objetos","oop" ,input,
-                    "iniciantes em java", true, "Nico", "ementa",
-                    "conhecimentos em OO", this.subcategory);
-        });
+        assertThrows(IllegalArgumentException.class,() -> new Course("Java e orientação a objetos",
+                "oop" ,input, "iniciantes em java", true, "Nico", "ementa",
+                "conhecimentos em OO", this.subcategory));
     }
 
     @Test

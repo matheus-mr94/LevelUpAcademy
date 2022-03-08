@@ -56,42 +56,30 @@ public class SubcategoryTest {
     @ParameterizedTest
     @EmptySource
     void shouldThrowIllegalArgumentException(String input) {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Subcategory(input, "java-oo", "descrição",
-                    "guia de estudos", false, 1, this.category);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Subcategory(input, "java-oo",
+                "descrição", "guia de estudos", false, 1, this.category));
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Subcategory("Java", input, "descrição",
-                    "guia de estudos", false, 1, this.category);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Subcategory("Java", input,
+                "descrição", "guia de estudos", false, 1, this.category));
     }
 
     @ParameterizedTest
     @NullSource
     void shouldThrowNullPointerException(String input) {
-        assertThrows(NullPointerException.class, () -> {
-            new Subcategory(input, "java-oo", "descrição",
-                    "guia de estudos", false, 1, this.category);
-        });
+        assertThrows(NullPointerException.class, () -> new Subcategory(input, "java-oo", "descrição",
+                    "guia de estudos", false, 1, this.category));
 
-        assertThrows(NullPointerException.class, () -> {
-            new Subcategory("Java", input, "descrição",
-                    "guia de estudos", false, 1, this.category);
-        });
+        assertThrows(NullPointerException.class, () -> new Subcategory("Java", input, "descrição",
+                    "guia de estudos", false, 1, this.category));
 
-        assertThrows(NullPointerException.class, () -> {
-            new Subcategory("Java", "java-oo", "descrição",
-                    "guia de estudos", false, 1, null);
-        });
+        assertThrows(NullPointerException.class, () -> new Subcategory("Java", "java-oo",
+                "descrição", "guia de estudos", false, 1, null));
     }
 
     @ParameterizedTest
     @CsvSource({"programação", "java_e_oop", "#java17","Programacao"})
     void shouldReturnIllegalArgumentException(String input) {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Subcategory("Java", input, "descrição",
-                    "guia de estudos", false, 1, this.category);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Subcategory("Java", input,
+                "descrição", "guia de estudos", false, 1, this.category));
     }
 }

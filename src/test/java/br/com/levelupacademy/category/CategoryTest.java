@@ -23,41 +23,32 @@ public class CategoryTest {
     @ParameterizedTest
     @NullSource
     void shouldThrowNullPointerExceptionBecauseFieldIsNull(String input) {
-        assertThrows(NullPointerException.class,() -> {
-            Category category = new Category(input, "java", "descrição",
+        assertThrows(NullPointerException.class,() -> new Category(input, "java", "descrição",
                     "guia de estudos", false,1,
-                    "http://teste.com", "#a123");
-        });
+                    "http://teste.com", "#a123"));
 
-        assertThrows(NullPointerException.class,() -> {
-            Category category = new Category("Programação", input, "descrição",
-                    "guia de estudos", false, 1,
-                    "http://teste.com", "#a123");
-        });
+
+        assertThrows(NullPointerException.class,() -> new Category("Programação", input,
+                "descrição", "guia de estudos", false, 1,
+                "http://teste.com", "#a123"));
     }
 
     @ParameterizedTest
     @EmptySource
     void shouldThrowIllegalArgumentExceptionFieldIsEmpty(String input) {
-        assertThrows(IllegalArgumentException.class,() -> {
-            Category category = new Category(input,"java","descrição",
-                    "guia de estudos",false,1,"http://teste.com","#a123");
-        });
+        assertThrows(IllegalArgumentException.class,() -> new Category(input,"java","descrição",
+                "guia de estudos", false,1,"http://teste.com","#a123"));
 
-        assertThrows(IllegalArgumentException.class,() -> {
-            Category category = new Category("Programação", input, "descrição",
-                    "guia de estudos", false, 1,
-                    "http://teste.com", "#a123");
-        });
+        assertThrows(IllegalArgumentException.class,() -> new Category("Programação", input,
+                "descrição", "guia de estudos", false,
+                1, "http://teste.com", "#a123"));
     }
 
     @ParameterizedTest
     @CsvSource({"programação", "java_e_oop", "#java17","Programacao"})
     void shouldReturnIllegalArgumentExceptionBecauseHasInvalidCharacters (String input) {
-        assertThrows(IllegalArgumentException.class,() -> {
-            Category category = new Category("Programação", input, "descrição",
-                    "guia de estudos", false, 1,
-                    "http://teste.com", "#a123");
-        });
+        assertThrows(IllegalArgumentException.class,() -> new Category("Programação", input,
+                "descrição", "guia de estudos", false, 1,
+                "http://teste.com", "#a123"));
     }
 }
