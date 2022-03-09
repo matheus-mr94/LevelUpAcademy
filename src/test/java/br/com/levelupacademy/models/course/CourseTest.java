@@ -82,7 +82,15 @@ public class CourseTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"0","22","23","50"})
+    @CsvSource({"programacao", "java-e-oop", "novidades-java-8"})
+    void shouldInitiateObjectWhenCharactersAreInStandard(String input) {
+        assertDoesNotThrow(() -> new Course("Java e orientação a objetos", input,
+                10, "iniciantes em java", true,"Nico", "ementa",
+                "conhecimentos em OO", this.subcategory));
+    }
+
+    @ParameterizedTest
+    @CsvSource({"0","21","22","23","50"})
     void shouldThrowIllegalArgumentExceptionWhenIsOutOfRange(Integer input) {
         assertThrows(IllegalArgumentException.class,() -> new Course("Java e orientação a objetos",
                 "oop" ,input, "iniciantes em java", true, "Nico", "ementa",

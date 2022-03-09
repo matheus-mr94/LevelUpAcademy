@@ -64,7 +64,7 @@ title VARCHAR(100) NOT NULL,
 sequence INT UNSIGNED,
 section_code VARCHAR(100) NOT NULL,
 statement VARCHAR(255) NOT NULL,
-question_type VARCHAR(30),
+question_type ENUM('SINGLE_CHOICE','MULTIPLES_CHOICES','TRUE_OR_FALSE'),
 CONSTRAINT `fk_question_section` FOREIGN KEY(`section_code`) REFERENCES `Section`(`code`)
 );
 
