@@ -46,7 +46,7 @@ public class CategoryTest {
 
     @ParameterizedTest
     @CsvSource({"programação", "java_e_oop", "#java17","Programacao"})
-    void shouldReturnIllegalArgumentExceptionBecauseHasInvalidCharacters (String input) {
+    void shouldThrowIllegalArgumentException (String input) {
         assertThrows(IllegalArgumentException.class,() -> new Category("Programação", input,
                 "descrição", "guia de estudos", false, 1,
                 "http://teste.com", "#a123"));

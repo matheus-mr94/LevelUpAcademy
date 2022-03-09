@@ -83,7 +83,7 @@ public class CourseTest {
 
     @ParameterizedTest
     @CsvSource({"0","22","23","50"})
-    void shouldReturnIllegalArgumentException(Integer input) {
+    void shouldThrowIllegalArgumentException(Integer input) {
         assertThrows(IllegalArgumentException.class,() -> new Course("Java e orientação a objetos",
                 "oop" ,input, "iniciantes em java", true, "Nico", "ementa",
                 "conhecimentos em OO", this.subcategory));
