@@ -1,4 +1,4 @@
-package br.com.levelupacademy.category;
+package br.com.levelupacademy.models.category;
 
 
 import br.com.levelupacademy.models.category.Category;
@@ -22,7 +22,7 @@ public class CategoryTest {
 
     @ParameterizedTest
     @NullSource
-    void shouldThrowNullPointerExceptionBecauseFieldIsNull(String input) {
+    void shouldThrowNullPointerExceptionWhenFieldIsNull(String input) {
         assertThrows(NullPointerException.class,() -> new Category(input, "java", "descrição",
                     "guia de estudos", false,1,
                     "http://teste.com", "#a123"));
@@ -35,7 +35,7 @@ public class CategoryTest {
 
     @ParameterizedTest
     @EmptySource
-    void shouldThrowIllegalArgumentExceptionFieldIsEmpty(String input) {
+    void shouldThrowIllegalArgumentExceptionWhenFieldIsEmpty(String input) {
         assertThrows(IllegalArgumentException.class,() -> new Category(input,"java","descrição",
                 "guia de estudos", false,1,"http://teste.com","#a123"));
 
@@ -45,8 +45,8 @@ public class CategoryTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"programação", "java_e_oop", "#java17","Programacao"})
-    void shouldThrowIllegalArgumentException (String input) {
+    @CsvSource({"programação", "java_e_oop", "#java17","Programacao", "java e orientação a objetos"})
+    void shouldThrowIllegalArgumentExceptionWhenCharactersAreOutOfStandard (String input) {
         assertThrows(IllegalArgumentException.class,() -> new Category("Programação", input,
                 "descrição", "guia de estudos", false, 1,
                 "http://teste.com", "#a123"));

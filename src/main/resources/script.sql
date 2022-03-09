@@ -4,7 +4,7 @@ USE LevelUpAcademy;
 
 CREATE TABLE Category (
 `name` VARCHAR(100) NOT NULL,
-`code` VARCHAR(100) NOT NULL UNIQUE PRIMARY KEY,
+`code` VARCHAR(100) PRIMARY KEY,
 `description` VARCHAR(255),
 study_guide VARCHAR(255),
 `active` BOOLEAN,
@@ -15,7 +15,7 @@ hex_code VARCHAR(10)
 
 CREATE TABLE Subcategory (
 `name` VARCHAR(100) NOT NULL,
-`code` VARCHAR(100) NOT NULL UNIQUE PRIMARY KEY,
+`code` VARCHAR(100) PRIMARY KEY,
 `description` VARCHAR(255),
 study_guide VARCHAR(255),
 `active` BOOLEAN,
@@ -26,7 +26,7 @@ CONSTRAINT `fk_subcategory_category` FOREIGN KEY(`category_code`) REFERENCES `Ca
 
 CREATE TABLE Course (
 `name` VARCHAR(100) NOT NULL,
-`code` VARCHAR(100) NOT NULL UNIQUE PRIMARY KEY,
+`code` VARCHAR(100) PRIMARY KEY,
 estimated_time_in_hours INT UNSIGNED NOT NULL,
 `visible` BOOLEAN,
 target VARCHAR(255),
@@ -39,7 +39,7 @@ CONSTRAINT `fk_course_subcategory` FOREIGN KEY(`subcategory_code`) REFERENCES `S
 
 CREATE TABLE Section (
 `name` VARCHAR(100) NOT NULL,
-`code` VARCHAR(100) NOT NULL UNIQUE PRIMARY KEY,
+`code` VARCHAR(100) PRIMARY KEY,
 sequence INT UNSIGNED,
 `active` BOOLEAN,
 exam BOOLEAN,
@@ -49,7 +49,7 @@ CONSTRAINT `fk_section_course` FOREIGN KEY(`course_code`) REFERENCES `Course`(`c
 
 CREATE TABLE Video (
 title VARCHAR(100) NOT NULL,
-`code` VARCHAR(100) NOT NULL UNIQUE PRIMARY KEY,
+`code` VARCHAR(100) PRIMARY KEY,
 sequence INT UNSIGNED,
 section_code VARCHAR(100) NOT NULL,
 url VARCHAR(255) NOT NULL,
@@ -60,7 +60,7 @@ CONSTRAINT `fk_video_section` FOREIGN KEY(`section_code`) REFERENCES `Section`(`
 
 CREATE TABLE Question (
 title VARCHAR(100) NOT NULL,
-`code` VARCHAR(100) NOT NULL UNIQUE PRIMARY KEY,
+`code` VARCHAR(100) PRIMARY KEY,
 sequence INT UNSIGNED,
 section_code VARCHAR(100) NOT NULL,
 statement VARCHAR(255) NOT NULL,
@@ -70,13 +70,21 @@ CONSTRAINT `fk_question_section` FOREIGN KEY(`section_code`) REFERENCES `Section
 
 CREATE TABLE Explanation (
 title VARCHAR(150) NOT NULL,
-`code` VARCHAR(100) NOT NULL UNIQUE PRIMARY KEY,
+`code` VARCHAR(100) PRIMARY KEY,
 sequence INT UNSIGNED,
 section_code VARCHAR(100) NOT NULL,
 `text` VARCHAR(255),
 CONSTRAINT `fk_explanation_section` FOREIGN KEY(`section_code`) REFERENCES `Section`(`code`)
 );
 
+CREATE TABLE Alternative (
+`text` VARCHAR(150),
+sequence INT UNSIGNED,
+correct BOOLEAN,
+justification VARCHAR(500),
+question_code VARCHAR(100) NOT NULL,
+CONSTRAINT `fk_alternative_question` FOREIGN KEY(`question_code`) REFERENCES `Question`(`code`)
+);
 
 
 

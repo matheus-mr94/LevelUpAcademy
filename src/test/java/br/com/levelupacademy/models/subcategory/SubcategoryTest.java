@@ -1,4 +1,4 @@
-package br.com.levelupacademy.subcategory;
+package br.com.levelupacademy.models.subcategory;
 
 import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.subcategory.Subcategory;
@@ -29,7 +29,7 @@ public class SubcategoryTest {
     }
 
     @Test
-    void shouldReturnCategoryCode() {
+    void getCategoryCode__should_return_categoryCode() {
         Subcategory subcategory = new Subcategory("Java", "java-oo", "descrição",
                 "guia de estudos", false, 1, this.category);
         String categoryCode = subcategory.getCategoryCode();
@@ -37,7 +37,7 @@ public class SubcategoryTest {
     }
 
     @Test
-    void shouldReturnHasDescription() {
+    void hasDescription__should_return_hasDescriptionWhenFieldIsNotEmptyOrNotNull() {
         Subcategory subcategory = new Subcategory("Java", "java-oo", "descrição",
                 "guia de estudos", false, 1, this.category);
         boolean hasDescription = subcategory.hasDescription();
@@ -46,7 +46,7 @@ public class SubcategoryTest {
 
     @ParameterizedTest
     @NullAndEmptySource
-    void shouldReturnHasNotDescription(String input) {
+    void hasDescription__should_return_hasNotDescriptionWhenFieldIsEmptyOrNull(String input) {
         Subcategory subcategory = new Subcategory("Java", "java-oo", input,
                 "guia de estudos", false, 1, this.category);
         boolean hasDescription = subcategory.hasDescription();
@@ -55,7 +55,7 @@ public class SubcategoryTest {
 
     @ParameterizedTest
     @EmptySource
-    void shouldThrowIllegalArgumentException(String input) {
+    void shouldThrowIllegalArgumentExceptionWhenIsEmpty(String input) {
         assertThrows(IllegalArgumentException.class, () -> new Subcategory(input, "java-oo",
                 "descrição", "guia de estudos", false, 1, this.category));
 
@@ -65,7 +65,7 @@ public class SubcategoryTest {
 
     @ParameterizedTest
     @NullSource
-    void shouldThrowNullPointerException(String input) {
+    void shouldThrowNullPointerExceptionWhenIsNull(String input) {
         assertThrows(NullPointerException.class, () -> new Subcategory(input, "java-oo", "descrição",
                     "guia de estudos", false, 1, this.category));
 
@@ -77,8 +77,8 @@ public class SubcategoryTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"programação", "java_e_oop", "#java17","Programacao"})
-    void shouldReturnIllegalArgumentException(String input) {
+    @CsvSource({"programação", "java_e_oop", "#java17","Programacao", "java e orientação a objetos"})
+    void shouldReturnIllegalArgumentExceptionWhenCharactersAreOutOfStandard(String input) {
         assertThrows(IllegalArgumentException.class, () -> new Subcategory("Java", input,
                 "descrição", "guia de estudos", false, 1, this.category));
     }

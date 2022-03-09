@@ -1,4 +1,4 @@
-package br.com.levelupacademy.course;
+package br.com.levelupacademy.models.course;
 
 
 import br.com.levelupacademy.models.category.Category;
@@ -35,7 +35,7 @@ public class CourseTest {
 
     @ParameterizedTest
     @NullSource
-    void shouldThrowNullPointerException(String input) {
+    void shouldThrowNullPointerExceptionWhenFieldIsNull(String input) {
         assertThrows(NullPointerException.class,() -> new Course(input, "oop", 10,
                 "iniciantes em java", true,"Nico", "ementa",
                 "conhecimentos em OO", this.subcategory));
@@ -59,7 +59,7 @@ public class CourseTest {
 
     @ParameterizedTest
     @EmptySource
-    void shouldThrowIllegalArgumentException(String input) {
+    void shouldThrowIllegalArgumentExceptionWhenFieldIsEmpty(String input) {
         assertThrows(IllegalArgumentException.class,() -> new Course(input, "oop", 10,
                 "iniciantes em java", true,"Nico", "ementa",
                 "conhecimentos em OO", this.subcategory));
@@ -74,8 +74,8 @@ public class CourseTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"programação", "java_e_oop", "#java17","Programacao"})
-    void shouldReturnIllegalArgumentException(String input) {
+    @CsvSource({"programação", "java_e_oop", "#java17","Programacao", "java e orientação a objetos"})
+    void shouldReturnIllegalArgumentExceptionWhenCharactersAreOutOfStandard(String input) {
         assertThrows(IllegalArgumentException.class,() -> new Course("Java e orientação a objetos", input,
                 10, "iniciantes em java", true,"Nico", "ementa",
                 "conhecimentos em OO", this.subcategory));
@@ -83,14 +83,14 @@ public class CourseTest {
 
     @ParameterizedTest
     @CsvSource({"0","22","23","50"})
-    void shouldThrowIllegalArgumentException(Integer input) {
+    void shouldThrowIllegalArgumentExceptionWhenIsOutOfRange(Integer input) {
         assertThrows(IllegalArgumentException.class,() -> new Course("Java e orientação a objetos",
                 "oop" ,input, "iniciantes em java", true, "Nico", "ementa",
                 "conhecimentos em OO", this.subcategory));
     }
 
     @Test
-    void shouldReturnSubcategoryCode() {
+    void getSubcategoryCode__should_return_subcategoryCode() {
         Course course = new Course("Java e orientação a objetos", "oop" ,10,
                 "iniciantes em java", true,"Nico", "ementa",
                 "conhecimentos em OO", this.subcategory);
@@ -99,7 +99,7 @@ public class CourseTest {
     }
 
     @Test
-    void shouldReturnCategoryCode() {
+    void getCategoryCode__should_return_categoryCode() {
         Course course = new Course("Java e orientação a objetos", "oop" ,10,
                 "iniciantes em java", true,"Nico", "ementa",
                 "conhecimentos em OO", this.subcategory);
