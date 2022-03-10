@@ -32,8 +32,8 @@ public final class SqlWriter {
         for(Subcategory subcategory : subcategories) {
             queryForSubcategory += String.format("""
                     INSERT INTO 
-                    `Subcategory`(`name`,`code`,`description`,study_guide, `active`, sequence, category_code)
-                    VALUES('%s', '%s', '%s', '%s', %s, %d, (SELECT `code` FROM Category WHERE `code` = '%s'));
+                    `Subcategory`(`name`,`code`,`description`,study_guide, `active`, sequence, category_id)
+                    VALUES('%s', '%s', '%s', '%s', %s, %d, (SELECT `id` FROM Category WHERE `code` = '%s'));
 
                     """, subcategory.getName(), subcategory.getCode(), subcategory.getDescription(),
                     subcategory.getStudyGuide(), subcategory.isActive(), subcategory.getSequence(),
@@ -46,8 +46,8 @@ public final class SqlWriter {
             queryForCourse += String.format("""
                     INSERT INTO 
                     `Course`(`name`, `code`, estimated_time_in_hours, visible, target, instructor ,syllabus, 
-                    developed_skills, subcategory_code)
-                    VALUES("%s", "%s", %d, %s, "%s", "%s", "%s", "%s", (SELECT `code` FROM Subcategory WHERE `code` = '%s'));
+                    developed_skills, subcategory_id)
+                    VALUES("%s", "%s", %d, %s, "%s", "%s", "%s", "%s", (SELECT `id` FROM Subcategory WHERE `code` = '%s'));
                     
                     """, course.getName(), course.getCode(), course.getEstimatedTimeInHours(), course.isVisible(),
                     course.getTarget(), course.getInstructor(), course.getSyllabus(), course.getDevelopedSkills(),
