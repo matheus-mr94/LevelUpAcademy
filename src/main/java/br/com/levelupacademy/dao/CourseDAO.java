@@ -80,4 +80,16 @@ public class CourseDAO {
         return subcategoryId;
     }
 
+    public void updateCourseToPublic() {
+        String sql = "UPDATE Course SET visible = true WHERE visible = false";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.execute();
+
+            Integer rowsAffected = preparedStatement.getUpdateCount();
+            System.out.println("Cursos atualizados: " + rowsAffected);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
