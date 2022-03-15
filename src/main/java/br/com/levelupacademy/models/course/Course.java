@@ -9,6 +9,7 @@ public class Course {
     private static final int MINIMUM_TIME_TO_FINISH = 1;
     private static final int MAXIMUM_TIME_TO_FINISH = 20;
 
+    private Long id;
     private String name;
     private String code;
     private Integer estimatedTimeInHours;
@@ -36,6 +37,14 @@ public class Course {
         this.syllabus = syllabus;
         this.developedSkills = developedSkills;
         this.subcategory = subcategory;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
