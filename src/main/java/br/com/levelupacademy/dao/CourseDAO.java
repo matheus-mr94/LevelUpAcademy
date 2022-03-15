@@ -59,6 +59,19 @@ public class CourseDAO {
         }
     }
 
+    public void updateCourseToPublic() {
+        String sql = "UPDATE Course SET visible = true WHERE visible = false";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.execute();
+
+            Integer rowsAffected = preparedStatement.getUpdateCount();
+            System.out.println("Cursos atualizados: " + rowsAffected);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Long getSubcategoryId(Course course) {
 
         String sql = "SELECT `id` FROM Subcategory WHERE `code` = ?";
@@ -78,18 +91,5 @@ public class CourseDAO {
             e.printStackTrace();
         }
         return subcategoryId;
-    }
-
-    public void updateCourseToPublic() {
-        String sql = "UPDATE Course SET visible = true WHERE visible = false";
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.execute();
-
-            Integer rowsAffected = preparedStatement.getUpdateCount();
-            System.out.println("Cursos atualizados: " + rowsAffected);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }
