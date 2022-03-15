@@ -23,7 +23,7 @@ public class CourseDAO {
                     """;
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-
+            connection.setAutoCommit(false);
             preparedStatement.setString(1, course.getName());
             preparedStatement.setString(2, course.getCode());
             preparedStatement.setInt(3, course.getEstimatedTimeInHours());
@@ -42,7 +42,7 @@ public class CourseDAO {
                     System.out.println("O ID do curso criado é: " + course.getId());
                 }
             }
-
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
