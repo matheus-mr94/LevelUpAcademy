@@ -48,6 +48,17 @@ public class CourseDAO {
         }
     }
 
+    public void deleteCourse(String code) {
+        String sql = "DELETE FROM Course WHERE `code` = ?";
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, code);
+            preparedStatement.execute();
+            System.out.println("Course was removed with success!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Long getSubcategoryId(Course course) {
 
         String sql = "SELECT `id` FROM Subcategory WHERE `code` = ?";
