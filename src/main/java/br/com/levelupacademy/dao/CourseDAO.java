@@ -64,8 +64,8 @@ public class CourseDAO {
             preparedStatement.setString(1, code);
             preparedStatement.execute();
 
-            preparedStatement.getUpdateCount();
-            System.out.println("Course was removed with success!");
+            Integer rowsAffected = preparedStatement.getUpdateCount();
+            System.out.println("Course was removed with success, rows affected: " + rowsAffected);
             connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
