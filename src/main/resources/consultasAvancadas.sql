@@ -1,4 +1,4 @@
-SELECT distinct s.`name`, s.sequence
+SELECT DISTINCT s.`name`, s.sequence
 FROM Subcategory s
 INNER JOIN Course c
 ON c.subcategory_id = s.id
