@@ -1,4 +1,4 @@
-package br.com.levelupacademy.main;
+package br.com.levelupacademy.models.output;
 
 import br.com.levelupacademy.factory.ConnectionFactory;
 

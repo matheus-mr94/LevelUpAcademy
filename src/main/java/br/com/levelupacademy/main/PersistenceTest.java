@@ -4,6 +4,7 @@ import br.com.levelupacademy.dao.CourseDAO;
 import br.com.levelupacademy.factory.ConnectionFactory;
 import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.course.Course;
+import br.com.levelupacademy.models.output.ReportWriter;
 import br.com.levelupacademy.models.subcategory.Subcategory;
 
 import java.sql.Connection;
