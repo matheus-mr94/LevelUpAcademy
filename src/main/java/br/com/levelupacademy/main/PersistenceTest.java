@@ -17,12 +17,15 @@ public class PersistenceTest {
 
         try(Connection connection = new ConnectionFactory().recoverConnection()) {
 //            new CourseDAO(connection).insertCourse(course);
-            new CourseDAO(connection).deleteCourse("java-primeiros-passos");
+//            new CourseDAO(connection).deleteCourse("java-primeiros-passos");
             new CourseDAO(connection).updateCourseToPublic();
+            new ReportWriter(connection).report();
+            System.out.println("Html created");
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
 
     }
 }
