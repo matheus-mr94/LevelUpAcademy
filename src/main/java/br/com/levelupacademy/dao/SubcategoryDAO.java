@@ -1,6 +1,5 @@
 package br.com.levelupacademy.dao;
 
-import br.com.levelupacademy.factory.ConnectionFactory;
 import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.course.Course;
 import br.com.levelupacademy.models.subcategory.Subcategory;
@@ -11,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static br.com.levelupacademy.dao.CategoryDAO.getCategory;
+import static br.com.levelupacademy.factory.ConnectionFactory.recoverConnection;
 
 public class SubcategoryDAO {
 
@@ -18,9 +18,9 @@ public class SubcategoryDAO {
 
     static {
         try {
-            connection = new ConnectionFactory().recoverConnection();
+            connection = recoverConnection();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
         }
     }
 

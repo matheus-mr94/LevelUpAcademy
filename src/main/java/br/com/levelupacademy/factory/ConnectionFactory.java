@@ -10,7 +10,18 @@ public final class ConnectionFactory {
 
     private static DataSource dataSource;
 
-    public ConnectionFactory() {
+    private ConnectionFactory() {
+
+    }
+
+    public static Connection recoverConnection() throws SQLException {
+        if(dataSource == null) {
+            buildConnectionPool();
+        }
+        return dataSource.getConnection();
+    }
+
+    private static void buildConnectionPool() {
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
         comboPooledDataSource
                 .setJdbcUrl("jdbc:mysql://localhost/LevelUpAcademy?useTimezone=true&server=UTC");
@@ -18,9 +29,5 @@ public final class ConnectionFactory {
         comboPooledDataSource.setPassword("");
 
         dataSource = comboPooledDataSource;
-    }
-
-    public  Connection recoverConnection() throws SQLException {
-        return this.dataSource.getConnection();
     }
 }
