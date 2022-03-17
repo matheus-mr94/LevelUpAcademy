@@ -7,6 +7,7 @@ import static br.com.levelupacademy.validators.Validations.objectIsNotNull;
 
 public class Alternative {
 
+    private Long id;
     private String text;
     private int sequence;
     private boolean correct;

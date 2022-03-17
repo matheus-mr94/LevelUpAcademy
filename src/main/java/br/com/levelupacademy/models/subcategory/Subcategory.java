@@ -6,6 +6,7 @@ import static br.com.levelupacademy.validators.Validations.*;
 
 public class Subcategory {
 
+    private Long id;
     private String name;
     private String code;
     private String description;
@@ -26,6 +27,10 @@ public class Subcategory {
         this.active = active;
         this.sequence = sequence;
         this.category = category;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -55,6 +60,7 @@ public class Subcategory {
     public String getStudyGuide() {
         return studyGuide;
     }
+
     public boolean hasDescription() {
         return description != null && !description.isBlank();
     }
@@ -71,4 +77,6 @@ public class Subcategory {
                 ", category=" + category +
                 '}';
     }
+
+
 }

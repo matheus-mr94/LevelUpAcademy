@@ -5,6 +5,7 @@ import static br.com.levelupacademy.validators.Validations.codeValidation;
 
 public class Category {
 
+    private Long id;
     private String name;
     private String code;
     private String description;

@@ -6,6 +6,7 @@ import static br.com.levelupacademy.validators.Validations.*;
 
 public abstract class Activity {
 
+    private Long id;
     private String title;
     private String code;
     private boolean active;
