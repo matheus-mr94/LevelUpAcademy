@@ -111,7 +111,7 @@ public class CourseDAO {
                     courseDTOList.add(courseDTO);
                 }
             }
-
+          connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
             connection.rollback();
