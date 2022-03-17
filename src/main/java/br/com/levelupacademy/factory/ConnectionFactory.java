@@ -6,21 +6,21 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class ConnectionFactory {
+public final class ConnectionFactory {
 
-    private DataSource dataSource;
+    private static DataSource dataSource;
 
     public ConnectionFactory() {
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
         comboPooledDataSource
                 .setJdbcUrl("jdbc:mysql://localhost/LevelUpAcademy?useTimezone=true&server=UTC");
         comboPooledDataSource.setUser("root");
-        comboPooledDataSource.setPassword("Root@2102");
+        comboPooledDataSource.setPassword("");
 
-        this.dataSource = comboPooledDataSource;
+        dataSource = comboPooledDataSource;
     }
 
-    public Connection recoverConnection() throws SQLException {
-     return this.dataSource.getConnection();
+    public  Connection recoverConnection() throws SQLException {
+        return this.dataSource.getConnection();
     }
 }

@@ -48,12 +48,12 @@ public class CourseDAO {
                 }
 
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e.getMessage());
             }
             connection.commit();
         } catch (SQLException e) {
-            e.printStackTrace();
             connection.rollback();
+            throw new RuntimeException(e.getMessage());
         }
     }
 
@@ -68,8 +68,8 @@ public class CourseDAO {
             System.out.println("Course was removed with success, rows affected: " + rowsAffected);
             connection.commit();
         } catch (SQLException e) {
-            e.printStackTrace();
             connection.rollback();
+            throw new RuntimeException(e.getMessage());
         }
     }
 
@@ -84,8 +84,8 @@ public class CourseDAO {
             connection.commit();
 
         } catch (SQLException e) {
-            e.printStackTrace();
             connection.rollback();
+            throw new RuntimeException(e.getMessage());
         }
     }
 
@@ -113,8 +113,8 @@ public class CourseDAO {
             }
           connection.commit();
         } catch (SQLException e) {
-            e.printStackTrace();
             connection.rollback();
+            throw new RuntimeException(e.getMessage());
         }
         return courseDTOList;
     }
