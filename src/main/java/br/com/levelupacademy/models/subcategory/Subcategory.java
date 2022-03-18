@@ -9,7 +9,7 @@ import javax.persistence.Id;
 
 import static br.com.levelupacademy.validators.Validations.*;
 
-@Entity
+//@Entity
 public class Subcategory {
 
     @Id

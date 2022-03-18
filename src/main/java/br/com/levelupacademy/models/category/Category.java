@@ -1,9 +1,6 @@
 package br.com.levelupacademy.models.category;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import static br.com.levelupacademy.validators.Validations.cantBeEmptyOrNull;
 import static br.com.levelupacademy.validators.Validations.codeValidation;
@@ -17,12 +14,17 @@ public class Category {
     private String name;
     private String code;
     private String description;
+    @Column(name = "study_guide")
     private String studyGuide;
     private boolean active;
     private int sequence;
+    @Column(name = "url_image")
     private String urlImage;
+    @Column(name = "hex_code")
     private String hexCode;
 
+    public Category() {
+    }
 
     public Category(String name, String code, String description, String studyGuide, boolean active, int sequence, String urlImage , String hexCode) {
         cantBeEmptyOrNull(name,"name can't be empty or null");
