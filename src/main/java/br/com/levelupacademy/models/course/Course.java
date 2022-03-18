@@ -2,13 +2,21 @@ package br.com.levelupacademy.models.course;
 
 import br.com.levelupacademy.models.subcategory.Subcategory;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import static br.com.levelupacademy.validators.Validations.*;
 
+@Entity
 public class Course {
 
     private static final int MINIMUM_TIME_TO_FINISH = 1;
     private static final int MAXIMUM_TIME_TO_FINISH = 20;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String code;
