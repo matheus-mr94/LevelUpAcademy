@@ -1,6 +1,10 @@
 package br.com.levelupacademy.models.category;
 
+import br.com.levelupacademy.models.subcategory.Subcategory;
+
 import javax.persistence.*;
+
+import java.util.List;
 
 import static br.com.levelupacademy.validators.Validations.cantBeEmptyOrNull;
 import static br.com.levelupacademy.validators.Validations.codeValidation;
@@ -22,6 +26,8 @@ public class Category {
     private String urlImage;
     @Column(name = "hex_code")
     private String hexCode;
+    @OneToMany(mappedBy = "category")
+    private List<Subcategory> subcategories;
 
     public Category() {
     }

@@ -4,10 +4,12 @@ import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.course.Course;
 import br.com.levelupacademy.models.subcategory.Subcategory;
 
+import javax.persistence.EntityManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import static br.com.levelupacademy.dao.CategoryDAO.getCategory;
 import static br.com.levelupacademy.factory.ConnectionFactory.recoverConnection;
@@ -15,6 +17,11 @@ import static br.com.levelupacademy.factory.ConnectionFactory.recoverConnection;
 public class SubcategoryDAO {
 
     private static Connection connection;
+    private EntityManager em;
+
+    public SubcategoryDAO(EntityManager em) {
+        this.em = em;
+    }
 
     static {
         try {
@@ -24,6 +31,22 @@ public class SubcategoryDAO {
         }
     }
 
+    public Subcategory getSubcategoryWithJPA(String code) {
+        String jpql = "SELECT s FROM Subcategory s WHERE s.code = :code";
+        return this.em.createQuery(jpql, Subcategory.class)
+                .setParameter("code", code)
+                .getSingleResult();
+    }
+
+    public List<Subcategory> findSubcategoriesWithoutDescription() {
+        String jpql = "SELECT s FROM Subcategory s WHERE s.description = '' OR s.description = NULL";
+        return this.em.createQuery(jpql, Subcategory.class).getResultList();
+    }
+
+    public List<Subcategory> findSubcategoriesActive() {
+        String jpql = "SELECT s FROM Subcategory s WHERE active = true ORDER BY sequence";
+        return this.em.createQuery(jpql, Subcategory.class).getResultList();
+    }
 
     public static Subcategory getSubcategory(String subcategoryCode) {
         String sql = "SELECT * FROM Subcategory WHERE `code` = ?";

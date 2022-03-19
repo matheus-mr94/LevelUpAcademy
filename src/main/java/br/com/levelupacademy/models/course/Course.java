@@ -2,14 +2,11 @@ package br.com.levelupacademy.models.course;
 
 import br.com.levelupacademy.models.subcategory.Subcategory;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import static br.com.levelupacademy.validators.Validations.*;
 
-//@Entity
+@Entity
 public class Course {
 
     private static final int MINIMUM_TIME_TO_FINISH = 1;
@@ -20,13 +17,20 @@ public class Course {
     private Long id;
     private String name;
     private String code;
+    @Column(name = "estimated_time_in_hours")
     private Integer estimatedTimeInHours;
     private boolean visible;
     private String target;
     private String instructor;
+    @Column(columnDefinition = "TEXT")
     private String syllabus;
+    @Column(name = "developed_skills", columnDefinition = "TEXT")
     private String developedSkills;
+    @ManyToOne
     private Subcategory subcategory;
+
+    public Course() {
+    }
 
     public Course(String name, String code, Integer estimatedTimeInHours, String target, boolean visibile, String instructor, String syllabus, String developedSkills, Subcategory subcategory) {
         cantBeEmptyOrNull(name,"name can't be empty or null");

@@ -1,15 +1,15 @@
 package br.com.levelupacademy.models.subcategory;
 
 import br.com.levelupacademy.models.category.Category;
+import br.com.levelupacademy.models.course.Course;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+import java.util.List;
 
 import static br.com.levelupacademy.validators.Validations.*;
 
-//@Entity
+@Entity
 public class Subcategory {
 
     @Id
@@ -18,10 +18,17 @@ public class Subcategory {
     private String name;
     private String code;
     private String description;
+    @Column(name = "study_guide")
     private String studyGuide;
     private boolean active;
     private int sequence;
+    @ManyToOne
     private Category category;
+    @OneToMany(mappedBy = "subcategory")
+    private List<Course> courses;
+
+    public Subcategory() {
+    }
 
     public Subcategory(String name, String code, String description, String studyGuide, boolean active, int sequence, Category category) {
         cantBeEmptyOrNull(name,"Name can't be empty or null");
