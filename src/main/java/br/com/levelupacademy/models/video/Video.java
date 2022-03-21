@@ -3,14 +3,13 @@ package br.com.levelupacademy.models.video;
 import br.com.levelupacademy.models.activity.Activity;
 import br.com.levelupacademy.models.section.Section;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 import static br.com.levelupacademy.validators.Validations.cantBeEmptyOrNull;
 
-//@Entity
+@Entity
+@PrimaryKeyJoinColumn(name = "activity_id")
 public class Video extends Activity {
-
 
     private String url;
     @Column(name = "duration_in_minutes")

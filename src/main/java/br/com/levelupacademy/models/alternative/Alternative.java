@@ -16,6 +16,7 @@ public class Alternative {
     private int sequence;
     private boolean correct;
     private String justification;
+    @ManyToOne
     private Question question;
 
     public Alternative() {

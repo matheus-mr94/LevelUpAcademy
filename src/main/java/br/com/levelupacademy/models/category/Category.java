@@ -4,6 +4,7 @@ import br.com.levelupacademy.models.subcategory.Subcategory;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static br.com.levelupacademy.validators.Validations.cantBeEmptyOrNull;
@@ -26,8 +27,8 @@ public class Category {
     private String urlImage;
     @Column(name = "hex_code")
     private String hexCode;
-    @OneToMany(mappedBy = "category")
-    private List<Subcategory> subcategories;
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Subcategory> subcategories = new ArrayList<>();
 
     public Category() {
     }

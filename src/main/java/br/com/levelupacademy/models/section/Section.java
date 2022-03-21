@@ -1,8 +1,12 @@
 package br.com.levelupacademy.models.section;
 
+import br.com.levelupacademy.models.activity.Activity;
 import br.com.levelupacademy.models.course.Course;
 
 import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static br.com.levelupacademy.validators.Validations.*;
 @Entity
@@ -18,6 +22,8 @@ public class Section {
     private boolean exam;
     @ManyToOne
     private Course course;
+    @OneToMany(mappedBy = "section", cascade = CascadeType.ALL)
+    List<Activity> activities = new ArrayList<>();
 
     public Section() {
     }

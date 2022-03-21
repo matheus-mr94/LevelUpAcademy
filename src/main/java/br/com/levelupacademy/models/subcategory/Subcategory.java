@@ -5,6 +5,7 @@ import br.com.levelupacademy.models.course.Course;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static br.com.levelupacademy.validators.Validations.*;
@@ -24,8 +25,8 @@ public class Subcategory {
     private int sequence;
     @ManyToOne
     private Category category;
-    @OneToMany(mappedBy = "subcategory")
-    private List<Course> courses;
+    @OneToMany(mappedBy = "subcategory", cascade = CascadeType.ALL)
+    private List<Course> courses = new ArrayList<>();
 
     public Subcategory() {
     }

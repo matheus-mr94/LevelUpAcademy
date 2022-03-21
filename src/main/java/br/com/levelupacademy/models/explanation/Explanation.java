@@ -3,13 +3,13 @@ package br.com.levelupacademy.models.explanation;
 import br.com.levelupacademy.models.activity.Activity;
 import br.com.levelupacademy.models.section.Section;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 import static br.com.levelupacademy.validators.Validations.cantBeEmptyOrNull;
 
-//@Entity
+@Entity
+@PrimaryKeyJoinColumn(name = "activity_id")
 public class Explanation extends Activity {
-
 
     private String text;
 
