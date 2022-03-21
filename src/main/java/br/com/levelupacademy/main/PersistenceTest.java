@@ -3,7 +3,9 @@ package br.com.levelupacademy.main;
 import br.com.levelupacademy.dao.CategoryDAO;
 import br.com.levelupacademy.dao.CourseDAO;
 import br.com.levelupacademy.dao.SubcategoryDAO;
+import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.course.Course;
+import br.com.levelupacademy.models.output.HtmlReportWriter;
 import br.com.levelupacademy.models.question.Question;
 import br.com.levelupacademy.models.section.Section;
 import br.com.levelupacademy.models.subcategory.Subcategory;
@@ -11,8 +13,10 @@ import br.com.levelupacademy.models.subcategory.Subcategory;
 import javax.persistence.EntityManager;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import static br.com.levelupacademy.factory.ConnectionFactory.recoverConnection;
+import static br.com.levelupacademy.models.output.HtmlReportWriter.writeReport;
 import static br.com.levelupacademy.utils.JPAUtil.getEntityManager;
 
 public class PersistenceTest {
@@ -27,16 +31,18 @@ public class PersistenceTest {
         CategoryDAO categoryDAO = new CategoryDAO(em);
         em.getTransaction().begin();
 
-        dao.insertCourseWithJPA(course);
+//        dao.insertCourseWithJPA(course);
 //        dao.deleteCourseWithJPA("java-primeiros-passos");
-//        List<Course> publicCourses = dao.findPublicCourses();
-//        List<Subcategory> subcategoriesActive = subcategoryDAO.findSubcategoriesActive();
-//        List<Category> categoriesActive = categoryDAO.findCategoriesActive();
-//        List<Subcategory> subcategoriesWithoutDescription = subcategoryDAO.findSubcategoriesWithoutDescription();
+        List<Course> publicCourses = dao.findPublicCourses();
+        List<Subcategory> subcategoriesActive = subcategoryDAO.findSubcategoriesActive();
+        List<Category> categoriesActive = categoryDAO.findCategoriesActive();
+        List<Subcategory> subcategoriesWithoutDescription = subcategoryDAO.findSubcategoriesWithoutDescription();
 //        dao.updateCourseToPublicWithJPA();
 //
         em.getTransaction().commit();
         em.close();
+
+        writeReport(subcategoriesActive, subcategoriesWithoutDescription, publicCourses, categoriesActive);
 
 //        try(Connection connection = recoverConnection()) {
 //          CourseDAO courseDAO = new CourseDAO(connection);

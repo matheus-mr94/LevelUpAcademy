@@ -35,6 +35,13 @@ public class SubcategoryTest {
         String categoryCode = subcategory.getCategoryCode();
         assertEquals("programacao",categoryCode);
     }
+    @Test
+    void getCategoryName__should_return_categoryName() {
+        Subcategory subcategory = new Subcategory("Java", "java-oo", "descrição",
+                "guia de estudos", false, 1, this.category);
+        String categoryName = subcategory.getCategoryName();
+        assertEquals("Programação", categoryName);
+    }
 
     @Test
     void hasDescription__should_return_hasDescriptionWhenFieldIsNotEmptyOrNotNull() {

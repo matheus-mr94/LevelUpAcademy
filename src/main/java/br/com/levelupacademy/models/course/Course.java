@@ -109,6 +109,10 @@ public class Course {
         return subcategory.getCode();
     }
 
+    public String getSubcategoryName() {
+        return subcategory.getName();
+    }
+
     @Override
     public String toString() {
         return "Course{" +
@@ -122,4 +126,6 @@ public class Course {
                 ", developedSkills='" + developedSkills + '\'' +
                 '}';
     }
+
+
 }

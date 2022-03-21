@@ -81,6 +81,10 @@ public class Subcategory {
         return description != null && !description.isBlank();
     }
 
+    public String getCategoryName() {
+        return category.getName();
+    }
+
     @Override
     public String toString() {
         return "Subcategory{" +

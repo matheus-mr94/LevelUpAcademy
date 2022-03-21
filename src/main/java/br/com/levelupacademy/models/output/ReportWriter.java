@@ -9,11 +9,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ReportWriter{
+public final class ReportWriter{
 
-    private CourseDAO courseDAO;
+    private static CourseDAO courseDAO;
 
-    public void writeReport() {
+    public static void writeReport() {
 
         String cReader = "";
         List<CourseDTO> report;
