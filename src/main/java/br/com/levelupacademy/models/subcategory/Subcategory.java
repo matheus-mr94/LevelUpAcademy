@@ -23,7 +23,7 @@ public class Subcategory {
     private String studyGuide;
     private boolean active;
     private int sequence;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
     @OneToMany(mappedBy = "subcategory", cascade = CascadeType.ALL)
     private List<Course> courses = new ArrayList<>();

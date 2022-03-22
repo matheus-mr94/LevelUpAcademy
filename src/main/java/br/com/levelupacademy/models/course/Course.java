@@ -30,7 +30,7 @@ public class Course {
     private String syllabus;
     @Column(name = "developed_skills", columnDefinition = "TEXT")
     private String developedSkills;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Subcategory subcategory;
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Section> sectionList = new ArrayList<>();

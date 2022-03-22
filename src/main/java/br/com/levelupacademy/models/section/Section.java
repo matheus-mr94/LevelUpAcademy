@@ -20,7 +20,7 @@ public class Section {
     private int sequence;
     private boolean active;
     private boolean exam;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Course course;
     @OneToMany(mappedBy = "section", cascade = CascadeType.ALL)
     List<Activity> activities = new ArrayList<>();

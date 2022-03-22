@@ -17,7 +17,7 @@ public abstract class Activity {
     private String code;
     private boolean active;
     private int sequence;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Section section;
 
     public Activity() {

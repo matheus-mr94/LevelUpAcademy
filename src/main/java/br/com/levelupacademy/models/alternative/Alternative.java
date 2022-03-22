@@ -16,7 +16,7 @@ public class Alternative {
     private int sequence;
     private boolean correct;
     private String justification;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Question question;
 
     public Alternative() {
