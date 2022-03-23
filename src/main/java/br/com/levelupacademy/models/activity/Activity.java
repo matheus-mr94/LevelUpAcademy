@@ -18,6 +18,7 @@ public abstract class Activity {
     private boolean active;
     private int sequence;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "section_id")
     private Section section;
 
     public Activity() {

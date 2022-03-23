@@ -17,6 +17,7 @@ public class Alternative {
     private boolean correct;
     private String justification;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "question_id")
     private Question question;
 
     public Alternative() {

@@ -1,7 +1,6 @@
 package br.com.levelupacademy.dao;
 
 import br.com.levelupacademy.models.category.Category;
-import br.com.levelupacademy.models.subcategory.Subcategory;
 
 import javax.persistence.EntityManager;
 import java.sql.Connection;
@@ -29,7 +28,7 @@ public class CategoryDAO {
         this.em = em;
     }
 
-    public List<Category> findCategoriesActive() {
+    public List<Category> findActiveCategoriesAndPutInSequence() {
         String jpql = "SELECT s FROM Category s WHERE active = true ORDER BY sequence";
         return this.em.createQuery(jpql, Category.class).getResultList();
     }

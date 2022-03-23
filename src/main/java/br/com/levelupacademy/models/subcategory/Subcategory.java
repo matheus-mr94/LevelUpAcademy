@@ -24,6 +24,7 @@ public class Subcategory {
     private boolean active;
     private int sequence;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
     private Category category;
     @OneToMany(mappedBy = "subcategory", cascade = CascadeType.ALL)
     private List<Course> courses = new ArrayList<>();

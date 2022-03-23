@@ -31,6 +31,7 @@ public class Course {
     @Column(name = "developed_skills", columnDefinition = "TEXT")
     private String developedSkills;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "subcategory_id")
     private Subcategory subcategory;
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Section> sectionList = new ArrayList<>();
@@ -38,7 +39,7 @@ public class Course {
     public Course() {
     }
 
-    public Course(String name, String code, Integer estimatedTimeInHours, String target, boolean visibile, String instructor, String syllabus, String developedSkills, Subcategory subcategory) {
+    public Course(String name, String code, Integer estimatedTimeInHours, String target, boolean visible, String instructor, String syllabus, String developedSkills, Subcategory subcategory) {
         cantBeEmptyOrNull(name,"name can't be empty or null");
         cantBeEmptyOrNull(code,"Code can't be empty or null");
         codeValidation(code,"Invalid characters");
@@ -49,7 +50,7 @@ public class Course {
         this.name = name;
         this.code = code;
         this.estimatedTimeInHours = estimatedTimeInHours;
-        this.visible = visibile;
+        this.visible = visible;
         this.target = target;
         this.instructor = instructor;
         this.syllabus = syllabus;

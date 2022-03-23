@@ -43,7 +43,7 @@ public class SubcategoryDAO {
         return this.em.createQuery(jpql, Subcategory.class).getResultList();
     }
 
-    public List<Subcategory> findSubcategoriesActive() {
+    public List<Subcategory> findActiveSubcategoriesAndPutInSequence() {
         String jpql = "SELECT s FROM Subcategory s WHERE active = true ORDER BY sequence";
         return this.em.createQuery(jpql, Subcategory.class).getResultList();
     }
