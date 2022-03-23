@@ -19,8 +19,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CourseDAOTest {
 
-    private CategoryDAO categoryDAO;
-    private SubcategoryDAO subcategoryDAO;
     private CourseDAO courseDAO;
     private EntityManager em;
     private Category category;
@@ -29,8 +27,6 @@ class CourseDAOTest {
     @BeforeEach
     public void initializeTransaction() {
         this.em = JPAUtil.getEntityManager();
-        this.categoryDAO = new CategoryDAO(em);
-        this.subcategoryDAO = new SubcategoryDAO(em);
         this.courseDAO = new CourseDAO(em);
         em.getTransaction().begin();
 
@@ -129,7 +125,10 @@ class CourseDAOTest {
         em.persist(course);
         em.persist(course1);
 
+
         courseDAO.updateCourseToPublicWithJPA();
+        em.merge(course1);
+
         assertTrue(course1.isVisible());
     }
 }

@@ -6,7 +6,6 @@ import br.com.levelupacademy.util.JPAUtil;
 import br.com.levelupacademy.util.builder.CategoryBuilder;
 import br.com.levelupacademy.util.builder.SubcategoryBuilder;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SubcategoryDAOTest {
 
-    private CategoryDAO categoryDAO;
     private SubcategoryDAO subcategoryDAO;
     private EntityManager em;
     private Category category;
@@ -26,7 +24,6 @@ class SubcategoryDAOTest {
     @BeforeEach
     public void initializeTransaction() {
         this.em = JPAUtil.getEntityManager();
-        this.categoryDAO = new CategoryDAO(em);
         this.subcategoryDAO = new SubcategoryDAO(em);
         em.getTransaction().begin();
 
@@ -63,7 +60,7 @@ class SubcategoryDAOTest {
                 .withName("python")
                 .withCode("python")
                 .withDescription("Cursos de python")
-                .withActive(true)
+                .withActive(false)
                 .withSequence(1)
                 .withCategory(category)
                 .create();
@@ -84,7 +81,9 @@ class SubcategoryDAOTest {
         List<Subcategory> activeSubcategoriesInSequence = subcategoryDAO.findActiveSubcategoriesAndPutInSequence();
 
         assertNotNull(activeSubcategoriesInSequence);
-        assertEquals(3, activeSubcategoriesInSequence.size());
+        assertEquals(2, activeSubcategoriesInSequence.size());
+        assertEquals("java", activeSubcategoriesInSequence.get(0).getName());
+        assertEquals("kotlin", activeSubcategoriesInSequence.get(1).getName());
 
     }
 

@@ -4,7 +4,6 @@ import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.util.JPAUtil;
 import br.com.levelupacademy.util.builder.CategoryBuilder;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -57,7 +56,7 @@ class CategoryDAOTest {
                 .withName("Data Science")
                 .withCode("data-science")
                 .withDescription("Cursos de data science")
-                .withActive(true)
+                .withActive(false)
                 .withSequence(3)
                 .withUrlImage("https://www.alura.com.br/assets/api/formacoes/categorias/data-science.svg")
                 .withHexCode("#9cd33b")
@@ -70,7 +69,9 @@ class CategoryDAOTest {
         List<Category> activeCategoriesInSequence = dao.findActiveCategoriesAndPutInSequence();
 
         assertNotNull(activeCategoriesInSequence);
-        assertEquals(3, activeCategoriesInSequence.size());
+        assertEquals(2, activeCategoriesInSequence.size());
+        assertEquals("Programação", activeCategoriesInSequence.get(0).getName());
+        assertEquals("DevOps", activeCategoriesInSequence.get(1).getName());
 
 
     }

@@ -29,7 +29,7 @@ public class CategoryDAO {
     }
 
     public List<Category> findActiveCategoriesAndPutInSequence() {
-        String jpql = "SELECT s FROM Category s WHERE active = true ORDER BY sequence";
+        String jpql = "SELECT c FROM Category c WHERE c.active = true ORDER BY c.sequence";
         return this.em.createQuery(jpql, Category.class).getResultList();
     }
 

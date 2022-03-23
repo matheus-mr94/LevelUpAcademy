@@ -41,7 +41,7 @@ public class CourseDAO {
     }
 
     public List<Course> findPublicCourses() {
-        String jpql = "SELECT c FROM Course c WHERE visible = true";
+        String jpql = "SELECT c FROM Course c WHERE c.visible = true";
         return this.em.createQuery(jpql, Course.class).getResultList();
     }
 

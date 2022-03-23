@@ -4,10 +4,19 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
 
-    <persistence-unit name="levelUpAcademy" transaction-type="RESOURCE_LOCAL">
+
+    <persistence-unit name="levelUpAcademy_test" transaction-type="RESOURCE_LOCAL">
+        <class>br.com.levelupacademy.models.category.Category</class>
+        <class>br.com.levelupacademy.models.subcategory.Subcategory</class>
+        <class>br.com.levelupacademy.models.course.Course</class>
+        <class>br.com.levelupacademy.models.section.Section</class>
+        <class>br.com.levelupacademy.models.activity.Activity</class>
+
+
+
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/LevelUpAcademy?useTimezone=true&amp;server=UTC" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/LevelUpAcademy_Test?useTimezone=true&amp;server=UTC" />
             <property name="javax.persistence.jdbc.user" value="root" />
             <property name="javax.persistence.jdbc.password" value="" />
 
@@ -17,6 +26,5 @@
             <property name="hibernate.format_sql" value="true"/>
         </properties>
     </persistence-unit>
-
 
 </persistence>
