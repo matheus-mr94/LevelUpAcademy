@@ -15,19 +15,18 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class CategoryDAOTest {
 
-    private CategoryDAO dao;
+    private CategoryDAO categoryDAO;
     private EntityManager em;
 
     @BeforeEach
     public void initializeTransaction() {
         this.em = JPAUtil.getEntityManager();
-        this.dao = new CategoryDAO(em);
-        em.getTransaction().begin();
+        this.categoryDAO = new CategoryDAO(em);
     }
 
     @AfterEach
-    public void rollbackTransaction() {
-        em.getTransaction().rollback();
+    public void emptyDB() {
+        categoryDAO.deleteAll();
     }
 
     @Test
@@ -62,11 +61,11 @@ class CategoryDAOTest {
                 .withHexCode("#9cd33b")
                 .create();
 
-        em.persist(category1);
-        em.persist(category2);
-        em.persist(category3);
+        categoryDAO.create(category1);
+        categoryDAO.create(category2);
+        categoryDAO.create(category3);
 
-        List<Category> activeCategoriesInSequence = dao.findActiveCategoriesAndPutInSequence();
+        List<Category> activeCategoriesInSequence = categoryDAO.findActiveCategoriesAndPutInSequence();
 
         assertNotNull(activeCategoriesInSequence);
         assertEquals(2, activeCategoriesInSequence.size());

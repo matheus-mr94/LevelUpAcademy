@@ -30,7 +30,33 @@ public class CategoryDAO {
 
     public List<Category> findActiveCategoriesAndPutInSequence() {
         String jpql = "SELECT c FROM Category c WHERE c.active = true ORDER BY c.sequence";
-        return this.em.createQuery(jpql, Category.class).getResultList();
+        try {
+            List<Category> resultList = this.em.createQuery(jpql, Category.class).getResultList();
+            return resultList;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    public void create(Category category) {
+        try {
+            this.em.getTransaction().begin();
+            this.em.persist(category);
+            this.em.getTransaction().commit();
+        }  catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    public void deleteAll() {
+        String jpql = "DELETE FROM Category";
+        try {
+            this.em.getTransaction().begin();
+            this.em.createQuery(jpql).executeUpdate();
+            this.em.getTransaction().commit();
+        }  catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     public static Category getCategory(Long id) throws SQLException {

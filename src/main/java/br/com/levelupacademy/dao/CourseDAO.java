@@ -26,29 +26,94 @@ public class CourseDAO {
     }
 
     public  void insertCourseWithJPA(Course course) {
-        this.em.persist(course);
-        Long id = course.getId();
-        System.out.println("Curso criado com o ID: " + id);
+        try{
+            this.em.getTransaction().begin();
+            this.em.persist(course);
+            this.em.getTransaction().commit();
+            Long id = course.getId();
+            System.out.println("Curso criado com o ID: " + id);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     public void deleteCourseWithJPA(String code) {
-        String jpql = "SELECT c FROM Course c WHERE c.code= :code";
-        Course course = this.em.createQuery(jpql, Course.class)
-                .setParameter("code", code)
-                .getSingleResult();
-        this.em.merge(course);
-        this.em.remove(course);
+        try {
+            this.em.getTransaction().begin();
+            String jpql = "SELECT c FROM Course c WHERE c.code= :code";
+            Course course = this.em.createQuery(jpql, Course.class)
+                    .setParameter("code", code)
+                    .getSingleResult();
+            this.em.merge(course);
+            this.em.remove(course);
+            this.em.getTransaction().commit();
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     public List<Course> findPublicCourses() {
-        String jpql = "SELECT c FROM Course c WHERE c.visible = true";
-        return this.em.createQuery(jpql, Course.class).getResultList();
+        try{
+            this.em.getTransaction().begin();
+            String jpql = "SELECT c FROM Course c WHERE c.visible = true";
+            List<Course> resultList = this.em.createQuery(jpql, Course.class).getResultList();
+            this.em.getTransaction().commit();
+            return resultList;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     public void updateCourseToPublicWithJPA() {
-        String jpql = "UPDATE Course SET visible = true WHERE visible = false";
-        int i = this.em.createQuery(jpql).executeUpdate();
-        System.out.println("Course(s) updated = " + i);
+        try {
+            this.em.getTransaction().begin();
+            String jpql = "UPDATE Course SET visible = true WHERE visible = false";
+            int i = this.em.createQuery(jpql).executeUpdate();
+            this.em.getTransaction().commit();
+            System.out.println("Course(s) updated = " + i);
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    public Course findCourseByCode(String code) {
+        try {
+            this.em.getTransaction().begin();
+            String jpql = "SELECT new br.com.levelupacademy.models.course.Course(" +
+                    "c.name, c.code, c.estimatedTimeInHours, " +
+                    "c.target, c.visible, c.instructor, " +
+                    "c.syllabus, c.developedSkills, c.subcategory) FROM Course c WHERE c.code = :code";
+            Course course = em.createQuery(jpql, Course.class)
+                    .setParameter("code", code)
+                    .getSingleResult();
+            em.getTransaction().commit();
+            return course;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    public void create(Course course) {
+        try {
+            this.em.getTransaction().begin();
+            this.em.persist(course);
+            this.em.getTransaction().commit();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    public void deleteAll() {
+        String jpql = "DELETE FROM Course";
+        try {
+            em.getTransaction().begin();
+            em.createQuery(jpql).executeUpdate();
+            em.getTransaction().commit();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     public static void insertCourse(Course course) throws SQLException {

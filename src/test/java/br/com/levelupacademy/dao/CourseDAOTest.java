@@ -23,12 +23,15 @@ class CourseDAOTest {
     private EntityManager em;
     private Category category;
     private Subcategory subcategory;
+    private SubcategoryDAO subcategoryDAO;
+    private CategoryDAO categoryDAO;
 
     @BeforeEach
     public void initializeTransaction() {
         this.em = JPAUtil.getEntityManager();
         this.courseDAO = new CourseDAO(em);
-        em.getTransaction().begin();
+        this.subcategoryDAO = new SubcategoryDAO(em);
+        this.categoryDAO = new CategoryDAO(em);
 
         category = new CategoryBuilder()
                 .withName("Programação")
@@ -40,7 +43,7 @@ class CourseDAOTest {
                 .withHexCode("#f16165")
                 .create();
 
-        em.persist(category);
+        categoryDAO.create(category);
 
          subcategory = new SubcategoryBuilder()
                 .withName("java")
@@ -51,12 +54,15 @@ class CourseDAOTest {
                 .withCategory(category)
                 .create();
 
-        em.persist(subcategory);
+         subcategoryDAO.create(subcategory);
     }
 
     @AfterEach
-    public void rollbackTransaction() {
-        em.getTransaction().rollback();
+    public void emptyDB() {
+        courseDAO.deleteAll();
+        subcategoryDAO.deleteAll();
+        categoryDAO.deleteAll();
+
     }
 
     @Test
@@ -85,8 +91,8 @@ class CourseDAOTest {
                 .withSubcategory(subcategory)
                 .create();
 
-        em.persist(course);
-        em.persist(course1);
+        courseDAO.create(course);
+        courseDAO.create(course1);
 
         List<Course> publicCourses = courseDAO.findPublicCourses();
 
@@ -122,13 +128,17 @@ class CourseDAOTest {
                 .withSubcategory(subcategory)
                 .create();
 
-        em.persist(course);
-        em.persist(course1);
 
+
+        courseDAO.create(course);
+        courseDAO.create(course1);
 
         courseDAO.updateCourseToPublicWithJPA();
-        em.merge(course1);
+
+         course1 = courseDAO.findCourseByCode("java-e-exceptions");
 
         assertTrue(course1.isVisible());
+
+
     }
 }

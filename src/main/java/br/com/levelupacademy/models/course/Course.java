@@ -114,19 +114,25 @@ public class Course {
         return subcategory.getName();
     }
 
-    @Override
-    public String toString() {
-        return "Course{" +
-                "name='" + name + '\'' +
-                ", code='" + code + '\'' +
-                ", estimatedTime=" + estimatedTimeInHours +
-                ", visible=" + visible +
-                ", target='" + target + '\'' +
-                ", instructor='" + instructor + '\'' +
-                ", syllabus='" + syllabus + '\'' +
-                ", developedSkills='" + developedSkills + '\'' +
-                '}';
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
+
+
+
+//    @Override
+//    public String toString() {
+//        return "Course{" +
+//                "name='" + name + '\'' +
+//                ", code='" + code + '\'' +
+//                ", estimatedTime=" + estimatedTimeInHours +
+//                ", visible=" + visible +
+//                ", target='" + target + '\'' +
+//                ", instructor='" + instructor + '\'' +
+//                ", syllabus='" + syllabus + '\'' +
+//                ", developedSkills='" + developedSkills + '\'' +
+//                '}';
+//    }
 
 
 }

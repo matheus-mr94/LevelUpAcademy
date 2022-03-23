@@ -20,12 +20,13 @@ class SubcategoryDAOTest {
     private SubcategoryDAO subcategoryDAO;
     private EntityManager em;
     private Category category;
+    private CategoryDAO categoryDAO;
 
     @BeforeEach
     public void initializeTransaction() {
         this.em = JPAUtil.getEntityManager();
         this.subcategoryDAO = new SubcategoryDAO(em);
-        em.getTransaction().begin();
+        this.categoryDAO = new CategoryDAO(em);
 
         category = new CategoryBuilder()
                 .withName("Programação")
@@ -37,12 +38,14 @@ class SubcategoryDAOTest {
                 .withHexCode("#f16165")
                 .create();
 
-        em.persist(category);
+        categoryDAO.create(category);
+
     }
 
     @AfterEach
-    public void rollbackTransaction() {
-        em.getTransaction().rollback();
+    public void emptyDB() {
+        subcategoryDAO.deleteAll();
+        categoryDAO.deleteAll();
     }
 
     @Test
@@ -74,9 +77,9 @@ class SubcategoryDAOTest {
                 .withCategory(category)
                 .create();
 
-        em.persist(java);
-        em.persist(python);
-        em.persist(kotlin);
+        subcategoryDAO.create(java);
+        subcategoryDAO.create(python);
+        subcategoryDAO.create(kotlin);
 
         List<Subcategory> activeSubcategoriesInSequence = subcategoryDAO.findActiveSubcategoriesAndPutInSequence();
 
@@ -117,9 +120,9 @@ class SubcategoryDAOTest {
                 .withCategory(category)
                 .create();
 
-        em.persist(java);
-        em.persist(python);
-        em.persist(kotlin);
+        subcategoryDAO.create(java);
+        subcategoryDAO.create(python);
+        subcategoryDAO.create(kotlin);
 
         List<Subcategory> subcategoriesWithoutDescription = subcategoryDAO.findSubcategoriesWithoutDescription();
 
