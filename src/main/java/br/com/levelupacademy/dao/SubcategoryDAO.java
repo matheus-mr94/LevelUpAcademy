@@ -41,6 +41,7 @@ public class SubcategoryDAO {
             this.em.getTransaction().commit();
             return subcategory;
         } catch (Exception e) {
+            this.em.getTransaction().rollback();
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -53,6 +54,7 @@ public class SubcategoryDAO {
             this.em.getTransaction().commit();
             return resultList;
         } catch (Exception e) {
+            this.em.getTransaction().rollback();
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -65,6 +67,7 @@ public class SubcategoryDAO {
             this.em.getTransaction().commit();
             return resultList;
         } catch (Exception e) {
+            this.em.getTransaction().rollback();
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -75,6 +78,7 @@ public class SubcategoryDAO {
             this.em.persist(subcategory);
             this.em.getTransaction().commit();
         } catch (Exception e) {
+            this.em.getTransaction().rollback();
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -87,6 +91,7 @@ public class SubcategoryDAO {
             em.getTransaction().commit();
 
         } catch (Exception e) {
+            this.em.getTransaction().rollback();
             throw new RuntimeException(e.getMessage());
         }
     }

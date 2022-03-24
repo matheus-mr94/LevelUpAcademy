@@ -33,6 +33,7 @@ public class CourseDAO {
             Long id = course.getId();
             System.out.println("Curso criado com o ID: " + id);
         } catch (Exception e) {
+            this.em.getTransaction().rollback();
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -48,6 +49,7 @@ public class CourseDAO {
             this.em.remove(course);
             this.em.getTransaction().commit();
         } catch (Exception e) {
+            this.em.getTransaction().rollback();
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -60,6 +62,7 @@ public class CourseDAO {
             this.em.getTransaction().commit();
             return resultList;
         } catch (Exception e) {
+            this.em.getTransaction().rollback();
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -72,6 +75,7 @@ public class CourseDAO {
             this.em.getTransaction().commit();
             System.out.println("Course(s) updated = " + i);
         } catch (Exception e) {
+            this.em.getTransaction().rollback();
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -89,6 +93,7 @@ public class CourseDAO {
             em.getTransaction().commit();
             return course;
         } catch (Exception e) {
+            this.em.getTransaction().rollback();
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -100,6 +105,7 @@ public class CourseDAO {
             this.em.getTransaction().commit();
 
         } catch (Exception e) {
+            this.em.getTransaction().rollback();
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -112,6 +118,7 @@ public class CourseDAO {
             em.getTransaction().commit();
 
         } catch (Exception e) {
+            this.em.getTransaction().rollback();
             throw new RuntimeException(e.getMessage());
         }
     }

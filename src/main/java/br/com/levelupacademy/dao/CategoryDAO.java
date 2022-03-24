@@ -34,6 +34,7 @@ public class CategoryDAO {
             List<Category> resultList = this.em.createQuery(jpql, Category.class).getResultList();
             return resultList;
         } catch (Exception e) {
+            this.em.getTransaction().rollback();
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -44,6 +45,7 @@ public class CategoryDAO {
             this.em.persist(category);
             this.em.getTransaction().commit();
         }  catch (Exception e) {
+            this.em.getTransaction().rollback();
             throw new RuntimeException(e.getMessage());
         }
     }
@@ -55,6 +57,7 @@ public class CategoryDAO {
             this.em.createQuery(jpql).executeUpdate();
             this.em.getTransaction().commit();
         }  catch (Exception e) {
+            this.em.getTransaction().rollback();
             throw new RuntimeException(e.getMessage());
         }
     }
