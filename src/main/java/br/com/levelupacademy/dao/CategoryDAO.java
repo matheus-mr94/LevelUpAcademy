@@ -2,16 +2,19 @@ package br.com.levelupacademy.dao;
 
 import br.com.levelupacademy.models.category.Category;
 
+import javax.persistence.EntityManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import static br.com.levelupacademy.factory.ConnectionFactory.recoverConnection;
 
 public class CategoryDAO {
 
     private static Connection connection;
+    private EntityManager em;
 
     static {
         try {
@@ -19,6 +22,24 @@ public class CategoryDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage());
         }
+    }
+
+    public CategoryDAO(EntityManager em) {
+        this.em = em;
+    }
+
+    public List<Category> findActiveCategoriesOrderedBySequence() {
+        String jpql = "SELECT c FROM Category c WHERE c.active = true ORDER BY c.sequence";
+        return this.em.createQuery(jpql, Category.class).getResultList();
+    }
+
+    public void create(Category category) {
+        this.em.persist(category);
+    }
+
+    public void deleteAll() {
+        String jpql = "DELETE FROM Category";
+        this.em.createQuery(jpql).executeUpdate();
     }
 
     public static Category getCategory(Long id) throws SQLException {

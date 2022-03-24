@@ -3,6 +3,9 @@ package br.com.levelupacademy.dao;
 import br.com.levelupacademy.dto.CourseDTO;
 import br.com.levelupacademy.models.course.Course;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +15,61 @@ import static br.com.levelupacademy.dao.SubcategoryDAO.getSubcategoryId;
 public class CourseDAO {
 
     private static Connection connection;
+    private EntityManager em;
 
     public CourseDAO(Connection connection) {
         this.connection = connection;
     }
 
-    public void insertCourse(Course course) throws SQLException {
+    public CourseDAO(EntityManager em) {
+        this.em = em;
+    }
+
+    public  void insertCourseWithJPA(Course course) {
+        this.em.persist(course);
+        Long id = course.getId();
+        System.out.println("Curso criado com o ID: " + id);
+    }
+
+    public void deleteCourseWithJPA(String code) {
+        String jpql = "SELECT c FROM Course c WHERE c.code= :code";
+        Course course = this.em.createQuery(jpql, Course.class)
+            .setParameter("code", code)
+            .getSingleResult();
+        this.em.merge(course);
+        this.em.remove(course);
+    }
+
+    public List<Course> findPublicCourses() {
+            String jpql = "SELECT c FROM Course c WHERE c.visible = true";
+            return this.em.createQuery(jpql, Course.class).getResultList();
+    }
+
+    public void updateCourseToPublicWithJPA() {
+        String jpql = "UPDATE Course SET visible = true WHERE visible = false";
+        int i = this.em.createQuery(jpql).executeUpdate();
+    }
+
+    public Course findCourseByCode(String code) {
+        String jpql = "SELECT new br.com.levelupacademy.models.course.Course(" +
+                    "c.name, c.code, c.estimatedTimeInHours, " +
+                    "c.target, c.visible, c.instructor, " +
+                    "c.syllabus, c.developedSkills, c.subcategory) FROM Course c WHERE c.code = :code";
+        return this.em.createQuery(jpql, Course.class)
+                .setParameter("code", code)
+                .getSingleResult();
+    }
+
+    public void create(Course course) {
+        this.em.persist(course);
+    }
+
+    public void deleteAll() {
+        String jpql = "DELETE FROM Course";
+        em.createQuery(jpql).executeUpdate();
+    }
+
+    public static void insertCourse(Course course) throws SQLException {
 
         String sql = """
                 INSERT INTO 
@@ -57,7 +109,7 @@ public class CourseDAO {
         }
     }
 
-    public void deleteCourse(String code) throws SQLException {
+    public static void deleteCourse(String code) throws SQLException {
         String sql = "DELETE FROM Course WHERE `code` = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             connection.setAutoCommit(false);
@@ -73,7 +125,7 @@ public class CourseDAO {
         }
     }
 
-    public void updateCourseToPublic() throws SQLException {
+    public static void updateCourseToPublic() throws SQLException {
         String sql = "UPDATE Course SET visible = true WHERE visible = false";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             connection.setAutoCommit(false);

@@ -1,19 +1,37 @@
 package br.com.levelupacademy.models.subcategory;
 
 import br.com.levelupacademy.models.category.Category;
+import br.com.levelupacademy.models.course.Course;
+
+import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static br.com.levelupacademy.validators.Validations.*;
 
+@Entity
 public class Subcategory {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String code;
     private String description;
+    @Column(name = "study_guide")
     private String studyGuide;
     private boolean active;
     private int sequence;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
     private Category category;
+    @OneToMany(mappedBy = "subcategory", cascade = CascadeType.ALL)
+    private List<Course> courses = new ArrayList<>();
+
+    @Deprecated
+    public Subcategory() {
+    }
 
     public Subcategory(String name, String code, String description, String studyGuide, boolean active, int sequence, Category category) {
         cantBeEmptyOrNull(name,"Name can't be empty or null");
@@ -63,6 +81,10 @@ public class Subcategory {
 
     public boolean hasDescription() {
         return description != null && !description.isBlank();
+    }
+
+    public String getCategoryName() {
+        return category.getName();
     }
 
     @Override

@@ -2,17 +2,27 @@ package br.com.levelupacademy.models.alternative;
 
 import br.com.levelupacademy.models.question.Question;
 
+import javax.persistence.*;
+
 import static br.com.levelupacademy.validators.Validations.cantBeEmptyOrNull;
 import static br.com.levelupacademy.validators.Validations.objectIsNotNull;
 
 public class Alternative {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String text;
     private int sequence;
     private boolean correct;
     private String justification;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "question_id")
     private Question question;
+
+    @Deprecated
+    public Alternative() {
+    }
 
     public Alternative(String text, int sequence, boolean correct, String justification, Question question) {
         cantBeEmptyOrNull(text, "Text can't be empty or null");

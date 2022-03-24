@@ -107,6 +107,15 @@ public class CourseTest {
     }
 
     @Test
+    void getSubcategoryName__should_return_subcategoryName() {
+        Course course = new Course("Java e orientação a objetos", "oop" ,10,
+                "iniciantes em java", true,"Nico", "ementa",
+                "conhecimentos em OO", this.subcategory);
+        String subcategoryName = course.getSubcategoryName();
+        assertEquals("Java", subcategoryName);
+    }
+
+    @Test
     void getCategoryCode__should_return_categoryCode() {
         Course course = new Course("Java e orientação a objetos", "oop" ,10,
                 "iniciantes em java", true,"Nico", "ementa",

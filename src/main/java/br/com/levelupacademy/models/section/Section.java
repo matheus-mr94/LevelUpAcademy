@@ -1,17 +1,33 @@
 package br.com.levelupacademy.models.section;
 
+import br.com.levelupacademy.models.activity.Activity;
 import br.com.levelupacademy.models.course.Course;
 
-import static br.com.levelupacademy.validators.Validations.*;
+import javax.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static br.com.levelupacademy.validators.Validations.*;
+@Entity
 public class Section {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String code;
     private int sequence;
     private boolean active;
     private boolean exam;
+    @ManyToOne(fetch = FetchType.LAZY)
     private Course course;
+    @OneToMany(mappedBy = "section", cascade = CascadeType.ALL)
+    List<Activity> activities = new ArrayList<>();
+
+    @Deprecated
+    public Section() {
+    }
 
     public Section(String name, String code, int sequence, Course course) {
         cantBeEmptyOrNull(name,"name can't be empty or null");

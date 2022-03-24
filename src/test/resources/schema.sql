@@ -1,6 +1,6 @@
-CREATE DATABASE LevelUpAcademy DEFAULT CHARACTER SET utf8;
+CREATE DATABASE LevelUpAcademy_Test DEFAULT CHARACTER SET utf8;
 
-USE LevelUpAcademy;
+USE LevelUpAcademy_Test;
 
 CREATE TABLE Category (
 id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -51,37 +51,35 @@ course_id BIGINT NOT NULL,
 CONSTRAINT `fk_section_course` FOREIGN KEY(`course_id`) REFERENCES `Course`(`id`) 
 );
 
-CREATE TABLE Video (
+CREATE TABLE Activity (
 id BIGINT PRIMARY KEY AUTO_INCREMENT,
 title VARCHAR(100) NOT NULL,
 `code` VARCHAR(100) UNIQUE NOT NULL,
 sequence INT UNSIGNED,
 section_id BIGINT NOT NULL,
+`active` BOOLEAN,
+CONSTRAINT `fk_activity_section` FOREIGN KEY(`section_id`) REFERENCES `Activity`(`id`)
+);
+
+CREATE TABLE Video (
 url VARCHAR(255) NOT NULL,
 duration_in_minutes INT UNSIGNED,
 transcription VARCHAR(255),
-CONSTRAINT `fk_video_section` FOREIGN KEY(`section_id`) REFERENCES `Section`(`id`)
+activity_id BIGINT NOT NULL,
+CONSTRAINT `fk_video_activity` FOREIGN KEY(`activity_id`) REFERENCES `Activity`(`id`)
 );
 
 CREATE TABLE Question (
-id BIGINT PRIMARY KEY AUTO_INCREMENT,
-title VARCHAR(100) NOT NULL,
-`code` VARCHAR(100) UNIQUE NOT NULL,
-sequence INT UNSIGNED,
-section_id BIGINT NOT NULL,
 statement VARCHAR(255) NOT NULL,
 question_type ENUM('SINGLE_CHOICE','MULTIPLES_CHOICES','TRUE_OR_FALSE'),
-CONSTRAINT `fk_question_section` FOREIGN KEY(`section_id`) REFERENCES `Section`(`id`)
+activity_id BIGINT NOT NULL,
+CONSTRAINT `fk_question_activity` FOREIGN KEY(`activity_id`) REFERENCES `Activity`(`id`)
 );
 
 CREATE TABLE Explanation (
-id BIGINT PRIMARY KEY AUTO_INCREMENT,
-title VARCHAR(150) NOT NULL,
-`code` VARCHAR(100) UNIQUE NOT NULL,
-sequence INT UNSIGNED,
-section_id BIGINT NOT NULL,
 `text` VARCHAR(255),
-CONSTRAINT `fk_explanation_section` FOREIGN KEY(`section_id`) REFERENCES `Section`(`id`)
+activity_id BIGINT NOT NULL,
+CONSTRAINT `fk_explanation_activity` FOREIGN KEY(`activity_id`) REFERENCES `Activity`(`id`)
 );
 
 CREATE TABLE Alternative (
@@ -91,7 +89,7 @@ sequence INT UNSIGNED,
 correct BOOLEAN,
 justification VARCHAR(500),
 question_id BIGINT NOT NULL,
-CONSTRAINT `fk_alternative_question` FOREIGN KEY(`question_id`) REFERENCES `Question`(`id`)
+CONSTRAINT `fk_alternative_question` FOREIGN KEY(`question_id`) REFERENCES `Question`(`activity_id`)
 );
 
 
