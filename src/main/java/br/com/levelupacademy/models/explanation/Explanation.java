@@ -13,6 +13,7 @@ public class Explanation extends Activity {
 
     private String text;
 
+    @Deprecated
     public Explanation() {
     }
 

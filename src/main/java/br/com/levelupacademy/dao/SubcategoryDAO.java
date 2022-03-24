@@ -59,7 +59,7 @@ public class SubcategoryDAO {
         }
     }
 
-    public List<Subcategory> findActiveSubcategoriesAndPutInSequence() {
+    public List<Subcategory> findActiveSubcategoriesOrderedBySequence() {
         String jpql = "SELECT s FROM Subcategory s WHERE s.active = true ORDER BY s.sequence";
         try {
             this.em.getTransaction().begin();

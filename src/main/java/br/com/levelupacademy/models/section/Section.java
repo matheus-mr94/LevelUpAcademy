@@ -25,6 +25,7 @@ public class Section {
     @OneToMany(mappedBy = "section", cascade = CascadeType.ALL)
     List<Activity> activities = new ArrayList<>();
 
+    @Deprecated
     public Section() {
     }
 

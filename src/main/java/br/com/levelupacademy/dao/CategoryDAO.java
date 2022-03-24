@@ -28,7 +28,7 @@ public class CategoryDAO {
         this.em = em;
     }
 
-    public List<Category> findActiveCategoriesAndPutInSequence() {
+    public List<Category> findActiveCategoriesOrderedBySequence() {
         String jpql = "SELECT c FROM Category c WHERE c.active = true ORDER BY c.sequence";
         try {
             List<Category> resultList = this.em.createQuery(jpql, Category.class).getResultList();

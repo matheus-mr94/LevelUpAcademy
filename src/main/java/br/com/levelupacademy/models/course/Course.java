@@ -36,6 +36,7 @@ public class Course {
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Section> sectionList = new ArrayList<>();
 
+    @Deprecated
     public Course() {
     }
 

@@ -30,6 +30,7 @@ public class Category {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Subcategory> subcategories = new ArrayList<>();
 
+    @Deprecated
     public Category() {
     }
 

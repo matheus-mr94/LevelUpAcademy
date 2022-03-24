@@ -16,6 +16,7 @@ public class Video extends Activity {
     private Integer durationInMinutes;
     private String transcription;
 
+    @Deprecated
     public Video() {
     }
 

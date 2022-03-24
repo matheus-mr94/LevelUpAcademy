@@ -25,17 +25,11 @@ public class PersistenceTest {
 
 
 
-//        dao.insertCourseWithJPA(course);
+        dao.insertCourseWithJPA(course);
         dao.deleteCourseWithJPA("java-primeiros-passos");
-        List<Course> publicCourses = dao.findPublicCourses();
-        List<Subcategory> subcategoriesActive = subcategoryDAO.findActiveSubcategoriesAndPutInSequence();
-        List<Category> categoriesActive = categoryDAO.findActiveCategoriesAndPutInSequence();
-        List<Subcategory> subcategoriesWithoutDescription = subcategoryDAO.findSubcategoriesWithoutDescription();
         dao.updateCourseToPublicWithJPA();
 
         em.close();
-
-        writeReport(subcategoriesActive, subcategoriesWithoutDescription, publicCourses, categoriesActive);
 
 //        try(Connection connection = recoverConnection()) {
 //          CourseDAO courseDAO = new CourseDAO(connection);

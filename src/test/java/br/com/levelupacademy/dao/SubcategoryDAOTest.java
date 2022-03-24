@@ -81,7 +81,7 @@ class SubcategoryDAOTest {
         subcategoryDAO.create(python);
         subcategoryDAO.create(kotlin);
 
-        List<Subcategory> activeSubcategoriesInSequence = subcategoryDAO.findActiveSubcategoriesAndPutInSequence();
+        List<Subcategory> activeSubcategoriesInSequence = subcategoryDAO.findActiveSubcategoriesOrderedBySequence();
 
         assertNotNull(activeSubcategoriesInSequence);
         assertEquals(2, activeSubcategoriesInSequence.size());

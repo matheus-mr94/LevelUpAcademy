@@ -31,7 +31,7 @@ class CategoryDAOTest {
 
     @Test
     void findActiveCategoriesAndPutInSequence__should_return_active_categories_in_sequence() {
-        Category category1 = new CategoryBuilder()
+        Category programacao = new CategoryBuilder()
                 .withName("Programação")
                 .withCode("programacao")
                 .withDescription("Cursos de programação")
@@ -41,7 +41,7 @@ class CategoryDAOTest {
                 .withHexCode("#f16165")
                 .create();
 
-        Category category2 = new CategoryBuilder()
+        Category devops = new CategoryBuilder()
                 .withName("DevOps")
                 .withCode("devops")
                 .withDescription("Cursos de DevOps")
@@ -51,7 +51,7 @@ class CategoryDAOTest {
                 .withHexCode("#f16165")
                 .create();
 
-        Category category3 = new CategoryBuilder()
+        Category dataScience = new CategoryBuilder()
                 .withName("Data Science")
                 .withCode("data-science")
                 .withDescription("Cursos de data science")
@@ -61,11 +61,11 @@ class CategoryDAOTest {
                 .withHexCode("#9cd33b")
                 .create();
 
-        categoryDAO.create(category1);
-        categoryDAO.create(category2);
-        categoryDAO.create(category3);
+        categoryDAO.create(programacao);
+        categoryDAO.create(devops);
+        categoryDAO.create(dataScience);
 
-        List<Category> activeCategoriesInSequence = categoryDAO.findActiveCategoriesAndPutInSequence();
+        List<Category> activeCategoriesInSequence = categoryDAO.findActiveCategoriesOrderedBySequence();
 
         assertNotNull(activeCategoriesInSequence);
         assertEquals(2, activeCategoriesInSequence.size());

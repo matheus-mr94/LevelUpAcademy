@@ -21,6 +21,7 @@ public abstract class Activity {
     @JoinColumn(name = "section_id")
     private Section section;
 
+    @Deprecated
     public Activity() {
     }
 
