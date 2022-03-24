@@ -17,7 +17,7 @@ public class ReportGenerator {
 
     public static void main(String[] args) {
         EntityManager em = getEntityManager();
-
+        em.getTransaction().begin();
         SubcategoryDAO subcategoryDAO = new SubcategoryDAO(em);
         CourseDAO dao = new CourseDAO(em);
         CategoryDAO categoryDAO = new CategoryDAO(em);

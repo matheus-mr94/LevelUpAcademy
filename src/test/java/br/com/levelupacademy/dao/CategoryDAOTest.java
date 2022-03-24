@@ -22,16 +22,17 @@ class CategoryDAOTest {
     public void initializeTransaction() {
         this.em = JPAUtil.getEntityManager();
         this.categoryDAO = new CategoryDAO(em);
+        this.em.getTransaction().begin();
     }
 
     @AfterEach
-    public void emptyDB() {
-        categoryDAO.deleteAll();
+    public void rollbackTransaction() {
+        this.em.getTransaction().rollback();
     }
 
     @Test
     void findActiveCategoriesAndPutInSequence__should_return_active_categories_in_sequence() {
-        Category programacao = new CategoryBuilder()
+        Category programacaoCategory = new CategoryBuilder()
                 .withName("Programação")
                 .withCode("programacao")
                 .withDescription("Cursos de programação")
@@ -41,7 +42,7 @@ class CategoryDAOTest {
                 .withHexCode("#f16165")
                 .create();
 
-        Category devops = new CategoryBuilder()
+        Category devopsCategory = new CategoryBuilder()
                 .withName("DevOps")
                 .withCode("devops")
                 .withDescription("Cursos de DevOps")
@@ -51,7 +52,7 @@ class CategoryDAOTest {
                 .withHexCode("#f16165")
                 .create();
 
-        Category dataScience = new CategoryBuilder()
+        Category dataScienceCategory = new CategoryBuilder()
                 .withName("Data Science")
                 .withCode("data-science")
                 .withDescription("Cursos de data science")
@@ -61,9 +62,9 @@ class CategoryDAOTest {
                 .withHexCode("#9cd33b")
                 .create();
 
-        categoryDAO.create(programacao);
-        categoryDAO.create(devops);
-        categoryDAO.create(dataScience);
+        categoryDAO.create(programacaoCategory);
+        categoryDAO.create(devopsCategory);
+        categoryDAO.create(dataScienceCategory);
 
         List<Category> activeCategoriesInSequence = categoryDAO.findActiveCategoriesOrderedBySequence();
 

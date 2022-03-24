@@ -27,6 +27,7 @@ class SubcategoryDAOTest {
         this.em = JPAUtil.getEntityManager();
         this.subcategoryDAO = new SubcategoryDAO(em);
         this.categoryDAO = new CategoryDAO(em);
+        this.em.getTransaction().begin();
 
         category = new CategoryBuilder()
                 .withName("Programação")
@@ -43,9 +44,8 @@ class SubcategoryDAOTest {
     }
 
     @AfterEach
-    public void emptyDB() {
-        subcategoryDAO.deleteAll();
-        categoryDAO.deleteAll();
+    public void rollbackTransaction() {
+       this.em.getTransaction().rollback();
     }
 
     @Test

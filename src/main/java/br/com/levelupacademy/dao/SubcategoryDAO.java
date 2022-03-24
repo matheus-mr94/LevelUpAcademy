@@ -33,67 +33,28 @@ public class SubcategoryDAO {
 
     public Subcategory getSubcategoryWithJPA(String code) {
         String jpql = "SELECT s FROM Subcategory s WHERE s.code = :code";
-        try {
-            this.em.getTransaction().begin();
-            Subcategory subcategory = this.em.createQuery(jpql, Subcategory.class)
-                    .setParameter("code", code)
-                    .getSingleResult();
-            this.em.getTransaction().commit();
-            return subcategory;
-        } catch (Exception e) {
-            this.em.getTransaction().rollback();
-            throw new RuntimeException(e.getMessage());
-        }
+        return this.em.createQuery(jpql, Subcategory.class)
+            .setParameter("code", code)
+            .getSingleResult();
     }
 
     public List<Subcategory> findSubcategoriesWithoutDescription() {
         String jpql = "SELECT s FROM Subcategory s WHERE s.description = '' OR s.description = 'NULL'";
-        try {
-            this.em.getTransaction().begin();
-            List<Subcategory> resultList = this.em.createQuery(jpql, Subcategory.class).getResultList();
-            this.em.getTransaction().commit();
-            return resultList;
-        } catch (Exception e) {
-            this.em.getTransaction().rollback();
-            throw new RuntimeException(e.getMessage());
-        }
+        return this.em.createQuery(jpql, Subcategory.class).getResultList();
     }
 
     public List<Subcategory> findActiveSubcategoriesOrderedBySequence() {
         String jpql = "SELECT s FROM Subcategory s WHERE s.active = true ORDER BY s.sequence";
-        try {
-            this.em.getTransaction().begin();
-            List<Subcategory> resultList = this.em.createQuery(jpql, Subcategory.class).getResultList();
-            this.em.getTransaction().commit();
-            return resultList;
-        } catch (Exception e) {
-            this.em.getTransaction().rollback();
-            throw new RuntimeException(e.getMessage());
-        }
+        return this.em.createQuery(jpql, Subcategory.class).getResultList();
     }
 
     public void create(Subcategory subcategory) {
-        try {
-            this.em.getTransaction().begin();
-            this.em.persist(subcategory);
-            this.em.getTransaction().commit();
-        } catch (Exception e) {
-            this.em.getTransaction().rollback();
-            throw new RuntimeException(e.getMessage());
-        }
+        this.em.persist(subcategory);
     }
 
     public void deleteAll() {
         String jpql = "DELETE FROM Subcategory";
-        try {
-            em.getTransaction().begin();
-            em.createQuery(jpql).executeUpdate();
-            em.getTransaction().commit();
-
-        } catch (Exception e) {
-            this.em.getTransaction().rollback();
-            throw new RuntimeException(e.getMessage());
-        }
+        em.createQuery(jpql).executeUpdate();
     }
 
     public static Subcategory getSubcategory(String subcategoryCode) {

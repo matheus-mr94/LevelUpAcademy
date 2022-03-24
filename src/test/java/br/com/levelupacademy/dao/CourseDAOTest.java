@@ -32,6 +32,7 @@ class CourseDAOTest {
         this.courseDAO = new CourseDAO(em);
         this.subcategoryDAO = new SubcategoryDAO(em);
         this.categoryDAO = new CategoryDAO(em);
+        this.em.getTransaction().begin();
 
         category = new CategoryBuilder()
                 .withName("Programação")
@@ -58,11 +59,8 @@ class CourseDAOTest {
     }
 
     @AfterEach
-    public void emptyDB() {
-        courseDAO.deleteAll();
-        subcategoryDAO.deleteAll();
-        categoryDAO.deleteAll();
-
+    public void rollbackTransaction() {
+        this.em.getTransaction().rollback();
     }
 
     @Test
