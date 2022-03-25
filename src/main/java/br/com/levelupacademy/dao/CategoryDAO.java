@@ -37,6 +37,11 @@ public class CategoryDAO {
         this.em.persist(category);
     }
 
+    public List<Category> findAll() {
+        String jpql = "SELECT c FROM Category c";
+        return this.em.createQuery(jpql, Category.class).getResultList();
+    }
+
     public void deleteAll() {
         String jpql = "DELETE FROM Category";
         this.em.createQuery(jpql).executeUpdate();
@@ -73,4 +78,6 @@ public class CategoryDAO {
         }
         return category;
     }
+
+
 }
