@@ -31,7 +31,7 @@ class CategoryDAOTest {
     }
 
     @Test
-    void findActiveCategoriesAndPutInSequence__should_return_active_categories_in_sequence() {
+    void findActiveCategoriesOrderedBySequence__should_return_active_categories_in_sequence() {
         Category programacaoCategory = new CategoryBuilder()
                 .withName("Programação")
                 .withCode("programacao")
