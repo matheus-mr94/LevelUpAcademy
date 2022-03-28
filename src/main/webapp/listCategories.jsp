@@ -3,7 +3,7 @@
 <%@page import="br.com.levelupacademy.models.category.Category, java.util.List" %>
 <html>
     <head>
-        <title>Categories</title>
+        <title>Categorias</title>
     </head>
     <body>
          <c:forEach items="${categories}" var="category">

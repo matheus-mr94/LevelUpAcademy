@@ -15,9 +15,10 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/listaCategorias")
-public class CategoryServlet extends HttpServlet {
+public class GetCategoryServlet extends HttpServlet {
 
-    protected void service(HttpServletRequest request, HttpServletResponse response)
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
         EntityManager em = JPAUtil.getEntityManager();
