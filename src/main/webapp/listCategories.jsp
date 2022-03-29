@@ -11,12 +11,12 @@
                 <ul>
                     <li> ID da categoria:${category.id}
                         <button><a href="/categoriaSelecionada?id=${category.id}" style="text-decoration: none";>Editar</a></button>
-                        <button style="margin-left: 5px";>
-                            <a href="" style="text-decoration: none";>Desabilitar</a>
+                        <button id="button-${category.id}" onclick="changeStatus(${category.id}, this)" style="margin-left: 5px";>
+                            Alternar status
                         </button>
                     </li>
                     <li> Nome da categoria: ${category.name}  </li>
-                    <li>Ativa: ${category.active}</li>
+                    <li id="active-${category.id}">Ativa: ${category.active}</li>
                     <li> Descrição: ${category.description}  </li>
                     <li> Guia de estudos: ${category.studyGuide} </li>
                     <li> Url da imagem: ${category.urlImage} </li>
@@ -24,5 +24,8 @@
                 </ul>
             </div>
         </c:forEach>
+
+        <script src="js/changeStatus.js"></script>
+
     </body>
 </html>

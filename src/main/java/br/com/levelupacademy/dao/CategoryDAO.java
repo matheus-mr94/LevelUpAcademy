@@ -51,6 +51,10 @@ public class CategoryDAO {
         this.em.createQuery(jpql).executeUpdate();
     }
 
+    public void update(Category category) {
+        this.em.merge(category);
+    }
+
     public void updateCategory(Long id, Category category) {
         String jpql = "UPDATE Category c SET c.name = :name, c.code = :code, c.description = :description," +
                 " c.studyGuide = :studyGuide, c.active = :active, c.sequence = :sequence," +

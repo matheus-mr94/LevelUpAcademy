@@ -5,7 +5,6 @@ import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.utils.JPAUtil;
 
 import javax.persistence.EntityManager;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,25 +12,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/categoriaSelecionada")
-public class GetCategoryByIdServlet extends HttpServlet {
+@WebServlet("/atualizarStatus")
+public class UpdateCategoryStatusServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        EntityManager em = JPAUtil.getEntityManager();
+        CategoryDAO categoryDAO = new CategoryDAO(em);
 
         Long id = Long.parseLong(request.getParameter("id"));
 
-        EntityManager em = JPAUtil.getEntityManager();
-        CategoryDAO categoryDao = new CategoryDAO(em);
-
         em.getTransaction().begin();
-        Category category = categoryDao.findById(id);
+        Category category = categoryDAO.findById(id);
+        category.toggleStatus();
+        categoryDAO.update(category);
+        em.getTransaction().commit();
         em.close();
 
-        request.setAttribute("category", category);
-
-        RequestDispatcher rd = request.getRequestDispatcher("/updateCategory.jsp");
-        rd.forward(request, resp);
+        response.setStatus(204);
 
     }
 }

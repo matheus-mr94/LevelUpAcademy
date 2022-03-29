@@ -48,6 +48,10 @@ public class Category {
         this.hexCode = hexCode;
     }
 
+    public void toggleStatus() {
+        this.active = !isActive();
+    }
+
     public Long getId() {
         return id;
     }
@@ -97,4 +101,6 @@ public class Category {
                 ", hexCode='" + hexCode + '\'' +
                 '}';
     }
+
+
 }
