@@ -54,10 +54,8 @@ public class CreateCategoryServlet extends HttpServlet {
         em.getTransaction().begin();
         categoryDao.create(category);
         em.getTransaction().commit();
-        System.out.println("Category created with success!");
         em.close();
 
-        request.setAttribute("category", "category");
         response.sendRedirect("listaCategorias");
     }
 }
