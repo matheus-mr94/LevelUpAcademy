@@ -1,8 +1,9 @@
 function changeStatus(id, element) {
     const active = element.closest('ul').querySelector('#active-' +id);
+    const url = 'http://localhost:8080/atualizarStatus?id=' + id
 
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', '/atualizarStatus?id=' + id);
+    xhr.open('POST', url);
     xhr.addEventListener("load", () => {
 
         if(xhr.status === 204) {
