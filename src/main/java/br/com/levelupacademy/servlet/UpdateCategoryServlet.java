@@ -6,6 +6,7 @@ import br.com.levelupacademy.models.category.CategoryDTO;
 import br.com.levelupacademy.utils.JPAUtil;
 
 import javax.persistence.EntityManager;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +16,25 @@ import java.io.IOException;
 
 @WebServlet("/atualizarCategoria")
 public class UpdateCategoryServlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+
+        Long id = Long.parseLong(request.getParameter("id"));
+
+        EntityManager em = JPAUtil.getEntityManager();
+        CategoryDAO categoryDao = new CategoryDAO(em);
+
+        em.getTransaction().begin();
+        Category category = categoryDao.findById(id);
+        em.close();
+
+        request.setAttribute("category", category);
+
+        RequestDispatcher rd = request.getRequestDispatcher("/updateCategory.jsp");
+        rd.forward(request, resp);
+
+    }
 
 
     @Override

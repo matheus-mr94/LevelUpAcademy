@@ -9,7 +9,7 @@
             <div>
                 <ul>
                     <li> ID da categoria:${category.id}
-                        <button><a href="/categoriaSelecionada?id=${category.id}" style="text-decoration: none";>Editar</a></button>
+                        <button><a href="/atualizarCategoria?id=${category.id}" style="text-decoration: none";>Editar</a></button>
                         <button id="button-${category.id}" onclick="changeStatus(${category.id}, this)" style="margin-left: 5px";>
                             Alternar status
                         </button>
@@ -24,7 +24,7 @@
             </div>
         </c:forEach>
 
-        <script src="js/changeStatus.js"></script>
+        <script src="/assets/js/changeStatus.js"></script>
 
     </body>
 </html>
