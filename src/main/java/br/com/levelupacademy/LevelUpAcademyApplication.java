@@ -1,4 +1,4 @@
-package br.com.levelupacademy.LevelUpAcademy;
+package br.com.levelupacademy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package br.com.levelupacademy.LevelUpAcademy;
+package br.com.levelupacademy.levelUpAcademy;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
