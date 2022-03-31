@@ -2,6 +2,7 @@ package br.com.levelupacademy.models.video;
 
 import br.com.levelupacademy.models.activity.Activity;
 import br.com.levelupacademy.models.section.Section;
+import org.springframework.util.Assert;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +23,7 @@ public class Video extends Activity {
 
     public Video(String title, String code, int sequence, Section section, boolean active, String url, Integer durationInMinutes, String transcription) {
         super(title, code, sequence, section, active);
+        Assert.hasText(url, "Url can't be empty or null");
         this.url = url;
         this.durationInMinutes = durationInMinutes;
         this.transcription = transcription;

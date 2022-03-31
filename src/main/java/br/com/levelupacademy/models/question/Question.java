@@ -2,6 +2,7 @@ package br.com.levelupacademy.models.question;
 
 import br.com.levelupacademy.models.activity.Activity;
 import br.com.levelupacademy.models.section.Section;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 
@@ -20,6 +21,7 @@ public class Question extends Activity {
 
     public Question(String title, String code, int sequence, Section section, boolean active, String statement) {
         super(title, code, sequence, section, active);
+        Assert.hasText(statement, "statement can't be empty or null");
         this.statement = statement;
     }
 

@@ -1,6 +1,7 @@
 package br.com.levelupacademy.models.category;
 
 import br.com.levelupacademy.models.subcategory.Subcategory;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -31,6 +32,9 @@ public class Category {
     }
 
     public Category(String name, String code, String description, String studyGuide, boolean active, int sequence, String urlImage , String hexCode) {
+        Assert.hasText(name, "name can't be empty or null");
+        Assert.hasText(code, "name can't be empty or null");
+        Assert.isTrue(code.matches("[a-z0-9-]+"),"Invalid characters");
         this.name = name;
         this.code = code;
         this.description = description;

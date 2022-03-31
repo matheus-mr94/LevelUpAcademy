@@ -2,6 +2,7 @@ package br.com.levelupacademy.models.course;
 
 import br.com.levelupacademy.models.section.Section;
 import br.com.levelupacademy.models.subcategory.Subcategory;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -38,6 +39,14 @@ public class Course {
     }
 
     public Course(String name, String code, Integer estimatedTimeInHours, String target, boolean visible, String instructor, String syllabus, String developedSkills, Subcategory subcategory) {
+        Assert.hasText(name, "name can't be empty or null");
+        Assert.hasText(code, "name can't be empty or null");
+        Assert.isTrue(code.matches("[a-z0-9-]+"), "Invalid characters");
+        Assert.isTrue(estimatedTimeInHours != null, "Estimated time can't be empty or null");
+        Assert.isTrue(estimatedTimeInHours >= MINIMUM_TIME_TO_FINISH && estimatedTimeInHours <= MAXIMUM_TIME_TO_FINISH,
+                "estimated time should be between 1 and 20");
+        Assert.hasText(instructor, "instructor can't be empty or null");
+        Assert.notNull(subcategory, "Subcategory can't be null");
         this.name = name;
         this.code = code;
         this.estimatedTimeInHours = estimatedTimeInHours;

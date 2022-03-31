@@ -1,6 +1,7 @@
 package br.com.levelupacademy.models.activity;
 
 import br.com.levelupacademy.models.section.Section;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 
@@ -24,6 +25,10 @@ public abstract class Activity {
     }
 
     public Activity(String title, String code, int sequence, Section section, boolean active) {
+        Assert.hasText(title, "Title can't be empty or null");
+        Assert.hasText(code, "name can't be empty or null");
+        Assert.isTrue(code.matches("[a-z0-9-]+"),"Invalid characters");
+        Assert.notNull(section,"Activity must have a section");
         this.title = title;
         this.code = code;
         this.sequence = sequence;
