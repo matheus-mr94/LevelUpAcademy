@@ -49,7 +49,7 @@ class SubcategoryDAOTest {
     }
 
     @Test
-    void findActiveSubcategoriesAndPutInSequence__should_return_active_subcategories_in_sequence() {
+    void findActiveSubcategoriesOrderedBySequence__should_return_active_subcategories_in_sequence() {
         Subcategory java = new SubcategoryBuilder()
                 .withName("java")
                 .withCode("java")

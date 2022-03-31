@@ -37,9 +37,41 @@ public class CategoryDAO {
         this.em.persist(category);
     }
 
+    public List<Category> findAll() {
+        String jpql = "SELECT c FROM Category c";
+        return this.em.createQuery(jpql, Category.class).getResultList();
+    }
+
+    public Category findById(Long id) {
+        return this.em.find(Category.class, id);
+    }
+
     public void deleteAll() {
         String jpql = "DELETE FROM Category";
         this.em.createQuery(jpql).executeUpdate();
+    }
+
+    public void update(Category category) {
+        this.em.merge(category);
+    }
+
+    public void updateCategory(Long id, Category category) {
+        String jpql = "UPDATE Category c SET c.name = :name, c.code = :code, c.description = :description," +
+                " c.studyGuide = :studyGuide, c.active = :active, c.sequence = :sequence," +
+                " c.urlImage = :urlImage, c.hexCode = :hexCode " +
+                "WHERE c.id = :id";
+
+        this.em.createQuery(jpql)
+                .setParameter("id", id)
+                .setParameter("name", category.getName())
+                .setParameter("code", category.getCode())
+                .setParameter("description", category.getDescription())
+                .setParameter("studyGuide", category.getStudyGuide())
+                .setParameter("active", category.isActive())
+                .setParameter("sequence", category.getSequence())
+                .setParameter("urlImage", category.getUrlImage())
+                .setParameter("hexCode", category.getHexCode())
+                .executeUpdate();
     }
 
     public static Category getCategory(Long id) throws SQLException {
@@ -73,4 +105,7 @@ public class CategoryDAO {
         }
         return category;
     }
+
+
+
 }
