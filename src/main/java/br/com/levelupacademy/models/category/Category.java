@@ -3,12 +3,8 @@ package br.com.levelupacademy.models.category;
 import br.com.levelupacademy.models.subcategory.Subcategory;
 
 import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static br.com.levelupacademy.validators.Validations.cantBeEmptyOrNull;
-import static br.com.levelupacademy.validators.Validations.codeValidation;
 
 @Entity
 public class Category {
@@ -35,9 +31,6 @@ public class Category {
     }
 
     public Category(String name, String code, String description, String studyGuide, boolean active, int sequence, String urlImage , String hexCode) {
-        cantBeEmptyOrNull(name,"name can't be empty or null");
-        cantBeEmptyOrNull(code,"Code can't be empty or null");
-        codeValidation(code,"Invalid characters");
         this.name = name;
         this.code = code;
         this.description = description;

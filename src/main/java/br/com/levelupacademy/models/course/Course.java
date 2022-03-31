@@ -4,11 +4,8 @@ import br.com.levelupacademy.models.section.Section;
 import br.com.levelupacademy.models.subcategory.Subcategory;
 
 import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static br.com.levelupacademy.validators.Validations.*;
 
 @Entity
 public class Course {
@@ -41,13 +38,6 @@ public class Course {
     }
 
     public Course(String name, String code, Integer estimatedTimeInHours, String target, boolean visible, String instructor, String syllabus, String developedSkills, Subcategory subcategory) {
-        cantBeEmptyOrNull(name,"name can't be empty or null");
-        cantBeEmptyOrNull(code,"Code can't be empty or null");
-        codeValidation(code,"Invalid characters");
-        cantBeNull(estimatedTimeInHours, "Estimated time can't be empty or null");
-        sizeValidation(estimatedTimeInHours, MINIMUM_TIME_TO_FINISH, MAXIMUM_TIME_TO_FINISH,"estimated time should be between 1 and 20");
-        cantBeEmptyOrNull(instructor,"Course must have an instructor name");
-        objectIsNotNull(subcategory, "Subcategory can't be null");
         this.name = name;
         this.code = code;
         this.estimatedTimeInHours = estimatedTimeInHours;

@@ -4,8 +4,6 @@ import br.com.levelupacademy.models.section.Section;
 
 import javax.persistence.*;
 
-import static br.com.levelupacademy.validators.Validations.*;
-
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Activity {
@@ -26,9 +24,6 @@ public abstract class Activity {
     }
 
     public Activity(String title, String code, int sequence, Section section, boolean active) {
-        cantBeEmptyOrNull(title,"Title can't be empty or null");
-        codeValidation(code,"Invalid characters");
-        objectIsNotNull(section,"Activity must have a section");
         this.title = title;
         this.code = code;
         this.sequence = sequence;

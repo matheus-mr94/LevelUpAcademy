@@ -4,11 +4,8 @@ import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.course.Course;
 
 import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static br.com.levelupacademy.validators.Validations.*;
 
 @Entity
 public class Subcategory {
@@ -34,10 +31,6 @@ public class Subcategory {
     }
 
     public Subcategory(String name, String code, String description, String studyGuide, boolean active, int sequence, Category category) {
-        cantBeEmptyOrNull(name,"Name can't be empty or null");
-        cantBeEmptyOrNull(code, "Code can't be empty or null");
-        codeValidation(code,"Invalid characters");
-        objectIsNotNull(category, "Subcategory should have a category");
         this.name = name;
         this.code = code;
         this.description = description;

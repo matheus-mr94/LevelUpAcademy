@@ -3,9 +3,9 @@ package br.com.levelupacademy.models.video;
 import br.com.levelupacademy.models.activity.Activity;
 import br.com.levelupacademy.models.section.Section;
 
-import javax.persistence.*;
-
-import static br.com.levelupacademy.validators.Validations.cantBeEmptyOrNull;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "activity_id")
@@ -22,7 +22,6 @@ public class Video extends Activity {
 
     public Video(String title, String code, int sequence, Section section, boolean active, String url, Integer durationInMinutes, String transcription) {
         super(title, code, sequence, section, active);
-        cantBeEmptyOrNull(url, "Url can't be empty or null");
         this.url = url;
         this.durationInMinutes = durationInMinutes;
         this.transcription = transcription;

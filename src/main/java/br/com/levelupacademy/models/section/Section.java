@@ -4,11 +4,8 @@ import br.com.levelupacademy.models.activity.Activity;
 import br.com.levelupacademy.models.course.Course;
 
 import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static br.com.levelupacademy.validators.Validations.*;
 @Entity
 public class Section {
 
@@ -30,9 +27,6 @@ public class Section {
     }
 
     public Section(String name, String code, int sequence, Course course) {
-        cantBeEmptyOrNull(name,"name can't be empty or null");
-        codeValidation(code,"Invalid characters");
-        objectIsNotNull(course, "Must have a course");
         this.name = name;
         this.code = code;
         this.sequence = sequence;

@@ -4,9 +4,6 @@ import br.com.levelupacademy.models.question.Question;
 
 import javax.persistence.*;
 
-import static br.com.levelupacademy.validators.Validations.cantBeEmptyOrNull;
-import static br.com.levelupacademy.validators.Validations.objectIsNotNull;
-
 public class Alternative {
 
     @Id
@@ -25,8 +22,6 @@ public class Alternative {
     }
 
     public Alternative(String text, int sequence, boolean correct, String justification, Question question) {
-        cantBeEmptyOrNull(text, "Text can't be empty or null");
-        objectIsNotNull(question,"Should be associate with a question");
         this.text = text;
         this.sequence = sequence;
         this.correct = correct;
