@@ -6,27 +6,46 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     </head>
     <body>
-    <h1>LevelUp Academy</h1>
-         <c:forEach items="${categories}" var="category">
+        <h1 style="text-align: center";>LevelUp Academy</h1>
+
+        <div class="col-lg-12">
             <div>
-                <ul>
-                    <li> ID da categoria:${category.id}
-                        <button><a href="/atualizarCategoria?id=${category.id}" style="text-decoration: none";>Editar</a></button>
-                        <button id="button-${category.id}" onclick="changeStatus(${category.id}, this)" style="margin-left: 5px";>
-                            Alternar status
-                        </button>
-                    </li>
-                    <li> Nome da categoria: ${category.name}  </li>
-                    <li id="active-${category.id}">Ativa: ${category.active}</li>
-                    <li> Descrição: ${category.description}  </li>
-                    <li> Guia de estudos: ${category.studyGuide} </li>
-                    <li> Url da imagem: ${category.urlImage} </li>
-                    <li style="background-color:${category.hexCode}";> Cor Hexadecimal </li>
-                </ul>
+                <h2>Categorias</h2>
+                <a href="/admin/categories/new">
+                    <button class="btn btn-primary"style="margin-top: 30px;">
+                    Nova categoria
+                    </button>
+                </a>
             </div>
-        </c:forEach>
 
-        <script src="/assets/js/changeStatus.js"></script>
-
+            <div style="margin-top: 25px;">
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Nome</th>
+                        <th>Código</th>
+                        <th>Status</th>
+                        <th></th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${categories}" var="category">
+                        <tr>
+                            <td>${category.name}</td>
+                            <td>${category.code}</td>
+                            <td>${category.getStatus()}</td>
+                            <td style="text-align: center">
+                                <a  href="/admin/subcategories/${category.code}">Subcategorias</a>
+                            </td>
+                            <td>
+                                <a href="/admin/categories/${category.code}">
+                                    <button type="submit" href="">Editar</button>
+                                </a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </body>
 </html>

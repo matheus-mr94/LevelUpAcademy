@@ -85,6 +85,10 @@ public class Category {
         return sequence;
     }
 
+    public String getStatus() {
+        return isActive() ? "Ativa" : "Inativa";
+    }
+
     @Override
     public String toString() {
         return "Category{" +
