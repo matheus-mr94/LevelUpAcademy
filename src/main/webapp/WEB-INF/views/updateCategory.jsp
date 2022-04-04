@@ -19,7 +19,7 @@
                     </div>
 
                     <div class="mb-3 row">
-                        <label for="code" style="margin-left: 5px"; class="form-label">Código: </label>
+                        <label for="code" style="margin-left: 5px;" class="form-label">Código: </label>
                         <input type="text" id="code" name="code" class="form-control"
                                value="${category.code}">
                     </div>
@@ -42,8 +42,7 @@
                     <div class="mb-3 row">
                         <label for="studyGuide" class="form-label">Guia de estudos:</label><br>
                         <textarea type="text" id="studyGuide" name="studyGuide" class="form-control"
-                                  style="resize: none; height: 250px;" value="${category.studyGuide}">
-                        </textarea>
+                                  style="resize: none; height: 250px;">${category.studyGuide}</textarea>
                     </div>
 
                     <div class="mb-3 row">

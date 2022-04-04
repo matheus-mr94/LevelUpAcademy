@@ -55,6 +55,7 @@ public class CategoryController implements WebMvcConfigurer {
     public String getCategoryToUpdate(@PathVariable String code, Model model) {
         Category category = categoryRepository.findByCode(code);
         CategoryUpdateRequest categoryUpdateRequest = new CategoryUpdateRequest(category);
+
         model.addAttribute("category", categoryUpdateRequest);
         return "updateCategory";
     }
