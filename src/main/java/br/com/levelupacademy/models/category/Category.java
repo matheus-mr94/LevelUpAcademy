@@ -45,6 +45,21 @@ public class Category {
         this.hexCode = hexCode;
     }
 
+    public Category(Long id, String name, String code, String description, String studyGuide, boolean active, int sequence, String urlImage, String hexCode) {
+        Assert.hasText(name, "name can't be empty or null");
+        Assert.hasText(code, "name can't be empty or null");
+        Assert.isTrue(code.matches("[a-z0-9-]+"),"Invalid characters");
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.description = description;
+        this.studyGuide = studyGuide;
+        this.active = active;
+        this.sequence = sequence;
+        this.urlImage = urlImage;
+        this.hexCode = hexCode;
+    }
+
     public void toggleStatus() {
         this.active = !isActive();
     }
@@ -87,6 +102,17 @@ public class Category {
 
     public String getStatus() {
         return isActive() ? "Ativa" : "Inativa";
+    }
+
+    public void update(CategoryUpdateRequest categoryUpdateRequest) {
+        this.name = categoryUpdateRequest.getName();
+        this.description = categoryUpdateRequest.getDescription();
+        this.studyGuide = categoryUpdateRequest.getStudyGuide();
+        this.urlImage = categoryUpdateRequest.getUrlImage();
+        this.hexCode = categoryUpdateRequest.getHexCode();
+        this.code = categoryUpdateRequest.getCode();
+        this.active = categoryUpdateRequest.isActive();
+        this.sequence = categoryUpdateRequest.getSequence();
     }
 
     @Override
