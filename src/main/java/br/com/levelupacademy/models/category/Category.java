@@ -104,6 +104,19 @@ public class Category {
         return isActive() ? "Ativa" : "Inativa";
     }
 
+    public List<Subcategory> getSubcategories() {
+        return subcategories;
+    }
+
+    public List<Subcategory> getActiveSubcategories() {
+        return  subcategories.stream().filter(Subcategory::isActive).toList();
+    }
+
+    public int countCourses(){
+        return  subcategories.stream().map(Subcategory::getCourses).mapToInt(List::size).sum();
+    }
+
+
     public void update(CategoryUpdateRequest categoryUpdateRequest) {
         this.name = categoryUpdateRequest.getName();
         this.description = categoryUpdateRequest.getDescription();

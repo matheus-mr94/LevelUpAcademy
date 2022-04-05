@@ -11,9 +11,9 @@
 
             <div class="col-lg-12">
                 <div>
-                    <h2>Categorias</h2>
+                    <h1>Categorias</h1>
                     <a href="/admin/categories/new">
-                        <button class="btn btn-primary"style="margin-top: 30px;">
+                        <button class="btn btn-primary btn-lg"style="margin-top: 30px;">
                         Nova categoria
                         </button>
                     </a>
@@ -33,7 +33,7 @@
                             <tr>
                                 <td>${category.name}</td>
                                 <td>${category.code}</td>
-                                <td>${category.active}</td>
+                                <td>${category.getStatus()}</td>
                                 <td style="text-align: center">
                                     <a  href="/admin/subcategories/${category.code}">Subcategorias</a>
                                 </td>

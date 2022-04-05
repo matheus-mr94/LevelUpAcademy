@@ -85,6 +85,18 @@ public class Subcategory {
         return category.getName();
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public List<Course> getActiveCourses() {
+        return  courses.stream().filter(Course::isVisible).toList();
+    }
+
     @Override
     public String toString() {
         return "Subcategory{" +
