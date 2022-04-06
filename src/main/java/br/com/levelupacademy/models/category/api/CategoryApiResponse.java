@@ -20,6 +20,7 @@ public class CategoryApiResponse {
     private int totalOfCourses;
     private List<SubcategorySimpleResponse> subcategoryList = new ArrayList<>();
 
+    @Deprecated
     public CategoryApiResponse() {
     }
 

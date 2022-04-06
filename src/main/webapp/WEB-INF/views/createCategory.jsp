@@ -40,9 +40,9 @@
                     <div class="mb-3 row">
                         <label for="studyGuide" class="form-label">Guia de estudos:</label><br>
                         <textarea type="text" id="studyGuide" name="studyGuide" class="form-control"
-                                  style="resize: none; height: 250px;"
-                                  placeholder="Um texto apontando para formações para ajudar pessoas perdidas">
-                        </textarea>
+                                  style="resize: none;" rows="8"
+                                  placeholder="Um texto apontando para formações para ajudar pessoas perdidas"></textarea>
+
                     </div>
 
                     <div class="mb-3 row">

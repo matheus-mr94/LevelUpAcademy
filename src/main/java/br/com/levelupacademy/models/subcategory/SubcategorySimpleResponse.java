@@ -12,6 +12,7 @@ public class SubcategorySimpleResponse {
     private String studyGuide;
     private List<CourseSimpleResponse> courseResponseList = new ArrayList<>();
 
+    @Deprecated
     public SubcategorySimpleResponse() {
     }
 

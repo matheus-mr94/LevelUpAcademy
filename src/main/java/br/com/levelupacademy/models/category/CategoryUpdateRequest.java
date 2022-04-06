@@ -33,6 +33,7 @@ public class CategoryUpdateRequest {
         this.hexCode = category.getHexCode();
     }
 
+    @Deprecated
     public CategoryUpdateRequest() {
     }
 

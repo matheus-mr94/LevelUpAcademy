@@ -14,17 +14,12 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin/categories")
-public class CategoryController implements WebMvcConfigurer {
+public class CategoryController {
 
     private final CategoryRepository categoryRepository;
 
     public CategoryController(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
-    }
-
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/admin/categories");
     }
 
     @GetMapping

@@ -9,6 +9,7 @@ public class CourseSimpleResponse {
     private int estimatedTimeInHours;
     private String developedSkills;
 
+    @Deprecated
     public CourseSimpleResponse() {
     }
 
