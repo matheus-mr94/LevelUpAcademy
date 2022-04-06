@@ -1,5 +1,7 @@
 package br.com.levelupacademy.models.category;
 
+import java.util.List;
+
 public class CategorySimpleResponse {
 
     private final String name;
@@ -21,6 +23,10 @@ public class CategorySimpleResponse {
     }
 
     public String getActive() {
-        return active;
+        return this.active;
+    }
+
+    public static List<CategorySimpleResponse> toDTO(List<Category> categories) {
+        return categories.stream().map(CategorySimpleResponse::new).toList();
     }
 }

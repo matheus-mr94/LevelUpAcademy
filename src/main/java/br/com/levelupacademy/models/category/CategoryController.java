@@ -27,7 +27,8 @@ public class CategoryController {
     @GetMapping
     public String simpleResponse(Model model) {
         List<Category> categories = categoryRepository.findAllByOrderBySequence();
-        model.addAttribute("categories", categories);
+        List<CategorySimpleResponse> simpleResponse = CategorySimpleResponse.toDTO(categories);
+        model.addAttribute("categories", simpleResponse);
 
         return "category/listCategories";
     }

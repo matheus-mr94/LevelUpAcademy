@@ -33,7 +33,7 @@
                             <tr>
                                 <td>${category.name}</td>
                                 <td>${category.code}</td>
-                                <td>${category.getStatus()}</td>
+                                <td>${category.getActive()}</td>
                                 <td style="text-align: center">
                                     <a  href="/admin/subcategories/${category.code}">Subcategorias</a>
                                 </td>
