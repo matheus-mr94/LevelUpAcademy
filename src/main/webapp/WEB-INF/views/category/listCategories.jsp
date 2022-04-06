@@ -39,7 +39,7 @@
                                 </td>
                                 <td>
                                     <a href="/admin/categories/${category.code}">
-                                        <button type="submit" href="">Editar</button>
+                                        <button type="submit">Editar</button>
                                     </a>
                                 </td>
                             </tr>
