@@ -2,9 +2,9 @@ package br.com.levelupacademy.models.category;
 
 public class CategorySimpleResponse {
 
-    private String name;
-    private String code;
-    private String active;
+    private final String name;
+    private final String code;
+    private final String active;
 
     public CategorySimpleResponse(Category category) {
         this.name = category.getName();

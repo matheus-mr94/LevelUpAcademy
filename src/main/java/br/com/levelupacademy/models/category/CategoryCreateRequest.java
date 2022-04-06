@@ -4,11 +4,9 @@ import javax.validation.constraints.*;
 
 public class CategoryCreateRequest {
 
-    @NotNull(message = "Name can't be null")
-    @NotEmpty(message = "Name can't be empty")
+    @NotEmpty(message = "Name can't be empty or null")
     private String name;
-    @NotNull(message = "Code can't be null")
-    @NotEmpty(message = "Code can't be empty")
+    @NotEmpty(message = "Code can't be empty or null")
     @Pattern(regexp = "[a-z0-9-]+", message = "Invalid characters")
     private String code;
     private String description;

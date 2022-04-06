@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <html>
     <head>
         <title>Atualizar categoria</title>
@@ -16,12 +18,14 @@
                         <label for="name" class="form-label">Nome:</label>
                         <input type="text" id="name" name="name" class="form-control"
                                value="${category.name}">
+                        <form:errors path="categoryUpdateRequest.name" cssClass="alert-danger"/>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="code" style="margin-left: 5px;" class="form-label">Código: </label>
                         <input type="text" id="code" name="code" class="form-control"
                                value="${category.code}">
+                        <form:errors path="categoryUpdateRequest.code" cssClass="alert-danger"/>
                     </div>
 
                     <div class="mb-3 form-check">

@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
     <head>
         <title>Nova categoria</title>
@@ -14,13 +15,15 @@
                     <div class="mb-3 row">
                         <label for="name" class="form-label">Nome:</label>
                         <input type="text" id="name" name="name" class="form-control"
-                               placeholder="Digite aqui o nome da categoria">
+                               placeholder="Digite aqui o nome da categoria" value="${category.name}">
+                        <form:errors path="categoryCreateRequest.name" cssClass="alert-danger"/>
                     </div>
 
                     <div class="mb-3 row">
                         <label for="code" style="margin-left: 5px"; class="form-label">Código: </label>
-                        <input type="text" id="code" name="code" class="form-control"
+                        <input type="text" id="code" name="code" class="form-control" value="${category.code}"
                                placeholder="por exemplo programacao (não use acentos, letras maísculas ou caracteres especiais)">
+                        <form:errors path="categoryCreateRequest.code" cssClass="alert-danger"/>
                     </div>
 
                     <div class="mb-3 form-check">
@@ -33,34 +36,33 @@
 
                     <div class="mb-3 row">
                         <label for="sequence" class="form-label">Ordem da categoria:</label>
-                        <input type="text" id="sequence" name="sequence" class="form-control"
+                        <input type="text" id="sequence" name="sequence" class="form-control" value="${category.sequence}"
                                placeholder="por exemplo categoria de ordem 1 aparece antes da categoria de ordem 2">
                     </div>
 
                     <div class="mb-3 row">
                         <label for="studyGuide" class="form-label">Guia de estudos:</label><br>
-                        <textarea type="text" id="studyGuide" name="studyGuide" class="form-control"
-                                  style="resize: none;" rows="8"
-                                  placeholder="Um texto apontando para formações para ajudar pessoas perdidas"></textarea>
+                        <textarea type="text" id="studyGuide" name="studyGuide" class="form-control" style="resize: none;" rows="8"
+                                  placeholder="Um texto apontando para formações para ajudar pessoas perdidas">${category.studyGuide}</textarea>
 
                     </div>
 
                     <div class="mb-3 row">
                         <label for="urlImage" class="form-label">Caminho do ícone:</label>
                         <input type="text" id="urlImage" name="urlImage" class="form-control"
-                               placeholder="a url da onde o arquivo está">
+                               placeholder="a url da onde o arquivo está" value="${category.urlImage}">
                     </div>
 
                     <div class="mb-3 row">
                         <label for="hexCode" class="form-label">Cor:</label>
                         <input type="text" id="hexCode" name="hexCode" class="form-control"
-                               placeholder="por exemplo: #fcc14a">
+                               placeholder="por exemplo: #fcc14a" value="${category.hexCode}">
                     </div>
 
                     <div class="mb-3 row">
                         <label for="description" class="form-label">Descrição:</label>
                         <input type="text" id="description" name="description" class="form-control"
-                               placeholder="por exemplo: desenvolvimento java">
+                               placeholder="por exemplo: desenvolvimento java" value="${category.description}">
                     </div>
 
                     <div style="margin-top: 10px;" class="mb-3 row">

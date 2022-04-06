@@ -1,16 +1,22 @@
-package br.com.levelupacademy.models.course;
+package br.com.levelupacademy.models.category.api;
+
+import br.com.levelupacademy.models.course.Course;
 
 import java.util.List;
 
 public class CourseSimpleResponse {
 
-    private String name;
-    private String code;
-    private int estimatedTimeInHours;
-    private String developedSkills;
+    private final String name;
+    private final String code;
+    private final int estimatedTimeInHours;
+    private final String developedSkills;
 
     @Deprecated
-    public CourseSimpleResponse() {
+    public CourseSimpleResponse(String name, String code, int estimatedTimeInHours, String developedSkills) {
+        this.name = name;
+        this.code = code;
+        this.estimatedTimeInHours = estimatedTimeInHours;
+        this.developedSkills = developedSkills;
     }
 
     public CourseSimpleResponse(Course course) {

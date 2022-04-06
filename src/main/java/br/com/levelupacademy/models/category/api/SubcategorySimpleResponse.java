@@ -1,19 +1,22 @@
-package br.com.levelupacademy.models.subcategory;
+package br.com.levelupacademy.models.category.api;
 
-import br.com.levelupacademy.models.course.CourseSimpleResponse;
+import br.com.levelupacademy.models.subcategory.Subcategory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SubcategorySimpleResponse {
 
-    private String name;
-    private String code;
-    private String studyGuide;
+    private final String name;
+    private final String code;
+    private final String studyGuide;
     private List<CourseSimpleResponse> courseResponseList = new ArrayList<>();
 
     @Deprecated
-    public SubcategorySimpleResponse() {
+    public SubcategorySimpleResponse(String name, String code, String studyGuide) {
+        this.name = name;
+        this.code = code;
+        this.studyGuide = studyGuide;
     }
 
     public SubcategorySimpleResponse(Subcategory subcategory) {

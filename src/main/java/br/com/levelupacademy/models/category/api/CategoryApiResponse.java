@@ -1,27 +1,34 @@
 package br.com.levelupacademy.models.category.api;
 
 import br.com.levelupacademy.models.category.Category;
-import br.com.levelupacademy.models.subcategory.Subcategory;
-import br.com.levelupacademy.models.subcategory.SubcategorySimpleResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryApiResponse {
 
-    private String name;
-    private String code;
-    private String description;
-    private String studyGuide;
-    private boolean active;
-    private int sequence;
-    private String urlImage;
-    private String hexCode;
-    private int totalOfCourses;
-    private List<SubcategorySimpleResponse> subcategoryList = new ArrayList<>();
+    private final String name;
+    private final String code;
+    private final String description;
+    private final String studyGuide;
+    private final boolean active;
+    private final int sequence;
+    private final String urlImage;
+    private final String hexCode;
+    private final int totalOfCourses;
+    private  List<SubcategorySimpleResponse> subcategoryList = new ArrayList<>();
 
     @Deprecated
-    public CategoryApiResponse() {
+    public CategoryApiResponse(String name, String code, String description, String studyGuide, boolean active, int sequence, String urlImage, String hexCode, int totalOfCourses) {
+        this.name = name;
+        this.code = code;
+        this.description = description;
+        this.studyGuide = studyGuide;
+        this.active = active;
+        this.sequence = sequence;
+        this.urlImage = urlImage;
+        this.hexCode = hexCode;
+        this.totalOfCourses = totalOfCourses;
     }
 
     public CategoryApiResponse(Category category) {
