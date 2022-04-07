@@ -7,6 +7,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.springframework.util.Assert.hasText;
+import static org.springframework.util.Assert.isTrue;
+
 @Entity
 public class Category {
 
@@ -32,9 +35,9 @@ public class Category {
     }
 
     public Category(String name, String code, String description, String studyGuide, boolean active, int sequence, String urlImage , String hexCode) {
-        Assert.hasText(name, "name can't be empty or null");
-        Assert.hasText(code, "name can't be empty or null");
-        Assert.isTrue(code.matches("[a-z0-9-]+"),"Invalid characters");
+        hasText(name, "name can't be empty or null");
+        hasText(code, "name can't be empty or null");
+        isTrue(code.matches("[a-z0-9-]+"),"Invalid characters");
         this.name = name;
         this.code = code;
         this.description = description;
@@ -46,9 +49,9 @@ public class Category {
     }
 
     public Category(Long id, String name, String code, String description, String studyGuide, boolean active, int sequence, String urlImage, String hexCode) {
-        Assert.hasText(name, "name can't be empty or null");
-        Assert.hasText(code, "name can't be empty or null");
-        Assert.isTrue(code.matches("[a-z0-9-]+"),"Invalid characters");
+        hasText(name, "name can't be empty or null");
+        hasText(code, "name can't be empty or null");
+        isTrue(code.matches("[a-z0-9-]+"),"Invalid characters");
         this.id = id;
         this.name = name;
         this.code = code;

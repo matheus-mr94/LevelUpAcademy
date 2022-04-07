@@ -6,6 +6,8 @@ import org.springframework.util.Assert;
 
 import javax.persistence.*;
 
+import static org.springframework.util.Assert.hasText;
+
 @Entity
 @PrimaryKeyJoinColumn(name = "activity_id")
 public class Question extends Activity {
@@ -21,7 +23,7 @@ public class Question extends Activity {
 
     public Question(String title, String code, int sequence, Section section, boolean active, String statement) {
         super(title, code, sequence, section, active);
-        Assert.hasText(statement, "statement can't be empty or null");
+        hasText(statement, "statement can't be empty or null");
         this.statement = statement;
     }
 

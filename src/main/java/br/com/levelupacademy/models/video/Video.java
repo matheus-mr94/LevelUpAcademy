@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import static org.springframework.util.Assert.hasText;
+
 @Entity
 @PrimaryKeyJoinColumn(name = "activity_id")
 public class Video extends Activity {
@@ -23,7 +25,7 @@ public class Video extends Activity {
 
     public Video(String title, String code, int sequence, Section section, boolean active, String url, Integer durationInMinutes, String transcription) {
         super(title, code, sequence, section, active);
-        Assert.hasText(url, "Url can't be empty or null");
+        hasText(url, "Url can't be empty or null");
         this.url = url;
         this.durationInMinutes = durationInMinutes;
         this.transcription = transcription;

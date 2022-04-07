@@ -8,6 +8,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.springframework.util.Assert.*;
+
 @Entity
 public class Subcategory {
 
@@ -32,10 +34,10 @@ public class Subcategory {
     }
 
     public Subcategory(String name, String code, String description, String studyGuide, boolean active, int sequence, Category category) {
-        Assert.hasText(name, "name can't be empty or null");
-        Assert.hasText(code, "name can't be empty or null");
-        Assert.isTrue(code.matches("[a-z0-9-]+"),"Invalid characters");
-        Assert.notNull(category, "Subcategory should have a category");
+        hasText(name, "name can't be empty or null");
+        hasText(code, "name can't be empty or null");
+        isTrue(code.matches("[a-z0-9-]+"),"Invalid characters");
+        notNull(category, "Subcategory should have a category");
         this.name = name;
         this.code = code;
         this.description = description;

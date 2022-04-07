@@ -5,6 +5,8 @@ import org.springframework.util.Assert;
 
 import javax.persistence.*;
 
+import static org.springframework.util.Assert.*;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Activity {
@@ -25,10 +27,10 @@ public abstract class Activity {
     }
 
     public Activity(String title, String code, int sequence, Section section, boolean active) {
-        Assert.hasText(title, "Title can't be empty or null");
-        Assert.hasText(code, "name can't be empty or null");
-        Assert.isTrue(code.matches("[a-z0-9-]+"),"Invalid characters");
-        Assert.notNull(section,"Activity must have a section");
+        hasText(title, "Title can't be empty or null");
+        hasText(code, "name can't be empty or null");
+        isTrue(code.matches("[a-z0-9-]+"),"Invalid characters");
+        notNull(section,"Activity must have a section");
         this.title = title;
         this.code = code;
         this.sequence = sequence;

@@ -5,6 +5,9 @@ import org.springframework.util.Assert;
 
 import javax.persistence.*;
 
+import static org.springframework.util.Assert.hasText;
+import static org.springframework.util.Assert.notNull;
+
 public class Alternative {
 
     @Id
@@ -23,8 +26,8 @@ public class Alternative {
     }
 
     public Alternative(String text, int sequence, boolean correct, String justification, Question question) {
-        Assert.hasText(text, "Text can't be empty or null");
-        Assert.notNull(question, "Must be associate with a question");
+        hasText(text, "Text can't be empty or null");
+        notNull(question, "Must be associate with a question");
         this.text = text;
         this.sequence = sequence;
         this.correct = correct;
