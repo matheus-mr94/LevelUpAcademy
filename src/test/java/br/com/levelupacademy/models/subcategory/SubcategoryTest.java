@@ -1,18 +1,15 @@
 package br.com.levelupacademy.models.subcategory;
 
 import br.com.levelupacademy.models.category.Category;
-import br.com.levelupacademy.models.subcategory.Subcategory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
-import org.junit.jupiter.params.provider.NullSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SubcategoryTest {
+class SubcategoryTest {
 
     private Category category;
 
@@ -61,32 +58,23 @@ public class SubcategoryTest {
     }
 
     @ParameterizedTest
-    @EmptySource
+    @NullAndEmptySource
     void shouldThrowIllegalArgumentExceptionWhenIsEmpty(String input) {
         assertThrows(IllegalArgumentException.class, () -> new Subcategory(input, "java-oo",
                 "descrição", "guia de estudos", false, 1, this.category));
 
         assertThrows(IllegalArgumentException.class, () -> new Subcategory("Java", input,
                 "descrição", "guia de estudos", false, 1, this.category));
-    }
 
-    @ParameterizedTest
-    @NullSource
-    void shouldThrowNullPointerExceptionWhenIsNull(String input) {
-        assertThrows(NullPointerException.class, () -> new Subcategory(input, "java-oo", "descrição",
-                    "guia de estudos", false, 1, this.category));
-
-        assertThrows(NullPointerException.class, () -> new Subcategory("Java", input, "descrição",
-                    "guia de estudos", false, 1, this.category));
-
-        assertThrows(NullPointerException.class, () -> new Subcategory("Java", "java-oo",
+        assertThrows(IllegalArgumentException.class, () -> new Subcategory("Java", "java-oo",
                 "descrição", "guia de estudos", false, 1, null));
     }
 
     @ParameterizedTest
-    @CsvSource({"programação", "java_e_oop", "#java17","Programacao", "java e orientação a objetos"})
+    @CsvSource({"programação", "java_e_oop", "_#java17", "Programacao", "java e orientação a objetos"})
     void shouldReturnIllegalArgumentExceptionWhenCharactersAreOutOfStandard(String input) {
         assertThrows(IllegalArgumentException.class, () -> new Subcategory("Java", input,
                 "descrição", "guia de estudos", false, 1, this.category));
     }
+
 }

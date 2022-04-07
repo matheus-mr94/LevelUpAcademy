@@ -2,13 +2,13 @@ package br.com.levelupacademy.models.subcategory;
 
 import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.course.Course;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static br.com.levelupacademy.validators.Validations.*;
+import static org.springframework.util.Assert.*;
 
 @Entity
 public class Subcategory {
@@ -34,10 +34,10 @@ public class Subcategory {
     }
 
     public Subcategory(String name, String code, String description, String studyGuide, boolean active, int sequence, Category category) {
-        cantBeEmptyOrNull(name,"Name can't be empty or null");
-        cantBeEmptyOrNull(code, "Code can't be empty or null");
-        codeValidation(code,"Invalid characters");
-        objectIsNotNull(category, "Subcategory should have a category");
+        hasText(name, "name can't be empty or null");
+        hasText(code, "name can't be empty or null");
+        isTrue(code.matches("[a-z0-9-]+"),"Invalid characters");
+        notNull(category, "Subcategory should have a category");
         this.name = name;
         this.code = code;
         this.description = description;
@@ -85,6 +85,18 @@ public class Subcategory {
 
     public String getCategoryName() {
         return category.getName();
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public List<Course> getActiveCourses() {
+        return  courses.stream().filter(Course::isVisible).toList();
     }
 
     @Override

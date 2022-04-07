@@ -1,10 +1,11 @@
 package br.com.levelupacademy.models.activity;
 
 import br.com.levelupacademy.models.section.Section;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 
-import static br.com.levelupacademy.validators.Validations.*;
+import static org.springframework.util.Assert.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -26,9 +27,10 @@ public abstract class Activity {
     }
 
     public Activity(String title, String code, int sequence, Section section, boolean active) {
-        cantBeEmptyOrNull(title,"Title can't be empty or null");
-        codeValidation(code,"Invalid characters");
-        objectIsNotNull(section,"Activity must have a section");
+        hasText(title, "Title can't be empty or null");
+        hasText(code, "name can't be empty or null");
+        isTrue(code.matches("[a-z0-9-]+"),"Invalid characters");
+        notNull(section,"Activity must have a section");
         this.title = title;
         this.code = code;
         this.sequence = sequence;

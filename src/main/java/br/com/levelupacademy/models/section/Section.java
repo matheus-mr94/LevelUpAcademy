@@ -2,13 +2,14 @@ package br.com.levelupacademy.models.section;
 
 import br.com.levelupacademy.models.activity.Activity;
 import br.com.levelupacademy.models.course.Course;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static br.com.levelupacademy.validators.Validations.*;
+import static org.springframework.util.Assert.*;
+
 @Entity
 public class Section {
 
@@ -30,9 +31,10 @@ public class Section {
     }
 
     public Section(String name, String code, int sequence, Course course) {
-        cantBeEmptyOrNull(name,"name can't be empty or null");
-        codeValidation(code,"Invalid characters");
-        objectIsNotNull(course, "Must have a course");
+        hasText(name, "name can't be empty or null");
+        hasText(code, "name can't be empty or null");
+        isTrue(code.matches("[a-z0-9-]+"),"Invalid characters");
+        notNull(course, "Must have a course");
         this.name = name;
         this.code = code;
         this.sequence = sequence;
