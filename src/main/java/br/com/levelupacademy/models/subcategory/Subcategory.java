@@ -99,6 +99,10 @@ public class Subcategory {
         return  courses.stream().filter(Course::isVisible).toList();
     }
 
+    public String getActive() {
+        return isActive() ? "Ativa" : "Inativa";
+    }
+
     @Override
     public String toString() {
         return "Subcategory{" +
