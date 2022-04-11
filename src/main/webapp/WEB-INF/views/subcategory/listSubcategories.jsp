@@ -37,10 +37,10 @@
                                 <td>${subcategory.code}</td>
                                 <td>${subcategory.getActive()}</td>
                                 <td style="text-align: center">
-                                    <a  href="/admin/courses/${subcategory.getCategoryCode()}/${subcategory.code}">Cursos</a>
+                                    <a  href="/admin/courses/${category.code}/${subcategory.code}">Cursos</a>
                                 </td>
                                 <td>
-                                    <a href="/admin/subcategories/${subcategory.getCategoryCode()}/${subcategory.code}">
+                                    <a href="/admin/subcategories/${category.code}/${subcategory.code}">
                                         <button type="submit">Editar</button>
                                     </a>
                                 </td>

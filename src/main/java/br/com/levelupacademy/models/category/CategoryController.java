@@ -32,16 +32,16 @@ public class CategoryController {
     }
 
     @GetMapping("/admin/categories/new")
-    public String getFormToCreate(CategoryCreateRequest categoryRequest, Model model) {
+    public String getFormToCreateCategory(CategoryCreateRequest categoryRequest, Model model) {
         model.addAttribute("category", categoryRequest);
-        return "category/createCategory";
+        return "category/createCategoryForm";
     }
 
     @PostMapping("/admin/categories")
     @Transactional
     public String createCategory(@Valid CategoryCreateRequest categoryRequest, BindingResult result, Model model) {
         if(result.hasErrors()) {
-            return getFormToCreate(categoryRequest, model);
+            return getFormToCreateCategory(categoryRequest, model);
         }
         Category category = categoryRequest.toEntity();
         categoryRepository.save(category);
@@ -56,7 +56,7 @@ public class CategoryController {
         CategoryUpdateRequest categoryUpdateRequest = new CategoryUpdateRequest(category);
         model.addAttribute("category", categoryUpdateRequest);
 
-        return "category/updateCategory";
+        return "category/updateCategoryForm";
     }
 
     @PostMapping("/admin/categories/{code}")
