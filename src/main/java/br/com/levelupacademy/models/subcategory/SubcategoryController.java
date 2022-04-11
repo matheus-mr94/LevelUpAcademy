@@ -2,6 +2,7 @@ package br.com.levelupacademy.models.subcategory;
 
 import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.category.CategoryRepository;
+import br.com.levelupacademy.models.category.CategoryUpdateRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,5 +64,42 @@ public class SubcategoryController {
         subcategoryRepository.save(subcategory);
 
         return "redirect:/admin/subcategories/" + category.getCode();
+    }
+
+    @GetMapping("/admin/subcategories/{categoryCode}/{subcategoryCode}")
+    public String getSubcategoryToUpdate(@PathVariable String categoryCode,
+                                      @PathVariable String subcategoryCode, Model model) {
+        Subcategory subcategory = subcategoryRepository.findByCode(subcategoryCode)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        SubcategoryUpdateRequest subcategoryUpdateRequest = new SubcategoryUpdateRequest(subcategory);
+        List<Category> categories = categoryRepository.findAllByOrderByNameAsc();
+        Category category = categoryRepository.findByCode(categoryCode)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        model.addAttribute("category", category);
+        model.addAttribute("categories", categories);
+        model.addAttribute("subcategory", subcategoryUpdateRequest);
+
+        return "subcategory/updateSubcategoryForm";
+    }
+
+    @PostMapping("/admin/subcategories/{categoryCode}/{subcategoryCode}")
+    @Transactional
+    public String updateSubcategory(@PathVariable String categoryCode,
+                                    @PathVariable String subcategoryCode,
+                                    @Valid SubcategoryUpdateRequest subcategoryUpdateRequest,
+                                    BindingResult result, Model model) {
+        if(result.hasErrors()) {
+            return getSubcategoryToUpdate(categoryCode, subcategoryCode ,model);
+        }
+        Subcategory subcategory = subcategoryRepository.findByCode(subcategoryCode)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Category category = categoryRepository.findById(subcategoryUpdateRequest.getCategoryId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        subcategory.update(subcategoryUpdateRequest, category);
+        subcategoryRepository.save(subcategory);
+
+        return String.format("redirect:/admin/subcategories/%s" , category.getCode());
+
     }
 }

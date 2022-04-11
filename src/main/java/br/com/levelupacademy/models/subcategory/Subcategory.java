@@ -2,7 +2,6 @@ package br.com.levelupacademy.models.subcategory;
 
 import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.course.Course;
-import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -38,6 +37,21 @@ public class Subcategory {
         hasText(code, "name can't be empty or null");
         isTrue(code.matches("[a-z0-9-]+"),"Invalid characters");
         notNull(category, "Subcategory should have a category");
+        this.name = name;
+        this.code = code;
+        this.description = description;
+        this.studyGuide = studyGuide;
+        this.active = active;
+        this.sequence = sequence;
+        this.category = category;
+    }
+
+    public Subcategory(Long id, String name, String code, String description, String studyGuide, boolean active, int sequence, Category category) {
+        hasText(name, "name can't be empty or null");
+        hasText(code, "name can't be empty or null");
+        isTrue(code.matches("[a-z0-9-]+"),"Invalid characters");
+        notNull(category, "Subcategory should have a category");
+        this.id = id;
         this.name = name;
         this.code = code;
         this.description = description;
@@ -103,6 +117,20 @@ public class Subcategory {
         return isActive() ? "Ativa" : "Inativa";
     }
 
+    public Long getCategoryId() {
+        return category.getId();
+    }
+
+    public void update(SubcategoryUpdateRequest subcategoryUpdateRequest, Category category) {
+        this.name = subcategoryUpdateRequest.getName();
+        this.code = subcategoryUpdateRequest.getCode();
+        this.description = subcategoryUpdateRequest.getDescription();
+        this.studyGuide = subcategoryUpdateRequest.getStudyGuide();
+        this.active = subcategoryUpdateRequest.isActive();
+        this.sequence = subcategoryUpdateRequest.getSequence();
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "Subcategory{" +
@@ -115,6 +143,5 @@ public class Subcategory {
                 ", category=" + category +
                 '}';
     }
-
 
 }
