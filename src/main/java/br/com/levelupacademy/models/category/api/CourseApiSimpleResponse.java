@@ -4,7 +4,7 @@ import br.com.levelupacademy.models.course.Course;
 
 import java.util.List;
 
-public class CourseSimpleResponse {
+public class CourseApiSimpleResponse {
 
     private final String name;
     private final String code;
@@ -12,14 +12,14 @@ public class CourseSimpleResponse {
     private final String developedSkills;
 
     @Deprecated
-    public CourseSimpleResponse(String name, String code, int estimatedTimeInHours, String developedSkills) {
+    public CourseApiSimpleResponse(String name, String code, int estimatedTimeInHours, String developedSkills) {
         this.name = name;
         this.code = code;
         this.estimatedTimeInHours = estimatedTimeInHours;
         this.developedSkills = developedSkills;
     }
 
-    public CourseSimpleResponse(Course course) {
+    public CourseApiSimpleResponse(Course course) {
         this.name = course.getName();
         this.code = course.getCode();
         this.estimatedTimeInHours = course.getEstimatedTimeInHours();
@@ -42,7 +42,7 @@ public class CourseSimpleResponse {
         return developedSkills;
     }
 
-    public static List<CourseSimpleResponse> toDTO(List<Course> courses) {
-        return courses.stream().map(CourseSimpleResponse::new).toList();
+    public static List<CourseApiSimpleResponse> toDTO(List<Course> courses) {
+        return courses.stream().map(CourseApiSimpleResponse::new).toList();
     }
 }

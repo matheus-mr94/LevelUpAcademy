@@ -130,18 +130,4 @@ public class Subcategory {
         this.sequence = subcategoryUpdateRequest.getSequence();
         this.category = category;
     }
-
-    @Override
-    public String toString() {
-        return "Subcategory{" +
-                "name='" + name + '\'' +
-                ", code='" + code + '\'' +
-                ", description='" + description + '\'' +
-                ", studyGuide='" + studyGuide + '\'' +
-                ", active=" + active +
-                ", order=" + sequence +
-                ", category=" + category +
-                '}';
-    }
-
 }

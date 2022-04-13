@@ -10,7 +10,7 @@ public class SubcategorySimpleResponse {
     private final String name;
     private final String code;
     private final String studyGuide;
-    private List<CourseSimpleResponse> courseResponseList = new ArrayList<>();
+    private List<CourseApiSimpleResponse> courseResponseList = new ArrayList<>();
 
     @Deprecated
     public SubcategorySimpleResponse(String name, String code, String studyGuide) {
@@ -23,7 +23,7 @@ public class SubcategorySimpleResponse {
         this.name = subcategory.getName();
         this.code = subcategory.getCode();
         this.studyGuide = subcategory.getStudyGuide();
-        this.courseResponseList = CourseSimpleResponse.toDTO(subcategory.getActiveCourses());
+        this.courseResponseList = CourseApiSimpleResponse.toDTO(subcategory.getActiveCourses());
     }
 
     public String getName() {
@@ -38,7 +38,7 @@ public class SubcategorySimpleResponse {
         return studyGuide;
     }
 
-    public List<CourseSimpleResponse> getCourseResponseList() {
+    public List<CourseApiSimpleResponse> getCourseResponseList() {
         return courseResponseList;
     }
 

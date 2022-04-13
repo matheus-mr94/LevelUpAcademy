@@ -130,20 +130,4 @@ public class Category {
         this.active = categoryUpdateRequest.isActive();
         this.sequence = categoryUpdateRequest.getSequence();
     }
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "name='" + name + '\'' +
-                ", code='" + code + '\'' +
-                ", description='" + description + '\'' +
-                ", studyGuide='" + studyGuide + '\'' +
-                ", active=" + active +
-                ", order=" + sequence +
-                ", urlImage='" + urlImage + '\'' +
-                ", hexCode='" + hexCode + '\'' +
-                '}';
-    }
-
-
 }

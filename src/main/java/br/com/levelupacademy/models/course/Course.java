@@ -120,21 +120,7 @@ public class Course {
         this.visible = visible;
     }
 
-
-
-//    @Override
-//    public String toString() {
-//        return "Course{" +
-//                "name='" + name + '\'' +
-//                ", code='" + code + '\'' +
-//                ", estimatedTime=" + estimatedTimeInHours +
-//                ", visible=" + visible +
-//                ", target='" + target + '\'' +
-//                ", instructor='" + instructor + '\'' +
-//                ", syllabus='" + syllabus + '\'' +
-//                ", developedSkills='" + developedSkills + '\'' +
-//                '}';
-//    }
-
-
+    public String getStatus() {
+        return isVisible() ? "Ativo" : "Inativo";
+    }
 }
