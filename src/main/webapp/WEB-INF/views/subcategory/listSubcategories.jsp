@@ -35,7 +35,7 @@
                             <tr>
                                 <td>${subcategory.name}</td>
                                 <td>${subcategory.code}</td>
-                                <td>${subcategory.getActive()}</td>
+                                <td>${subcategory.active}</td>
                                 <td style="text-align: center">
                                     <a  href="/admin/courses/${category.code}/${subcategory.code}">Cursos</a>
                                 </td>

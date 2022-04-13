@@ -34,9 +34,9 @@
                             <tr>
                                 <td>${course.name}</td>
                                 <td>${course.code}</td>
-                                <td>${course.getActive()}</td>
+                                <td>${course.active}</td>
                                 <td>
-                                    <a href="/admin/courses/${subcategory.getCategoryCode()}/${subcategory.code}">
+                                    <a href="/admin/courses/${subcategory.categoryCode}/${subcategory.code}">
                                         <button type="submit">Editar</button>
                                     </a>
                                 </td>
