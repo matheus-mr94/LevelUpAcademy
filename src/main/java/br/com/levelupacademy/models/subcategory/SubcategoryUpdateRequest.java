@@ -18,6 +18,7 @@ public class SubcategoryUpdateRequest {
     private boolean active;
     private int sequence;
     private Long categoryId;
+    private String categoryCode;
 
     @Deprecated
     public SubcategoryUpdateRequest() {
@@ -32,6 +33,15 @@ public class SubcategoryUpdateRequest {
         this.active = subcategory.isActive();
         this.sequence = subcategory.getSequence();
         this.categoryId = subcategory.getCategoryId();
+        this.categoryCode = subcategory.getCategoryCode();
+    }
+
+    public String getCategoryCode() {
+        return categoryCode;
+    }
+
+    public void setCategoryCode(String categoryCode) {
+        this.categoryCode = categoryCode;
     }
 
     public Long getId() {

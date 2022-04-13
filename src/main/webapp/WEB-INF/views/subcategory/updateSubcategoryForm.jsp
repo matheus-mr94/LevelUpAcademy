@@ -10,7 +10,7 @@
     <body>
         <div class="container">
             <%--@elvariable id="subcategoryUpdateRequest" type="java"--%>
-            <form:form modelAttribute="subcategoryUpdateRequest" action="/admin/subcategories/${category.code}/${subcategory.code}" method="post" class="">
+            <form:form modelAttribute="subcategoryUpdateRequest" action="/admin/subcategories/${subcategory.categoryCode}/${subcategory.code}" method="post" class="">
                 <h2>Nova subcategoria</h2>
                 <div style="margin-top:30px;">
                     <div class="mb-3 row form-group">

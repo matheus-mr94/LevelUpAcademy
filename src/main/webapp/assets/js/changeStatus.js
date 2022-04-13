@@ -1,15 +1,20 @@
-function changeStatus(id, element) {
-    const active = element.closest('ul').querySelector('#active-' +id);
-    const url = '/atualizarStatus?id=' + id
+$('.button-disable').click(function(){
+    const button = $(this);
+    const id = button.data('subcategoryId');
 
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', url);
-    xhr.addEventListener("load", () => {
+    $.post('/admin/subcategory/changeStatus/' + id, function (){
+        $('#activeStatus_' + id).text("Inativa");
+        button.remove();
+    })
+})
 
-        if(xhr.status === 204) {
-            active.innerHTML = active.innerHTML === "Ativa: true" ? "Ativa: false" : "Ativa: true";
-        }
-    });
+$('.btn-disable').click(function(){
+    const button = $(this);
+    const id = button.data('categoryId');
 
-    xhr.send();
-}
+    $.post('/admin/category/changeStatus/' + id, function (){
+       // $('#status_' + id).text("Inativa");
+       button.parent().siblings('.status').text('Inativa');
+       button.remove();
+    })
+})

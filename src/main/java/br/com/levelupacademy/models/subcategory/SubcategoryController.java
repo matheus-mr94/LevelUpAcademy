@@ -4,6 +4,7 @@ import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.category.CategoryRepository;
 import br.com.levelupacademy.models.category.CategoryUpdateRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -72,10 +73,9 @@ public class SubcategoryController {
         Subcategory subcategory = subcategoryRepository.findByCode(subcategoryCode)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         SubcategoryUpdateRequest subcategoryUpdateRequest = new SubcategoryUpdateRequest(subcategory);
+
         List<Category> categories = categoryRepository.findAllByOrderByNameAsc();
-        Category category = categoryRepository.findByCode(categoryCode)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        model.addAttribute("category", category);
+
         model.addAttribute("categories", categories);
         model.addAttribute("subcategory", subcategoryUpdateRequest);
 
@@ -101,5 +101,16 @@ public class SubcategoryController {
 
         return String.format("redirect:/admin/subcategories/%s" , category.getCode());
 
+    }
+
+    @PostMapping("/admin/subcategory/changeStatus/{id}")
+    public ResponseEntity changeStatus(@PathVariable Long id) {
+        Subcategory subcategory = subcategoryRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        subcategory.toggleStatus();
+        subcategoryRepository.save(subcategory);
+
+        return ResponseEntity.ok().build();
     }
 }

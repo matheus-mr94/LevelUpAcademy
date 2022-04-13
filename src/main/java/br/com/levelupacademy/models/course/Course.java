@@ -120,7 +120,4 @@ public class Course {
         this.visible = visible;
     }
 
-    public String getStatus() {
-        return isVisible() ? "Ativo" : "Inativo";
-    }
 }

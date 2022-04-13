@@ -1,6 +1,8 @@
 package br.com.levelupacademy.models.category;
 
+import br.com.levelupacademy.models.subcategory.Subcategory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -71,5 +73,16 @@ public class CategoryController {
         categoryRepository.save(category);
 
         return "redirect:/admin/categories";
+    }
+
+    @PostMapping("/admin/category/changeStatus/{id}")
+    public ResponseEntity changeStatus(@PathVariable Long id) {
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        category.toggleStatus();
+        categoryRepository.save(category);
+
+        return ResponseEntity.ok().build();
     }
 }

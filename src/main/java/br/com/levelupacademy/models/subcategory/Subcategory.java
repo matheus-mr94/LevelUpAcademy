@@ -113,12 +113,12 @@ public class Subcategory {
         return  courses.stream().filter(Course::isVisible).toList();
     }
 
-    public String getStatus() {
-        return isActive() ? "Ativa" : "Inativa";
-    }
-
     public Long getCategoryId() {
         return category.getId();
+    }
+
+    public void toggleStatus() {
+        this.active = false;
     }
 
     public void update(SubcategoryUpdateRequest subcategoryUpdateRequest, Category category) {

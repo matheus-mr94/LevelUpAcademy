@@ -4,16 +4,21 @@ import java.util.List;
 
 public class SubcategorySimpleResponse {
 
+    private final Long id;
     private final String name;
     private final String code;
     private final String active;
 
     public SubcategorySimpleResponse(Subcategory subcategory) {
+        this.id = subcategory.getId();
         this.name = subcategory.getName();
         this.code = subcategory.getCode();
-        this.active = subcategory.getStatus();
+        this.active = subcategory.isActive() ? "Ativa" : "Inativa";
     }
 
+    public Long getId() {
+        return id;
+    }
     public String getName() {
         return name;
     }

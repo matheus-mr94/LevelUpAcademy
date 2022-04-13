@@ -11,7 +11,7 @@ public class CourseSimpleResponse {
     public CourseSimpleResponse(Course course) {
         this.name = course.getName();
         this.code = course.getCode();
-        this.active = course.getStatus();
+        this.active = course.isVisible() ? "Ativo" : "Inativo";
     }
 
     public String getName() {

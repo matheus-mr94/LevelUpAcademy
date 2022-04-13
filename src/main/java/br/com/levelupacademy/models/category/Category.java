@@ -63,10 +63,6 @@ public class Category {
         this.hexCode = hexCode;
     }
 
-    public void toggleStatus() {
-        this.active = !isActive();
-    }
-
     public Long getId() {
         return id;
     }
@@ -103,10 +99,6 @@ public class Category {
         return sequence;
     }
 
-    public String getStatus() {
-        return isActive() ? "Ativa" : "Inativa";
-    }
-
     public List<Subcategory> getSubcategories() {
         return subcategories;
     }
@@ -119,6 +111,9 @@ public class Category {
         return  subcategories.stream().map(Subcategory::getCourses).mapToInt(List::size).sum();
     }
 
+    public void toggleStatus() {
+        this.active = false;
+    }
 
     public void update(CategoryUpdateRequest categoryUpdateRequest) {
         this.name = categoryUpdateRequest.getName();

@@ -19,7 +19,7 @@
                     </a>
                 </div>
 
-                <div style="margin-top: 25px;">
+                <div style="margin-top: 25px; display: flex">
                     <table class="table table-bordered">
                         <thead>
                             <th>Nome</th>
@@ -33,7 +33,7 @@
                             <tr>
                                 <td>${category.name}</td>
                                 <td>${category.code}</td>
-                                <td>${category.active}</td>
+                                <td id="status_${category.id}" class="status" >${category.active}</td>
                                 <td style="text-align: center">
                                     <a  href="/admin/subcategories/${category.code}">Subcategorias</a>
                                 </td>
@@ -41,6 +41,9 @@
                                     <a href="/admin/categories/${category.code}">
                                         <button type="submit">Editar</button>
                                     </a>
+                                    <c:if test="${category.active == 'Ativa'}">
+                                        <button class="btn-disable" data-category-id="${category.id}">Desativar</button>
+                                    </c:if>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -49,5 +52,8 @@
                 </div>
             </div>
         </div>
+
+        <script src="../../../assets/js/jquery.js"></script>
+        <script src="../../../assets/js/changeStatus.js"></script>
     </body>
 </html>

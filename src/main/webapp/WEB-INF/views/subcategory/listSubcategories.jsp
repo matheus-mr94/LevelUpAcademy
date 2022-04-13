@@ -35,7 +35,7 @@
                             <tr>
                                 <td>${subcategory.name}</td>
                                 <td>${subcategory.code}</td>
-                                <td>${subcategory.active}</td>
+                                <td id="activeStatus_${subcategory.id}">${subcategory.active}</td>
                                 <td style="text-align: center">
                                     <a  href="/admin/courses/${category.code}/${subcategory.code}">Cursos</a>
                                 </td>
@@ -43,6 +43,9 @@
                                     <a href="/admin/subcategories/${category.code}/${subcategory.code}">
                                         <button type="submit">Editar</button>
                                     </a>
+                                    <c:if test="${subcategory.active == 'Ativa'}">
+                                        <button class="button-disable" data-subcategory-id="${subcategory.id}">Desativar</button>
+                                    </c:if>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -51,5 +54,8 @@
                 </div>
             </div>
         </div>
+
+        <script src="../../../assets/js/jquery.js"></script>
+        <script src="../../../assets/js/changeStatus.js"></script>
     </body>
 </html>
