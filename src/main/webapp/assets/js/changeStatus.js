@@ -13,7 +13,6 @@ $('.btn-disable').click(function(){
     const id = button.data('categoryId');
 
     $.post('/admin/category/changeStatus/' + id, function (){
-       // $('#status_' + id).text("Inativa");
        button.parent().siblings('.status').text('Inativa');
        button.remove();
     })

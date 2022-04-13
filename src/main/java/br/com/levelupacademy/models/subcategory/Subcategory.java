@@ -47,18 +47,8 @@ public class Subcategory {
     }
 
     public Subcategory(Long id, String name, String code, String description, String studyGuide, boolean active, int sequence, Category category) {
-        hasText(name, "name can't be empty or null");
-        hasText(code, "name can't be empty or null");
-        isTrue(code.matches("[a-z0-9-]+"),"Invalid characters");
-        notNull(category, "Subcategory should have a category");
+        this(name, code, description, studyGuide, active, sequence, category);
         this.id = id;
-        this.name = name;
-        this.code = code;
-        this.description = description;
-        this.studyGuide = studyGuide;
-        this.active = active;
-        this.sequence = sequence;
-        this.category = category;
     }
 
     public Long getId() {
@@ -117,7 +107,7 @@ public class Subcategory {
         return category.getId();
     }
 
-    public void toggleStatus() {
+    public void disable() {
         this.active = false;
     }
 

@@ -2,7 +2,6 @@ package br.com.levelupacademy.models.subcategory;
 
 import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.category.CategoryRepository;
-import br.com.levelupacademy.models.category.CategoryUpdateRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -108,7 +107,7 @@ public class SubcategoryController {
         Subcategory subcategory = subcategoryRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        subcategory.toggleStatus();
+        subcategory.disable();
         subcategoryRepository.save(subcategory);
 
         return ResponseEntity.ok().build();

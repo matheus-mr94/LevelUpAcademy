@@ -1,7 +1,6 @@
 package br.com.levelupacademy.models.category;
 
 import br.com.levelupacademy.models.subcategory.Subcategory;
-import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -49,18 +48,8 @@ public class Category {
     }
 
     public Category(Long id, String name, String code, String description, String studyGuide, boolean active, int sequence, String urlImage, String hexCode) {
-        hasText(name, "name can't be empty or null");
-        hasText(code, "name can't be empty or null");
-        isTrue(code.matches("[a-z0-9-]+"),"Invalid characters");
+        this(name, code, description, studyGuide, active, sequence, urlImage, hexCode);
         this.id = id;
-        this.name = name;
-        this.code = code;
-        this.description = description;
-        this.studyGuide = studyGuide;
-        this.active = active;
-        this.sequence = sequence;
-        this.urlImage = urlImage;
-        this.hexCode = hexCode;
     }
 
     public Long getId() {
@@ -111,7 +100,7 @@ public class Category {
         return  subcategories.stream().map(Subcategory::getCourses).mapToInt(List::size).sum();
     }
 
-    public void toggleStatus() {
+    public void disable() {
         this.active = false;
     }
 

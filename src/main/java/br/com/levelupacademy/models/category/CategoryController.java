@@ -1,6 +1,5 @@
 package br.com.levelupacademy.models.category;
 
-import br.com.levelupacademy.models.subcategory.Subcategory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -80,7 +79,7 @@ public class CategoryController {
         Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        category.toggleStatus();
+        category.disable();
         categoryRepository.save(category);
 
         return ResponseEntity.ok().build();
