@@ -2,7 +2,6 @@ package br.com.levelupacademy.models.subcategory;
 
 import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.course.Course;
-import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ public class Subcategory {
     private String studyGuide;
     private boolean active;
     private int sequence;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
     @OneToMany(mappedBy = "subcategory", cascade = CascadeType.ALL)
@@ -45,6 +44,11 @@ public class Subcategory {
         this.active = active;
         this.sequence = sequence;
         this.category = category;
+    }
+
+    public Subcategory(Long id, String name, String code, String description, String studyGuide, boolean active, int sequence, Category category) {
+        this(name, code, description, studyGuide, active, sequence, category);
+        this.id = id;
     }
 
     public Long getId() {
@@ -99,18 +103,21 @@ public class Subcategory {
         return  courses.stream().filter(Course::isVisible).toList();
     }
 
-    @Override
-    public String toString() {
-        return "Subcategory{" +
-                "name='" + name + '\'' +
-                ", code='" + code + '\'' +
-                ", description='" + description + '\'' +
-                ", studyGuide='" + studyGuide + '\'' +
-                ", active=" + active +
-                ", order=" + sequence +
-                ", category=" + category +
-                '}';
+    public Long getCategoryId() {
+        return category.getId();
     }
 
+    public void disable() {
+        this.active = false;
+    }
 
+    public void update(SubcategoryUpdateRequest subcategoryUpdateRequest) {
+        this.name = subcategoryUpdateRequest.getName();
+        this.code = subcategoryUpdateRequest.getCode();
+        this.description = subcategoryUpdateRequest.getDescription();
+        this.studyGuide = subcategoryUpdateRequest.getStudyGuide();
+        this.active = subcategoryUpdateRequest.isActive();
+        this.sequence = subcategoryUpdateRequest.getSequence();
+        this.category = subcategoryUpdateRequest.getCategory();
+    }
 }

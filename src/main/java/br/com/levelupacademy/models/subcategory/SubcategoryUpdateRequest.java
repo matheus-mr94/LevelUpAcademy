@@ -1,11 +1,11 @@
-package br.com.levelupacademy.models.category;
+package br.com.levelupacademy.models.subcategory;
+
+import br.com.levelupacademy.models.category.Category;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-public class CategoryUpdateRequest {
+public class SubcategoryUpdateRequest {
 
     private Long id;
     @NotBlank(message = "{name.emptyOrNull}")
@@ -17,23 +17,25 @@ public class CategoryUpdateRequest {
     private String studyGuide;
     private boolean active;
     private int sequence;
-    private String urlImage;
-    private String hexCode;
-
-    public CategoryUpdateRequest(Category category) {
-        this.id = category.getId();
-        this.name = category.getName();
-        this.code = category.getCode();
-        this.description = category.getDescription();
-        this.studyGuide = category.getStudyGuide();
-        this.active = category.isActive();
-        this.sequence = category.getSequence();
-        this.urlImage = category.getUrlImage();
-        this.hexCode = category.getHexCode();
-    }
+    private Category category;
 
     @Deprecated
-    public CategoryUpdateRequest() {
+    public SubcategoryUpdateRequest() {
+    }
+
+    public SubcategoryUpdateRequest(Subcategory subcategory) {
+        this.id = subcategory.getId();
+        this.name = subcategory.getName();
+        this.code = subcategory.getCode();
+        this.description = subcategory.getDescription();
+        this.studyGuide = subcategory.getStudyGuide();
+        this.active = subcategory.isActive();
+        this.sequence = subcategory.getSequence();
+        this.category = subcategory.getCategory();
+    }
+
+    public String getCategoryCode() {
+        return category.getCode();
     }
 
     public Long getId() {
@@ -92,23 +94,15 @@ public class CategoryUpdateRequest {
         this.sequence = sequence;
     }
 
-    public String getUrlImage() {
-        return urlImage;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public String getHexCode() {
-        return hexCode;
-    }
-
-    public void setHexCode(String hexCode) {
-        this.hexCode = hexCode;
-    }
-
-    public Category toEntity() {
-        return new Category(id, name, code, description, studyGuide, active, sequence, urlImage, hexCode);
+    public Subcategory toEntity() {
+        return new Subcategory(id, name, code, description, studyGuide, active, sequence, category);
     }
 }

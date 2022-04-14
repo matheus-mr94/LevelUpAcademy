@@ -27,6 +27,5 @@ public class CategoryApiController {
         List<CategoryApiResponse> categoryApiResponses = CategoryApiResponse.toDTO(categories);
 
         return ResponseEntity.ok(categoryApiResponses);
-
     }
 }

@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
-        <title>Categorias</title>
+        <title>Subcategorias</title>
         <link rel='stylesheet' href='/webjars/bootstrap/3.3.7/css/bootstrap.min.css'>
     </head>
     <body>
@@ -11,15 +11,17 @@
 
             <div class="col-lg-12">
                 <div>
-                    <h1>Categorias</h1>
-                    <a href="/admin/categories/new">
+                    <c:catch var="category"/>
+                    <h3>${category.name}</h3>
+                    <h1>Subcategorias</h1>
+                    <a href="/admin/subcategories/new">
                         <button class="btn btn-primary btn-lg"style="margin-top: 30px;">
-                        Nova categoria
+                        Nova subcategoria
                         </button>
                     </a>
                 </div>
 
-                <div style="margin-top: 25px; display: flex">
+                <div style="margin-top: 25px;">
                     <table class="table table-bordered">
                         <thead>
                             <th>Nome</th>
@@ -29,20 +31,20 @@
                             <th></th>
                         </thead>
                         <tbody>
-                        <c:forEach items="${categories}" var="category">
+                        <c:forEach items="${subcategories}" var="subcategory">
                             <tr>
-                                <td>${category.name}</td>
-                                <td>${category.code}</td>
-                                <td id="status_${category.id}" class="status" >${category.active}</td>
+                                <td>${subcategory.name}</td>
+                                <td>${subcategory.code}</td>
+                                <td id="activeStatus_${subcategory.id}">${subcategory.active}</td>
                                 <td style="text-align: center">
-                                    <a  href="/admin/subcategories/${category.code}">Subcategorias</a>
+                                    <a  href="/admin/courses/${category.code}/${subcategory.code}">Cursos</a>
                                 </td>
                                 <td>
-                                    <a href="/admin/categories/${category.code}">
+                                    <a href="/admin/subcategories/${category.code}/${subcategory.code}">
                                         <button type="submit">Editar</button>
                                     </a>
-                                    <c:if test="${category.active == 'Ativa'}">
-                                        <button class="btn-disable" data-category-id="${category.id}">Desativar</button>
+                                    <c:if test="${subcategory.active == 'Ativa'}">
+                                        <button class="button-disable" data-subcategory-id="${subcategory.id}">Desativar</button>
                                     </c:if>
                                 </td>
                             </tr>
