@@ -58,17 +58,15 @@ public class SubcategoryController {
         if(result.hasErrors()) {
             return getFormToCreateSubcategory(request, model);
         }
-        Category category = categoryRepository.findById(request.getCategoryId())
-                .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND) );
-        Subcategory subcategory = request.toEntity(category);
+        Subcategory subcategory = request.toEntity();
         subcategoryRepository.save(subcategory);
 
-        return "redirect:/admin/subcategories/" + category.getCode();
+        return "redirect:/admin/subcategories/" + subcategory.getCategoryCode();
     }
 
     @GetMapping("/admin/subcategories/{categoryCode}/{subcategoryCode}")
     public String getSubcategoryToUpdate(@PathVariable String categoryCode,
-                                      @PathVariable String subcategoryCode, Model model) {
+                                      @PathVariable String subcategoryCode, SubcategoryUpdateRequest request, Model model) {
         Subcategory subcategory = subcategoryRepository.findByCode(subcategoryCode)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         SubcategoryUpdateRequest subcategoryUpdateRequest = new SubcategoryUpdateRequest(subcategory);
@@ -88,17 +86,15 @@ public class SubcategoryController {
                                     @Valid SubcategoryUpdateRequest subcategoryUpdateRequest,
                                     BindingResult result, Model model) {
         if(result.hasErrors()) {
-            return getSubcategoryToUpdate(categoryCode, subcategoryCode ,model);
+            return getSubcategoryToUpdate(categoryCode, subcategoryCode, subcategoryUpdateRequest, model);
         }
         Subcategory subcategory = subcategoryRepository.findByCode(subcategoryCode)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        Category category = categoryRepository.findById(subcategoryUpdateRequest.getCategoryId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        subcategory.update(subcategoryUpdateRequest, category);
+        subcategory.update(subcategoryUpdateRequest);
         subcategoryRepository.save(subcategory);
 
-        return String.format("redirect:/admin/subcategories/%s" , category.getCode());
+        return String.format("redirect:/admin/subcategories/%s" , subcategory.getCategoryCode());
 
     }
 

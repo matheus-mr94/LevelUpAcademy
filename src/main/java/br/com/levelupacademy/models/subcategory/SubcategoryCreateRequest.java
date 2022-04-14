@@ -19,8 +19,8 @@ public class SubcategoryCreateRequest {
     private String studyGuide;
     private boolean active;
     private int sequence;
-    private Long categoryId;
 
+    private Category category;
     public String getName() {
         return name;
     }
@@ -69,15 +69,15 @@ public class SubcategoryCreateRequest {
         this.sequence = sequence;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public Subcategory toEntity(Category category) {
+    public Subcategory toEntity() {
         return new Subcategory(name, code, description, studyGuide, active, sequence, category);
     }
 }

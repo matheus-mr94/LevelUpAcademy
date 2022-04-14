@@ -17,8 +17,7 @@ public class SubcategoryUpdateRequest {
     private String studyGuide;
     private boolean active;
     private int sequence;
-    private Long categoryId;
-    private String categoryCode;
+    private Category category;
 
     @Deprecated
     public SubcategoryUpdateRequest() {
@@ -32,16 +31,11 @@ public class SubcategoryUpdateRequest {
         this.studyGuide = subcategory.getStudyGuide();
         this.active = subcategory.isActive();
         this.sequence = subcategory.getSequence();
-        this.categoryId = subcategory.getCategoryId();
-        this.categoryCode = subcategory.getCategoryCode();
+        this.category = subcategory.getCategory();
     }
 
     public String getCategoryCode() {
-        return categoryCode;
-    }
-
-    public void setCategoryCode(String categoryCode) {
-        this.categoryCode = categoryCode;
+        return category.getCode();
     }
 
     public Long getId() {
@@ -100,15 +94,15 @@ public class SubcategoryUpdateRequest {
         this.sequence = sequence;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public Subcategory toEntity(Category category) {
+    public Subcategory toEntity() {
         return new Subcategory(id, name, code, description, studyGuide, active, sequence, category);
     }
 }
