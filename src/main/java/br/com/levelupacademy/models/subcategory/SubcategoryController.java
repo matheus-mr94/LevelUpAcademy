@@ -46,6 +46,7 @@ public class SubcategoryController {
     @GetMapping("/admin/subcategories/new")
     public String  getFormToCreateSubcategory(SubcategoryCreateRequest request, Model model) {
         List<Category> categories = categoryRepository.findAllByOrderByNameAsc();
+
         model.addAttribute("categories", categories);
         model.addAttribute("subcategory", request);
 

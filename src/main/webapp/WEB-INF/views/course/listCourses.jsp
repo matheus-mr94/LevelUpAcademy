@@ -36,7 +36,7 @@
                                 <td>${course.code}</td>
                                 <td>${course.active}</td>
                                 <td>
-                                    <a href="/admin/courses/${subcategory.categoryCode}/${subcategory.code}">
+                                    <a href="/admin/courses/${subcategory.categoryCode}/${subcategory.code}/${course.code}">
                                         <button type="submit">Editar</button>
                                     </a>
                                 </td>

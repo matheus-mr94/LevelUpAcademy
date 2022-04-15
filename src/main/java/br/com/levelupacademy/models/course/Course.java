@@ -120,4 +120,15 @@ public class Course {
         this.visible = visible;
     }
 
+    public void update(CourseUpdateRequest courseUpdateRequest) {
+        this.name = courseUpdateRequest.getName();
+        this.code = courseUpdateRequest.getCode();
+        this.estimatedTimeInHours = courseUpdateRequest.getEstimatedTimeInHours();
+        this.visible = courseUpdateRequest.isVisible();
+        this.target = courseUpdateRequest.getTarget();
+        this.instructor = courseUpdateRequest.getInstructor();
+        this.syllabus = courseUpdateRequest.getSyllabus();
+        this.developedSkills = courseUpdateRequest.getDevelopedSkills();
+        this.subcategory = courseUpdateRequest.getSubcategory();
+    }
 }

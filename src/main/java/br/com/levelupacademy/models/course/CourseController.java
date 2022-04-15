@@ -4,14 +4,19 @@ import br.com.levelupacademy.models.subcategory.Subcategory;
 import br.com.levelupacademy.models.subcategory.SubcategoryRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class CourseController {
@@ -42,5 +47,65 @@ public class CourseController {
        model.addAttribute("courses", courses);
 
         return "course/listCourses";
+    }
+
+    @GetMapping("/admin/courses/new")
+    public String getFormToCreateCourse(CourseCreateRequest createRequest, Model model) {
+        List<Subcategory> subcategories = subcategoryRepository.findAllByOrderByNameAsc();
+
+        model.addAttribute("subcategories", subcategories);
+        model.addAttribute("course", createRequest);
+
+        return "course/createCourseForm";
+    }
+
+    @PostMapping("/admin/courses")
+    @Transactional
+    public String createCourse(@Valid CourseCreateRequest createRequest, BindingResult result, Model model) {
+        if(result.hasErrors()) {
+            return getFormToCreateCourse(createRequest, model);
+        }
+        Course course = createRequest.toEntity();
+        courseRepository.save(course);
+
+        return String.format("redirect:/admin/courses/%s/%s" , course.getCategoryCode(),
+                course.getSubcategoryCode());
+    }
+
+    @GetMapping("/admin/courses/{categoryCode}/{subcategoryCode}/{courseCode}")
+    public String getCourseToUpdate(@PathVariable String categoryCode, @PathVariable String subcategoryCode,
+                                    @PathVariable String courseCode,
+                                    CourseUpdateRequest updateRequest, Model model ) {
+
+        List<Subcategory> subcategories = subcategoryRepository.findAllByOrderByNameAsc();
+        Course course = courseRepository.findByCode(courseCode)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        CourseUpdateRequest courseUpdateRequest = new CourseUpdateRequest(course);
+
+        model.addAttribute("subcategories", subcategories);
+        model.addAttribute("course", courseUpdateRequest);
+
+        return "course/updateCourseForm";
+    }
+
+    @PostMapping("/admin/courses/{categoryCode}/{subcategoryCode}/{courseCode}")
+    @Transactional
+    public String updateCourse(@PathVariable String categoryCode, @PathVariable String subcategoryCode,
+                               @PathVariable String courseCode,
+                               @Valid CourseUpdateRequest courseUpdateRequest, BindingResult result,
+                               Model model) {
+        if(result.hasErrors()) {
+            return getCourseToUpdate(categoryCode, subcategoryCode, courseCode, courseUpdateRequest, model);
+        }
+        Course course = courseRepository.findByCode(courseCode)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        course.update(courseUpdateRequest);
+        courseRepository.save(course);
+
+        return String.format("redirect:/admin/courses/%s/%s" , course.getCategoryCode(),
+                course.getSubcategoryCode());
+
     }
 }

@@ -1,9 +1,6 @@
 package br.com.levelupacademy.models.subcategory;
 
 import br.com.levelupacademy.models.category.Category;
-import br.com.levelupacademy.models.category.CategoryRepository;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -19,8 +16,8 @@ public class SubcategoryCreateRequest {
     private String studyGuide;
     private boolean active;
     private int sequence;
-
     private Category category;
+
     public String getName() {
         return name;
     }
