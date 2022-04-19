@@ -27,6 +27,22 @@ public interface CategoryRepository extends JpaRepository <Category, Long> {
     ORDER BY COUNT(co.id) DESC;""")
     List<CategoryProjection> countCoursesByCategory();
 
+    @Query("""
+       SELECT DISTINCT ca FROM Category ca
+       INNER JOIN Subcategory  s ON s.category.id = ca.id
+       INNER JOIN  Course co ON co.subcategory.id = s.id
+       WHERE  ca.active = true AND s.active = true AND  co.visible = true
+       ORDER BY ca.sequence
+    """)
+    List<Category> findActiveCategoriesWithPublicCourses();
+
+    @Query("""
+       SELECT ca FROM Category ca
+       INNER JOIN Subcategory  s ON s.category.id = ca.id
+       INNER JOIN  Course co ON co.subcategory.id = s.id
+       WHERE  ca.active = true AND s.active = true AND  co.visible = true AND ca.code = ?1
+    """)
+    Optional<Category> findActiveCategoriesWithPublicCoursesByCategoryCode(String code);
 
 
 }

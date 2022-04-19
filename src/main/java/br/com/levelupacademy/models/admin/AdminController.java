@@ -1,5 +1,7 @@
 package br.com.levelupacademy.models.admin;
 
+import br.com.levelupacademy.models.category.Category;
+import br.com.levelupacademy.models.category.CategoryLoginResponse;
 import br.com.levelupacademy.models.category.CategoryProjection;
 import br.com.levelupacademy.models.category.CategoryRepository;
 import br.com.levelupacademy.models.course.CourseRepository;
@@ -34,5 +36,15 @@ public class AdminController {
         model.addAttribute("categories", categories);
         model.addAttribute("instructor", instructor);
         return "/admin/adminDashboard";
+    }
+
+    @GetMapping("/login")
+    public String getLoginPage(Model model) {
+        List<Category> categoryList = categoryRepository.findActiveCategoriesWithPublicCourses();
+        List<CategoryLoginResponse> categories = CategoryLoginResponse.toDTO(categoryList);
+
+        model.addAttribute("categories", categories);
+        //TODO query com problema
+        return "admin/formLogin";
     }
 }

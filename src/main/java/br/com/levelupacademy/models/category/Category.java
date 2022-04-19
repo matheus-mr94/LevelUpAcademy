@@ -1,10 +1,12 @@
 package br.com.levelupacademy.models.category;
 
+import br.com.levelupacademy.models.course.Course;
 import br.com.levelupacademy.models.subcategory.Subcategory;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.util.Assert.hasText;
 import static org.springframework.util.Assert.isTrue;
@@ -117,5 +119,13 @@ public class Category {
         this.code = categoryUpdateRequest.getCode();
         this.active = categoryUpdateRequest.isActive();
         this.sequence = categoryUpdateRequest.getSequence();
+    }
+
+    public List<Course> getActiveCoursesFromActiveSubcategories() {
+        List<Course> courses = new ArrayList<>();
+        getActiveSubcategories().forEach(subcategory -> {
+            courses.addAll(subcategory.getActiveCourses());
+        });
+        return courses;
     }
 }
