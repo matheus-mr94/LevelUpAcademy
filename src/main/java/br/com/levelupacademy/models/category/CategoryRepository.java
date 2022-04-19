@@ -43,6 +43,4 @@ public interface CategoryRepository extends JpaRepository <Category, Long> {
        WHERE  ca.active = true AND s.active = true AND  co.visible = true AND ca.code = ?1
     """)
     Optional<Category> findActiveCategoriesWithPublicCoursesByCategoryCode(String code);
-
-
 }

@@ -2,6 +2,7 @@ package br.com.levelupacademy.models.category.api;
 
 import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.category.CategoryRepository;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,5 +28,11 @@ public class CategoryApiController {
         List<CategoryApiResponse> categoryApiResponses = CategoryApiResponse.toDTO(categories);
 
         return ResponseEntity.ok(categoryApiResponses);
+    }
+
+    @CacheEvict(value = "listOfCategories", allEntries = true)
+    @GetMapping("/bGltcGEtby1jYWNoZS1kYS1hcGktYWU")
+    public String cacheCleaner() {
+        return "Cache foi limpo";
     }
 }
