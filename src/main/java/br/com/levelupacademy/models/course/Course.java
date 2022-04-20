@@ -120,7 +120,11 @@ public class Course {
         this.visible = visible;
     }
 
-    public void update(CourseUpdateRequest courseUpdateRequest) {
+    public Long getSubcategoryId() {
+        return subcategory.getId();
+    }
+
+    public void update(CourseUpdateRequest courseUpdateRequest, Subcategory subcategory) {
         this.name = courseUpdateRequest.getName();
         this.code = courseUpdateRequest.getCode();
         this.estimatedTimeInHours = courseUpdateRequest.getEstimatedTimeInHours();
@@ -129,6 +133,7 @@ public class Course {
         this.instructor = courseUpdateRequest.getInstructor();
         this.syllabus = courseUpdateRequest.getSyllabus();
         this.developedSkills = courseUpdateRequest.getDevelopedSkills();
-        this.subcategory = courseUpdateRequest.getSubcategory();
+        this.subcategory = subcategory;
     }
+
 }

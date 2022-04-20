@@ -11,7 +11,7 @@
         <div class="container">
             <%--@elvariable id="courseUpdateRequest" type="java"--%>
             <form:form modelAttribute="courseUpdateRequest"
-                       action="/admin/courses/${course.subcategory.categoryCode}/${course.subcategory.code}/${course.code}"
+                       action="/admin/courses/${course.categoryCode}/${course.subcategoryCode}/${course.code}"
                        method="post" class="">
                 <h2>Atualizar curso</h2>
                 <div style="margin-top:30px;">
@@ -76,7 +76,11 @@
                     </div>
 
                     <div class="mb-3 row form-group">
-                        <form:select  class="form-control" path="subcategory" items="${subcategories}" itemLabel="name"/>
+                        <select  name="subcategoryId" class="form-control">
+                            <c:forEach items="${subcategories}" var="subcategory">
+                                <option value="${subcategory.id}">${subcategory.name}</option>
+                            </c:forEach>
+                        </select>
                     </div>
 
                     <div style="margin-top: 10px;" class="mb-3 row form-group">

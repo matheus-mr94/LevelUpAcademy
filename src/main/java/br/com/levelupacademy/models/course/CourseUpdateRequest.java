@@ -23,7 +23,9 @@ public class CourseUpdateRequest {
     private String syllabus;
     private String developedSkills;
     @NotNull(message = "{subcategory.emptyOrNull}")
-    private Subcategory subcategory;
+    private Long subcategoryId;
+    private String subcategoryCode;
+    private String categoryCode;
 
     @Deprecated
     public CourseUpdateRequest() {
@@ -39,7 +41,9 @@ public class CourseUpdateRequest {
         this.instructor = course.getInstructor();
         this.syllabus = course.getSyllabus();
         this.developedSkills = course.getDevelopedSkills();
-        this.subcategory = course.getSubcategory();
+        this.subcategoryId = course.getSubcategoryId();
+        this.subcategoryCode = course.getSubcategoryCode();
+        this.categoryCode = course.getCategoryCode();
     }
 
     public Long getId() {
@@ -114,15 +118,31 @@ public class CourseUpdateRequest {
         this.developedSkills = developedSkills;
     }
 
-    public Subcategory getSubcategory() {
-        return subcategory;
+    public String getSubcategoryCode() {
+        return subcategoryCode;
     }
 
-    public void setSubcategory(Subcategory subcategory) {
-        this.subcategory = subcategory;
+    public void setSubcategoryCode(String subcategoryCode) {
+        this.subcategoryCode = subcategoryCode;
     }
 
-    public Course toEntity() {
+    public String getCategoryCode() {
+        return categoryCode;
+    }
+
+    public void setCategoryCode(String categoryCode) {
+        this.categoryCode = categoryCode;
+    }
+
+    public Long getSubcategoryId() {
+        return subcategoryId;
+    }
+
+    public void setSubcategoryId(Long subcategoryId) {
+        this.subcategoryId = subcategoryId;
+    }
+
+    public Course toEntity(Subcategory subcategory) {
         return new Course(name, code, estimatedTimeInHours, target, visible, instructor,
                 syllabus, developedSkills, subcategory);
     }

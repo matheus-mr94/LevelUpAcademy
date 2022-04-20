@@ -65,7 +65,10 @@ public class CourseController {
         if(result.hasErrors()) {
             return getFormToCreateCourse(createRequest, model);
         }
-        Course course = createRequest.toEntity();
+        Subcategory subcategory = subcategoryRepository.findById(createRequest.getSubcategoryId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+        Course course = createRequest.toEntity(subcategory);
         courseRepository.save(course);
 
         return String.format("redirect:/admin/courses/%s/%s" , course.getCategoryCode(),
@@ -99,9 +102,11 @@ public class CourseController {
             return getCourseToUpdate(categoryCode, subcategoryCode, courseCode, courseUpdateRequest, model);
         }
         Course course = courseRepository.findByCode(courseCode)
-                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Subcategory subcategory = subcategoryRepository.findById(courseUpdateRequest.getSubcategoryId())
+                        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        course.update(courseUpdateRequest);
+        course.update(courseUpdateRequest, subcategory);
         courseRepository.save(course);
 
         return String.format("redirect:/admin/courses/%s/%s" , course.getCategoryCode(),
