@@ -28,11 +28,14 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/categories").permitAll()
+                .antMatchers("/api/categories").permitAll()
                 .antMatchers(HttpMethod.GET, "/category/*").permitAll()
                 .antMatchers(HttpMethod.GET, "/bGltcGEtby1jYWNoZS1kYS1hcGktYWU").permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin().loginPage("/login").permitAll();
+                .and().formLogin().defaultSuccessUrl("/admin/categories").loginPage("/login").loginProcessingUrl("/login").permitAll()
+
+                .and().csrf().disable();
+
     }
 
     @Override

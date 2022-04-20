@@ -4,6 +4,7 @@ import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.category.CategoryRepository;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +33,7 @@ public class CategoryApiController {
 
     @CacheEvict(value = "listOfCategories", allEntries = true)
     @GetMapping("/bGltcGEtby1jYWNoZS1kYS1hcGktYWU")
-    public String cacheCleaner() {
-        return "Cache foi limpo";
+    public ResponseEntity<String> cacheCleaner() {
+        return new ResponseEntity<String>("Cache foi limpo", HttpStatus.OK);
     }
 }

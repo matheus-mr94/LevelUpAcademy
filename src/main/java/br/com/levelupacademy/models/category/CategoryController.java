@@ -89,7 +89,7 @@ public class CategoryController {
     public String getCategoryPage(@PathVariable String categoryCode, Model model) {
         Category category = categoryRepository.findActiveCategoriesWithPublicCoursesByCategoryCode(categoryCode)
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        CategoryPageResponse categoriePage = new CategoryPageResponse(category);
+        CategoryDTOResponse categoriePage = new CategoryDTOResponse(category);
 
         model.addAttribute("category", categoriePage);
 
