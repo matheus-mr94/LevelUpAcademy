@@ -29,18 +29,19 @@ public interface CategoryRepository extends JpaRepository <Category, Long> {
 
     @Query("""
        SELECT DISTINCT ca FROM Category ca
-       INNER JOIN Subcategory  s ON s.category.id = ca.id
-       INNER JOIN  Course co ON co.subcategory.id = s.id
-       WHERE  ca.active = true AND s.active = true AND  co.visible = true
-       ORDER BY ca.sequence
+       JOIN FETCH  ca.subcategories s 
+       JOIN s.courses co 
+       WHERE ca.active = true AND s.active = true AND co.visible = true
+       ORDER BY ca.sequence, s.sequence
     """)
     List<Category> findActiveCategoriesWithPublicCourses();
 
     @Query("""
-       SELECT ca FROM Category ca
-       INNER JOIN Subcategory  s ON s.category.id = ca.id
-       INNER JOIN  Course co ON co.subcategory.id = s.id
-       WHERE  ca.active = true AND s.active = true AND  co.visible = true AND ca.code = ?1
+       SELECT DISTINCT ca FROM Category ca
+       JOIN FETCH  ca.subcategories s 
+       JOIN s.courses co 
+       WHERE ca.active = true AND s.active = true AND co.visible = true AND ca.code = ?1
+       ORDER BY ca.sequence, s.sequence
     """)
     Optional<Category> findActiveCategoriesWithPublicCoursesByCategoryCode(String code);
 }

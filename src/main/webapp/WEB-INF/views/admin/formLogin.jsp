@@ -16,7 +16,7 @@
                 <p class="login__subtitle">Faça seu login e boas aulas!</p>
                 <form class="login__form" action="/login" method="POST">
                     <label for="login__email">E-mail</label>
-                    <input type="email" name="username"  id="login-email" autofocus>
+                    <input type="email" name="email"  id="login-email" autofocus>
                     <label for="login__password">Senha</label>
                     <input type="password" name="password" id="login-password" autocomplete="off">
                     <button class="login__button" type="submit">Entrar</button>
@@ -35,9 +35,9 @@
                                 <h3 class="category-card__title">${category.name}</h3>
                                 <p class="category-card__details">
                                     <c:forEach begin="0" end="2"
-                                               items="${category.subcategories}" var="subcategory">
+                                               items="${category.subcategories}" var="subcategory" varStatus="loop">
                                         ${subcategory.name}<c:if
-                                            test="${!loop.last && category.subcategories.size() > 1}">, </c:if>
+                                            test="${not loop.last}">, </c:if>
                                     </c:forEach>
                                     <c:if test="${category.subcategories.size() > 3}">e mais...</c:if>
                                 </p>

@@ -37,14 +37,4 @@ public class AdminController {
         model.addAttribute("instructor", instructor);
         return "/admin/adminDashboard";
     }
-
-    @GetMapping("/login")
-    public String getLoginPage(Model model) {
-        List<Category> categoryList = categoryRepository.findActiveCategoriesWithPublicCourses();
-        List<CategoryLoginResponse> categories = CategoryLoginResponse.toDTO(categoryList);
-
-        model.addAttribute("categories", categories);
-        //TODO query com problema
-        return "admin/formLogin";
-    }
 }

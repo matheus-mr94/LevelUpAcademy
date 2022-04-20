@@ -92,7 +92,7 @@ public class CategoryController {
         CategoryPageResponse categoriePage = new CategoryPageResponse(category);
 
         model.addAttribute("category", categoriePage);
-        //TODO query com problema
+
         return "category/categoryPage";
     }
 }
