@@ -61,7 +61,10 @@
                     <div class="mb-3 row form-group">
                         <select  name="categoryId" class="form-control">
                             <c:forEach items="${categories}" var="category">
-                                <option value="${category.id}">${category.name}</option>
+                                <option value="${category.id}"
+                                    ${category.id == subcategory.categoryId ? 'selected' : ''}>
+                                        ${category.name}
+                                </option>
                             </c:forEach>
                         </select>
                     </div>
