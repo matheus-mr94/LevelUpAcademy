@@ -2,18 +2,17 @@ package br.com.levelupacademy.models.user;
 
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class Profile implements GrantedAuthority {
+public class Role implements GrantedAuthority {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "name")
+    private RoleType roleType;
 
     public Long getId() {
         return id;
@@ -23,16 +22,16 @@ public class Profile implements GrantedAuthority {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public RoleType getRoleType() {
+        return roleType;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRoleType(RoleType roleType) {
+        this.roleType = roleType;
     }
 
     @Override
     public String getAuthority() {
-        return this.name;
+        return this.roleType.name();
     }
 }

@@ -2,7 +2,6 @@ package br.com.levelupacademy.models.user;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ public class User implements UserDetails {
     private String email;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Profile> profiles = new ArrayList<>();
+    private List<Role> roles = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -49,17 +48,17 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public List<Profile> getProfiles() {
-        return profiles;
+    public List<Role> getProfiles() {
+        return roles;
     }
 
-    public void setProfiles(List<Profile> profiles) {
-        this.profiles = profiles;
+    public void setProfiles(List<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.profiles;
+        return this.roles;
     }
 
     @Override
