@@ -1,9 +1,6 @@
 package br.com.levelupacademy.models.subcategory;
 
 import br.com.levelupacademy.models.category.Category;
-import br.com.levelupacademy.models.category.CategoryRepository;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -19,8 +16,8 @@ public class SubcategoryCreateRequest {
     private String studyGuide;
     private boolean active;
     private int sequence;
+    private Long categoryId;
 
-    private Category category;
     public String getName() {
         return name;
     }
@@ -69,15 +66,15 @@ public class SubcategoryCreateRequest {
         this.sequence = sequence;
     }
 
-    public Category getCategory() {
-        return category;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public Subcategory toEntity() {
+    public Subcategory toEntity(Category category) {
         return new Subcategory(name, code, description, studyGuide, active, sequence, category);
     }
 }

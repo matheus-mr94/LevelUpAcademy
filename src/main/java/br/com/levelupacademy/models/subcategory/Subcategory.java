@@ -22,7 +22,7 @@ public class Subcategory {
     private String studyGuide;
     private boolean active;
     private int sequence;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
     @OneToMany(mappedBy = "subcategory", cascade = CascadeType.ALL)
@@ -53,6 +53,10 @@ public class Subcategory {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -111,13 +115,13 @@ public class Subcategory {
         this.active = false;
     }
 
-    public void update(SubcategoryUpdateRequest subcategoryUpdateRequest) {
+    public void update(SubcategoryUpdateRequest subcategoryUpdateRequest, Category category) {
         this.name = subcategoryUpdateRequest.getName();
         this.code = subcategoryUpdateRequest.getCode();
         this.description = subcategoryUpdateRequest.getDescription();
         this.studyGuide = subcategoryUpdateRequest.getStudyGuide();
         this.active = subcategoryUpdateRequest.isActive();
         this.sequence = subcategoryUpdateRequest.getSequence();
-        this.category = subcategoryUpdateRequest.getCategory();
+        this.category = category;
     }
 }

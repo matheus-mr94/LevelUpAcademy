@@ -57,7 +57,11 @@
                     </div>
 
                     <div class="mb-3 row form-group">
-                        <form:select  class="form-control" path="category" items="${categories}" itemLabel="name"/>
+                        <select  name="categoryId" class="form-control">
+                            <c:forEach items="${categories}" var="category">
+                                <option value="${category.id}">${category.name}</option>
+                            </c:forEach>
+                        </select>
                     </div>
 
                     <div style="margin-top: 10px;" class="mb-3 row form-group">

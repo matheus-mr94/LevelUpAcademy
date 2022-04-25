@@ -84,4 +84,15 @@ public class CategoryController {
 
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/category/{categoryCode}")
+    public String getCategoryPage(@PathVariable String categoryCode, Model model) {
+        Category category = categoryRepository.findActiveCategoriesWithPublicCoursesByCategoryCode(categoryCode)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        CategoryDTOResponse categoriePage = new CategoryDTOResponse(category);
+
+        model.addAttribute("category", categoriePage);
+
+        return "category/categoryPage";
+    }
 }

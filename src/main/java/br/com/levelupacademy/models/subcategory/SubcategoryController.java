@@ -46,6 +46,7 @@ public class SubcategoryController {
     @GetMapping("/admin/subcategories/new")
     public String  getFormToCreateSubcategory(SubcategoryCreateRequest request, Model model) {
         List<Category> categories = categoryRepository.findAllByOrderByNameAsc();
+
         model.addAttribute("categories", categories);
         model.addAttribute("subcategory", request);
 
@@ -58,7 +59,9 @@ public class SubcategoryController {
         if(result.hasErrors()) {
             return getFormToCreateSubcategory(request, model);
         }
-        Subcategory subcategory = request.toEntity();
+        Category category = categoryRepository.findById(request.getCategoryId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Subcategory subcategory = request.toEntity(category);
         subcategoryRepository.save(subcategory);
 
         return "redirect:/admin/subcategories/" + subcategory.getCategoryCode();
@@ -91,7 +94,9 @@ public class SubcategoryController {
         Subcategory subcategory = subcategoryRepository.findByCode(subcategoryCode)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-        subcategory.update(subcategoryUpdateRequest);
+        Category category = categoryRepository.findById(subcategoryUpdateRequest.getCategoryId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        subcategory.update(subcategoryUpdateRequest, category);
         subcategoryRepository.save(subcategory);
 
         return String.format("redirect:/admin/subcategories/%s" , subcategory.getCategoryCode());
