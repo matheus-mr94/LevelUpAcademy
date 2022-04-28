@@ -10,9 +10,7 @@ public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "name")
-    private RoleType roleType;
+    private String name;
 
     public Long getId() {
         return id;
@@ -22,16 +20,16 @@ public class Role implements GrantedAuthority {
         this.id = id;
     }
 
-    public RoleType getRoleType() {
-        return roleType;
+    public String getName() {
+        return name;
     }
 
-    public void setRoleType(RoleType roleType) {
-        this.roleType = roleType;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String getAuthority() {
-        return this.roleType.name();
+        return this.name;
     }
 }

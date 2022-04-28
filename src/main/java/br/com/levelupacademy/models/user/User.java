@@ -18,6 +18,9 @@ public class User implements UserDetails {
     private String email;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "User_Role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles = new ArrayList<>();
 
     public Long getId() {
