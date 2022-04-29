@@ -10,9 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
+import java.awt.print.Pageable;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -48,6 +51,23 @@ class CourseRepositoryTest {
 
     @Test
     void findAllBySubcategory__shouldReturnAPageWithCoursesBySubcategory() {
+        Category categoryProgramacao = createCategory("Programação", "programacao", true, 1);
+        Subcategory subcategory = createSubcategory("Java", "java", true, categoryProgramacao);
+        createCourse("Java", "java", true, "Nico", subcategory);
+        createCourse("Java e OO", "java-oo", true, "Nico", subcategory);
+
+        PageRequest pageRequest = PageRequest.of(0,1 );
+
+        Page<Course> page = courseRepository.findAllBySubcategory(subcategory, pageRequest);
+
+        assertEquals(2, page.getTotalPages());
+        assertEquals(1, page.getSize());
+        assertEquals(2, page.getTotalElements());
+
+        pageRequest = PageRequest.of(0,2 );
+        page = courseRepository.findAllBySubcategory(subcategory, pageRequest);
+
+        assertEquals(1, page.getTotalPages());
     }
 
     @Test

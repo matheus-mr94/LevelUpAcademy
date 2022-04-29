@@ -129,6 +129,7 @@ class CategoryRepositoryTest {
 
         List<Category> categories = categoryRepository.findActiveCategoriesWithPublicCourses();
         assertTrue(categories.isEmpty());
+        assertEquals(0, categories.size());
 
     }
 
