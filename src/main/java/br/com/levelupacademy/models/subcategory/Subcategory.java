@@ -115,6 +115,10 @@ public class Subcategory {
         this.active = false;
     }
 
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
     public void update(SubcategoryUpdateRequest subcategoryUpdateRequest, Category category) {
         this.name = subcategoryUpdateRequest.getName();
         this.code = subcategoryUpdateRequest.getCode();
