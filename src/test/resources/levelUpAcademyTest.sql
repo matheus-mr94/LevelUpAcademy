@@ -60,10 +60,10 @@ CREATE TABLE `Subcategory` (
 CREATE TABLE `User_Role` (
   `user_id` bigint NOT NULL,
   `role_id` bigint NOT NULL,
-  KEY `FK250qsoghxra2h8tqpfildi605` (`role_id`),
-  KEY `FKpamkaxhj7jlv9f3lpsis1r018` (`user_id`),
-  CONSTRAINT `FK250qsoghxra2h8tqpfildi605` FOREIGN KEY (`role_id`) REFERENCES `Role` (`id`),
-  CONSTRAINT `FKpamkaxhj7jlv9f3lpsis1r018` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`)
+  KEY `fk_userRole_role` (`role_id`),
+  KEY `fk_userRole_user` (`user_id`),
+  CONSTRAINT `fk_userRole_role` FOREIGN KEY (`role_id`) REFERENCES `Role` (`id`),
+  CONSTRAINT `fk_userRole_user` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 
@@ -115,9 +115,8 @@ CREATE TABLE `Activity` (
   `active` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `code` (`code`),
-  KEY `FKswq749psim40jm27n6alc2oa9` (`section_id`),
-  CONSTRAINT `fk_activity_section` FOREIGN KEY (`section_id`) REFERENCES `Activity` (`id`),
-  CONSTRAINT `FKswq749psim40jm27n6alc2oa9` FOREIGN KEY (`section_id`) REFERENCES `Section` (`id`)
+  KEY `fk_activity_section` (section_id),
+  CONSTRAINT `fk_activity_section` FOREIGN KEY (`section_id`) REFERENCES `Section` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 
