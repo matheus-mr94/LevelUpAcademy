@@ -39,6 +39,8 @@ class SubcategoryRepositoryTest {
 
     @Test
     void findByCode__shouldNotReturnSubcategoryWhenCodeDontExists() {
+        Category categoryProgramacao = createCategory("Programação", "programacao", true, 1);
+        createSubcategory("Java", "java", true, categoryProgramacao);
         String code = "kotlin";
         Optional<Subcategory> subcategory = subcategoryRepository.findByCode(code);
         assertTrue(subcategory.isEmpty());

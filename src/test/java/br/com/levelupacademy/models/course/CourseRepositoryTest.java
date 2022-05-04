@@ -81,6 +81,10 @@ class CourseRepositoryTest {
 
     @Test
     void findByCode__shouldNotReturnCourseWhenCodeDontExists() {
+        Category categoryDevops = createCategory("DevOps", "devops", true, 2);
+        Subcategory subcategoryDevOps = createSubcategory("DevOps", "devops", true, categoryDevops);
+        createCourse("Terraform", "terraform", true, "Rodrigo", subcategoryDevOps);
+
         String code = "kotlin";
         Optional<Course> course = courseRepository.findByCode(code);
         assertTrue(course.isEmpty());

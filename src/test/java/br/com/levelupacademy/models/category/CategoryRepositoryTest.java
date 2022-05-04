@@ -30,8 +30,8 @@ class CategoryRepositoryTest {
 
     @Test
     void findAllByActiveTrue__shouldReturnAllActiveCategories() {
-        Category categoryProgramacao = createCategory("Programação", "programacao", true, 1);
-        Category categoryDevops = createCategory("DevOps", "devops", true, 2);
+        createCategory("Programação", "programacao", true, 1);
+        createCategory("DevOps", "devops", true, 2);
 
         List<Category> categories = categoryRepository.findAllByActiveTrue();
         assertTrue(categories.size() == 2);
@@ -41,7 +41,7 @@ class CategoryRepositoryTest {
 
     @Test
     void findByCode__shouldReturnCategoryWhenFindByCode() {
-        Category categoryProgramacao = createCategory("Programação", "programacao", true, 1);
+        createCategory("Programação", "programacao", true, 1);
 
         String code = "programacao";
         Optional<Category> category = categoryRepository.findByCode(code);
@@ -51,6 +51,7 @@ class CategoryRepositoryTest {
 
     @Test
     void findByCode__shouldNotReturnCategoryWhenCodeDontExists() {
+        createCategory("Programação", "programacao", true, 1);
         String code = "business";
         Optional<Category> category = categoryRepository.findByCode(code);
         assertTrue(category.isEmpty());
@@ -58,9 +59,9 @@ class CategoryRepositoryTest {
 
     @Test
     void findAllByOrderBySequence__shouldReturnCategoriesOrderedBySequence() {
-        Category categoryProgramacao = createCategory("Programação", "programacao", true, 1);
-        Category categoryDevops = createCategory("DevOps", "devops", true, 2);
-        Category categoryDataScience = createCategory("Data Science", "data-science", true, 3);
+        createCategory("Programação", "programacao", true, 1);
+        createCategory("DevOps", "devops", true, 2);
+        createCategory("Data Science", "data-science", true, 3);
 
         List<Category> categories = categoryRepository.findAllByOrderBySequence();
         assertEquals("Programação", categories.get(0).getName());
@@ -70,9 +71,9 @@ class CategoryRepositoryTest {
 
     @Test
     void findAllByOrderByNameAsc__shouldReturnCategoriesOrderedByName() {
-        Category categoryProgramacao = createCategory("Programação", "programacao", true, 1);
-        Category categoryDevops = createCategory("DevOps", "devops", true, 2);
-        Category categoryDataScience = createCategory("Data Science", "data-science", true, 3);
+         createCategory("Programação", "programacao", true, 1);
+         createCategory("DevOps", "devops", true, 2);
+         createCategory("Data Science", "data-science", true, 3);
 
         List<Category> categories = categoryRepository.findAllByOrderByNameAsc();
         assertEquals("Data Science", categories.get(0).getName());
@@ -95,6 +96,8 @@ class CategoryRepositoryTest {
         List<CategoryProjection> categories = categoryRepository.countCoursesByCategory();
         assertEquals("Programação", categories.get(0).getName());
         assertEquals(3, categories.get(0).getCountOfCourses());
+        assertEquals("DevOps", categories.get(1).getName());
+        assertEquals(2, categories.get(1).getCountOfCourses());
     }
 
     @Test
