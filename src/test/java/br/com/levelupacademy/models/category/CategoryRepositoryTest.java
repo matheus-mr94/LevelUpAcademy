@@ -149,7 +149,7 @@ class CategoryRepositoryTest {
     }
 
     @Test
-    void findActiveCategoriesWithPublicCoursesByCategoryCode__shouldNotFindActiveCategoryWithPublicCourse() {
+    void findActiveCategoriesWithPublicCoursesByCategoryCode__shouldNotFindActiveCategoryWithoutPublicCourse() {
         String code = "business";
         createCategory("Business", "business", true, 3);
 
