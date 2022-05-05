@@ -98,6 +98,10 @@ public class Category {
         return  subcategories.stream().filter(Subcategory::isActive).toList();
     }
 
+    public void setSubcategories(List<Subcategory> subcategories) {
+        this.subcategories = subcategories;
+    }
+
     public int countCourses(){
         return  subcategories.stream().map(Subcategory::getCourses).mapToInt(List::size).sum();
     }
