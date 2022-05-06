@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,10 +24,24 @@ public class SubcategoryController {
 
     private final SubcategoryRepository subcategoryRepository;
     private final CategoryRepository categoryRepository;
+    private final SubcategoryCreateRequestValidator createRequestValidator;
+    private final SubcategoryUpdateRequestValidator updateRequestValidator;
 
-    public SubcategoryController(SubcategoryRepository subcategoryRepository, CategoryRepository categoryRepository) {
+    public SubcategoryController(SubcategoryRepository subcategoryRepository, CategoryRepository categoryRepository, SubcategoryCreateRequestValidator createRequestValidator, SubcategoryUpdateRequestValidator updateRequestValidator) {
         this.subcategoryRepository = subcategoryRepository;
         this.categoryRepository = categoryRepository;
+        this.createRequestValidator = createRequestValidator;
+        this.updateRequestValidator = updateRequestValidator;
+    }
+
+    @InitBinder("subcategoryCreateRequest")
+    void initBinderCreateRequest(WebDataBinder dataBinder) {
+        dataBinder.addValidators(createRequestValidator);
+    }
+
+    @InitBinder("subcategoryUpdateRequest")
+    void initBinderUpdateRequest(WebDataBinder dataBinder) {
+        dataBinder.addValidators(updateRequestValidator);
     }
 
     @GetMapping( "/admin/subcategories/{categoryCode}")
