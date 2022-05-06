@@ -1,7 +1,3 @@
-CREATE DATABASE LevelUpAcademy DEFAULT CHARACTER SET utf8;
-
-USE LevelUpAcademy;
-
 CREATE TABLE Category (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(100) NOT NULL,
@@ -90,34 +86,25 @@ CREATE TABLE Alternative (
     justification VARCHAR(500),
     question_id BIGINT NOT NULL,
     CONSTRAINT `fk_alternative_question` FOREIGN KEY(`question_id`) REFERENCES `Question`(`activity_id`)
-)
-
-CREATE TABLE `Role` (
-    `id` bigint NOT NULL AUTO_INCREMENT,
-    `name` varchar(255) DEFAULT NULL,
-    PRIMARY KEY (`id`)
-)
-
-CREATE TABLE `User` (
-    `id` bigint NOT NULL AUTO_INCREMENT,
-    `email` varchar(255) DEFAULT NULL,
-    `name` varchar(255) DEFAULT NULL,
-    `password` varchar(255) DEFAULT NULL,
-    PRIMARY KEY (`id`)
-)
-
-CREATE TABLE `User_Role` (
-     `user_id` bigint NOT NULL,
-     `role_id` bigint NOT NULL,
-     KEY `fk_userRole_role` (`role_id`),
-     KEY `fk_userRole_user` (`user_id`),
-     CONSTRAINT `fk_userRole_role` FOREIGN KEY (`role_id`) REFERENCES `Role` (`id`),
-     CONSTRAINT `fk_userRole_user` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`)
 );
 
+CREATE TABLE `Role` (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL
+);
 
+CREATE TABLE `User` (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    `email` VARCHAR(255) NOT NULL,
+    `name` VARCHAR(255) NOT NULL,
+    `password` VARCHAR(255) NOT NULL
+);
 
-
-
-
-
+CREATE TABLE `User_Role` (
+    `user_id` BIGINT NOT NULL,
+    `role_id` BIGINT NOT NULL,
+    KEY `fk_userRole_role` (`role_id`),
+    KEY `fk_userRole_user` (`user_id`),
+    CONSTRAINT `fk_userRole_role` FOREIGN KEY (`role_id`) REFERENCES `Role` (`id`),
+CONSTRAINT `fk_userRole_user` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`)
+);
