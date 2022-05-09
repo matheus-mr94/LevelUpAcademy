@@ -26,12 +26,4 @@ public class Question extends Activity {
         hasText(statement, "statement can't be empty or null");
         this.statement = statement;
     }
-
-    @Override
-    public String toString() {
-        return "Question{" +
-                "statement='" + statement + '\'' +
-                ", answerType=" + questionType +
-                '}';
-    }
 }

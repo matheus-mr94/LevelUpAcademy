@@ -34,15 +34,4 @@ public class Alternative {
         this.justification = justification;
         this.question = question;
     }
-
-    @Override
-    public String toString() {
-        return "Alternative{" +
-                "text='" + text + '\'' +
-                ", order=" + sequence +
-                ", correct=" + correct +
-                ", justification='" + justification + '\'' +
-                ", question=" + question +
-                '}';
-    }
 }

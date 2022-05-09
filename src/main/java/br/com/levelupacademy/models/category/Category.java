@@ -2,6 +2,7 @@ package br.com.levelupacademy.models.category;
 
 import br.com.levelupacademy.models.course.Course;
 import br.com.levelupacademy.models.subcategory.Subcategory;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 import static org.springframework.util.Assert.hasText;
 import static org.springframework.util.Assert.isTrue;
 
+@Getter
 @Entity
 public class Category {
 
@@ -52,46 +54,6 @@ public class Category {
     public Category(Long id, String name, String code, String description, String studyGuide, boolean active, int sequence, String urlImage, String hexCode) {
         this(name, code, description, studyGuide, active, sequence, urlImage, hexCode);
         this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public String getUrlImage() {
-        return urlImage;
-    }
-
-    public String getHexCode() {
-        return hexCode;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public int getSequence() {
-        return sequence;
-    }
-
-    public List<Subcategory> getSubcategories() {
-        return subcategories;
     }
 
     public List<Subcategory> getActiveSubcategories() {

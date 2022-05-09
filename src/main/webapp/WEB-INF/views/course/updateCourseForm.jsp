@@ -27,6 +27,7 @@
 
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="visible" name="visible"
+                        ${course.isVisible() ? 'checked' : ''}
                        placeholder="Mostra ou deixa de mostrar o curso na listagem dos alunos">
                 <label  class="form-check-label" for="visible" class="form-label">
                     Curso visível ?

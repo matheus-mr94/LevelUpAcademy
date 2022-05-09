@@ -1,7 +1,10 @@
 package br.com.levelupacademy.models.course;
 
+import lombok.Getter;
+
 import java.util.List;
 
+@Getter
 public class CourseSimpleResponse {
 
     private final String name;
@@ -14,21 +17,7 @@ public class CourseSimpleResponse {
         this.active = course.isVisible() ? "Ativo" : "Inativo";
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getActive() {
-        return active;
-    }
-
     public static List<CourseSimpleResponse> toDTO(List<Course> courses) {
         return courses.stream().map(CourseSimpleResponse::new).toList();
     }
-
-
 }

@@ -24,11 +24,4 @@ public class Explanation extends Activity {
         hasText(text, "Text can't be empty or null");
         this.text = text;
     }
-
-    @Override
-    public String toString() {
-        return "Explanation{" +
-                "text='" + text + '\'' +
-                '}';
-    }
 }

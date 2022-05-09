@@ -30,13 +30,4 @@ public class Video extends Activity {
         this.durationInMinutes = durationInMinutes;
         this.transcription = transcription;
     }
-
-    @Override
-    public String toString() {
-        return "Video{" +
-                "url='" + url + '\'' +
-                ", time=" + durationInMinutes +
-                ", transcription='" + transcription + '\'' +
-                '}';
-    }
 }

@@ -37,5 +37,4 @@ public abstract class Activity {
         this.section = section;
         this.active = active;
     }
-
 }

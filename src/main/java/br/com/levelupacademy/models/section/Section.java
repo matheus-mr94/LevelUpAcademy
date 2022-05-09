@@ -40,16 +40,4 @@ public class Section {
         this.sequence = sequence;
         this.course = course;
     }
-
-    @Override
-    public String toString() {
-        return "Section{" +
-                "name='" + name + '\'' +
-                ", code='" + code + '\'' +
-                ", order=" + sequence +
-                ", active=" + active +
-                ", test=" + exam +
-                ", course=" + course +
-                '}';
-    }
 }

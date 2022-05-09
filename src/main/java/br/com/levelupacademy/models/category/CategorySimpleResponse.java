@@ -1,7 +1,10 @@
 package br.com.levelupacademy.models.category;
 
+import lombok.Getter;
+
 import java.util.List;
 
+@Getter
 public class CategorySimpleResponse {
 
     private final Long id;
@@ -14,22 +17,6 @@ public class CategorySimpleResponse {
         this.name = category.getName();
         this.code = category.getCode();
         this.active = category.isActive() ? "Ativa" : "Inativa";
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getActive() {
-        return this.active;
     }
 
     public static List<CategorySimpleResponse> toDTO(List<Category> categories) {
