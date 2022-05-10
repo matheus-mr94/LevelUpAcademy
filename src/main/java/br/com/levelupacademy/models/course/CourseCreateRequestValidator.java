@@ -13,7 +13,6 @@ public class CourseCreateRequestValidator implements Validator {
         this.courseRepository = courseRepository;
     }
 
-
     @Override
     public boolean supports(Class<?> aClass) {
         return CourseCreateRequest.class.isAssignableFrom(aClass);

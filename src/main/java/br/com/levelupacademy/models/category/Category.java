@@ -3,6 +3,7 @@ package br.com.levelupacademy.models.category;
 import br.com.levelupacademy.models.course.Course;
 import br.com.levelupacademy.models.subcategory.Subcategory;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import static org.springframework.util.Assert.hasText;
 import static org.springframework.util.Assert.isTrue;
 
 @Getter
+@NoArgsConstructor
 @Entity
 public class Category {
 
@@ -32,10 +34,6 @@ public class Category {
     private String hexCode;
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Subcategory> subcategories = new ArrayList<>();
-
-    @Deprecated
-    public Category() {
-    }
 
     public Category(String name, String code, String description, String studyGuide, boolean active, int sequence, String urlImage , String hexCode) {
         hasText(name, "name can't be empty or null");

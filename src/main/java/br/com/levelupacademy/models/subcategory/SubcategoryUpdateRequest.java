@@ -2,6 +2,7 @@ package br.com.levelupacademy.models.subcategory;
 
 import br.com.levelupacademy.models.category.Category;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Pattern;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class SubcategoryUpdateRequest {
 
     private Long id;
@@ -23,10 +25,6 @@ public class SubcategoryUpdateRequest {
     private int sequence;
     private Long categoryId;
     private String categoryCode;
-
-    @Deprecated
-    public SubcategoryUpdateRequest() {
-    }
 
     public SubcategoryUpdateRequest(Subcategory subcategory) {
         this.id = subcategory.getId();

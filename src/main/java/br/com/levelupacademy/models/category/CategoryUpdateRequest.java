@@ -1,6 +1,7 @@
 package br.com.levelupacademy.models.category;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Pattern;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class CategoryUpdateRequest {
 
     private Long id;
@@ -35,10 +37,6 @@ public class CategoryUpdateRequest {
         this.sequence = category.getSequence();
         this.urlImage = category.getUrlImage();
         this.hexCode = category.getHexCode();
-    }
-
-    @Deprecated
-    public CategoryUpdateRequest() {
     }
 
     public Category toEntity() {

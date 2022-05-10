@@ -3,6 +3,7 @@ package br.com.levelupacademy.models.course;
 import br.com.levelupacademy.models.section.Section;
 import br.com.levelupacademy.models.subcategory.Subcategory;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import java.util.List;
 import static org.springframework.util.Assert.*;
 
 @Getter
+@NoArgsConstructor
 @Entity
 public class Course {
 
@@ -37,10 +39,6 @@ public class Course {
     private Subcategory subcategory;
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Section> sectionList = new ArrayList<>();
-
-    @Deprecated
-    public Course() {
-    }
 
     public Course(String name, String code, Integer estimatedTimeInHours, String target, boolean visible, String instructor, String syllabus, String developedSkills, Subcategory subcategory) {
         hasText(name, "name can't be empty or null");

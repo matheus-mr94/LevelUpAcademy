@@ -2,12 +2,14 @@ package br.com.levelupacademy.models.course;
 
 import br.com.levelupacademy.models.subcategory.Subcategory;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class CourseUpdateRequest {
 
     private Long id;
@@ -30,10 +32,6 @@ public class CourseUpdateRequest {
     private Long subcategoryId;
     private String subcategoryCode;
     private String categoryCode;
-
-    @Deprecated
-    public CourseUpdateRequest() {
-    }
 
     public CourseUpdateRequest(Course course) {
         this.id = course.getId();

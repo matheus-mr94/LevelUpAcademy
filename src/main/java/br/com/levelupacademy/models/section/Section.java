@@ -2,6 +2,7 @@ package br.com.levelupacademy.models.section;
 
 import br.com.levelupacademy.models.activity.Activity;
 import br.com.levelupacademy.models.course.Course;
+import lombok.NoArgsConstructor;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.List;
 
 import static org.springframework.util.Assert.*;
 
+@NoArgsConstructor
 @Entity
 public class Section {
 
@@ -25,10 +27,6 @@ public class Section {
     private Course course;
     @OneToMany(mappedBy = "section", cascade = CascadeType.ALL)
     List<Activity> activities = new ArrayList<>();
-
-    @Deprecated
-    public Section() {
-    }
 
     public Section(String name, String code, int sequence, Course course) {
         hasText(name, "name can't be empty or null");

@@ -3,10 +3,12 @@ package br.com.levelupacademy.models.category;
 import br.com.levelupacademy.models.subcategory.Subcategory;
 import br.com.levelupacademy.models.subcategory.SubcategorySimpleDTO;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Getter
+@NoArgsConstructor
 public class CategoryDTOResponse {
 
     private String name;

@@ -1,6 +1,7 @@
 package br.com.levelupacademy.models.activity;
 
 import br.com.levelupacademy.models.section.Section;
+import lombok.NoArgsConstructor;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import static org.springframework.util.Assert.*;
 
 @Entity
+@NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Activity {
 
@@ -21,10 +23,6 @@ public abstract class Activity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "section_id")
     private Section section;
-
-    @Deprecated
-    public Activity() {
-    }
 
     public Activity(String title, String code, int sequence, Section section, boolean active) {
         hasText(title, "Title can't be empty or null");
