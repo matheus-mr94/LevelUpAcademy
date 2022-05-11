@@ -2,6 +2,7 @@ package br.com.levelupacademy.models.course;
 
 import br.com.levelupacademy.models.subcategory.Subcategory;
 import br.com.levelupacademy.models.subcategory.SubcategoryRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -17,19 +18,13 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 public class CourseController {
 
     private final CourseRepository courseRepository;
     private final SubcategoryRepository subcategoryRepository;
     private final CourseCreateRequestValidator createRequestValidator;
     private final CourseUpdateRequestValidator updateRequestValidator;
-
-    public CourseController(CourseRepository courseRepository, SubcategoryRepository subcategoryRepository, CourseCreateRequestValidator createRequestValidator, CourseUpdateRequestValidator updateRequestValidator) {
-        this.courseRepository = courseRepository;
-        this.subcategoryRepository = subcategoryRepository;
-        this.createRequestValidator = createRequestValidator;
-        this.updateRequestValidator = updateRequestValidator;
-    }
 
     @InitBinder("courseCreateRequest")
     void initBinderCreateRequest(WebDataBinder dataBinder) {

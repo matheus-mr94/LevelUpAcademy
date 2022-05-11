@@ -2,6 +2,7 @@ package br.com.levelupacademy.models.subcategory;
 
 import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.category.CategoryRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,19 +21,13 @@ import java.util.Comparator;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 public class SubcategoryController {
 
     private final SubcategoryRepository subcategoryRepository;
     private final CategoryRepository categoryRepository;
     private final SubcategoryCreateRequestValidator createRequestValidator;
     private final SubcategoryUpdateRequestValidator updateRequestValidator;
-
-    public SubcategoryController(SubcategoryRepository subcategoryRepository, CategoryRepository categoryRepository, SubcategoryCreateRequestValidator createRequestValidator, SubcategoryUpdateRequestValidator updateRequestValidator) {
-        this.subcategoryRepository = subcategoryRepository;
-        this.categoryRepository = categoryRepository;
-        this.createRequestValidator = createRequestValidator;
-        this.updateRequestValidator = updateRequestValidator;
-    }
 
     @InitBinder("subcategoryCreateRequest")
     void initBinderCreateRequest(WebDataBinder dataBinder) {

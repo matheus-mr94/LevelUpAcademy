@@ -1,5 +1,6 @@
 package br.com.levelupacademy.models.category;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,17 +18,12 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 public class CategoryController {
 
     private final CategoryRepository categoryRepository;
     private final CategoryCreateRequestValidator createRequestValidator;
     private final CategoryUpdateRequestValidator updateRequestValidator;
-
-    public CategoryController(CategoryRepository categoryRepository, CategoryCreateRequestValidator createRequestValidator, CategoryUpdateRequestValidator updateRequestValidator) {
-        this.categoryRepository = categoryRepository;
-        this.createRequestValidator = createRequestValidator;
-        this.updateRequestValidator = updateRequestValidator;
-    }
 
     @InitBinder("categoryCreateRequest")
     void initBinderCreateRequest(WebDataBinder dataBinder) {
