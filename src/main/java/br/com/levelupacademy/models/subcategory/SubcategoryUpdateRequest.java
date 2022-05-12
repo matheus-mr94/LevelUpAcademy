@@ -1,10 +1,16 @@
 package br.com.levelupacademy.models.subcategory;
 
 import br.com.levelupacademy.models.category.Category;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class SubcategoryUpdateRequest {
 
     private Long id;
@@ -20,10 +26,6 @@ public class SubcategoryUpdateRequest {
     private Long categoryId;
     private String categoryCode;
 
-    @Deprecated
-    public SubcategoryUpdateRequest() {
-    }
-
     public SubcategoryUpdateRequest(Subcategory subcategory) {
         this.id = subcategory.getId();
         this.name = subcategory.getName();
@@ -34,79 +36,6 @@ public class SubcategoryUpdateRequest {
         this.sequence = subcategory.getSequence();
         this.categoryId = subcategory.getCategoryId();
         this.categoryCode = subcategory.getCategoryCode();
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public void setStudyGuide(String studyGuide) {
-        this.studyGuide = studyGuide;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public int getSequence() {
-        return sequence;
-    }
-
-    public void setSequence(int sequence) {
-        this.sequence = sequence;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getCategoryCode() {
-        return categoryCode;
-    }
-
-    public void setCategoryCode(String categoryCode) {
-        this.categoryCode = categoryCode;
     }
 
     public Subcategory toEntity(Category category) {

@@ -2,9 +2,13 @@ package br.com.levelupacademy.models.category;
 
 import br.com.levelupacademy.models.subcategory.Subcategory;
 import br.com.levelupacademy.models.subcategory.SubcategorySimpleDTO;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Getter
+@NoArgsConstructor
 public class CategoryDTOResponse {
 
     private String name;
@@ -17,22 +21,6 @@ public class CategoryDTOResponse {
         this.urlImage = category.getUrlImage();
         this.code = category.getCode();
         this.subcategories = SubcategorySimpleDTO.toDTO(category.getActiveSubcategories());
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUrlImage() {
-        return urlImage;
-    }
-
-    public List<SubcategorySimpleDTO> getSubcategories() {
-        return subcategories;
-    }
-
-    public String getCode() {
-        return code;
     }
 
     public void setSubcategories(List<SubcategorySimpleDTO> subcategories) {

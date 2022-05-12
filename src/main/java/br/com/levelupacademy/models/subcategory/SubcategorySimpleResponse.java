@@ -1,7 +1,10 @@
 package br.com.levelupacademy.models.subcategory;
 
+import lombok.Getter;
+
 import java.util.List;
 
+@Getter
 public class SubcategorySimpleResponse {
 
     private final Long id;
@@ -14,21 +17,6 @@ public class SubcategorySimpleResponse {
         this.name = subcategory.getName();
         this.code = subcategory.getCode();
         this.active = subcategory.isActive() ? "Ativa" : "Inativa";
-    }
-
-    public Long getId() {
-        return id;
-    }
-    public String getName() {
-        return name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getActive() {
-        return this.active;
     }
 
     public static List<SubcategorySimpleResponse> toDTO(List<Subcategory> subcategories) {

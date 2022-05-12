@@ -2,13 +2,16 @@ package br.com.levelupacademy.models.subcategory;
 
 import br.com.levelupacademy.models.category.Category;
 import br.com.levelupacademy.models.category.CategoryRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
@@ -18,14 +21,22 @@ import java.util.Comparator;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 public class SubcategoryController {
 
     private final SubcategoryRepository subcategoryRepository;
     private final CategoryRepository categoryRepository;
+    private final SubcategoryCreateRequestValidator createRequestValidator;
+    private final SubcategoryUpdateRequestValidator updateRequestValidator;
 
-    public SubcategoryController(SubcategoryRepository subcategoryRepository, CategoryRepository categoryRepository) {
-        this.subcategoryRepository = subcategoryRepository;
-        this.categoryRepository = categoryRepository;
+    @InitBinder("subcategoryCreateRequest")
+    void initBinderCreateRequest(WebDataBinder dataBinder) {
+        dataBinder.addValidators(createRequestValidator);
+    }
+
+    @InitBinder("subcategoryUpdateRequest")
+    void initBinderUpdateRequest(WebDataBinder dataBinder) {
+        dataBinder.addValidators(updateRequestValidator);
     }
 
     @GetMapping( "/admin/subcategories/{categoryCode}")

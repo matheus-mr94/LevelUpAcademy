@@ -2,6 +2,8 @@ package br.com.levelupacademy.models.course;
 
 import br.com.levelupacademy.models.section.Section;
 import br.com.levelupacademy.models.subcategory.Subcategory;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -10,6 +12,8 @@ import java.util.List;
 
 import static org.springframework.util.Assert.*;
 
+@Getter
+@NoArgsConstructor
 @Entity
 public class Course {
 
@@ -36,10 +40,6 @@ public class Course {
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Section> sectionList = new ArrayList<>();
 
-    @Deprecated
-    public Course() {
-    }
-
     public Course(String name, String code, Integer estimatedTimeInHours, String target, boolean visible, String instructor, String syllabus, String developedSkills, Subcategory subcategory) {
         hasText(name, "name can't be empty or null");
         hasText(code, "name can't be empty or null");
@@ -64,48 +64,8 @@ public class Course {
         this.id = id;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public Integer getEstimatedTimeInHours() {
-        return estimatedTimeInHours;
-    }
-
-    public Subcategory getSubcategory() {
-        return subcategory;
-    }
-
     public String getCategoryCode() {
         return subcategory.getCategoryCode();
-    }
-
-    public boolean isVisible() {
-        return visible;
-    }
-
-    public String getInstructor() {
-        return instructor;
-    }
-
-    public String getTarget() {
-        return target;
-    }
-
-    public String getSyllabus() {
-        return syllabus;
-    }
-
-    public String getDevelopedSkills() {
-        return developedSkills;
     }
 
     public String getSubcategoryCode() {
@@ -135,5 +95,4 @@ public class Course {
         this.developedSkills = courseUpdateRequest.getDevelopedSkills();
         this.subcategory = subcategory;
     }
-
 }

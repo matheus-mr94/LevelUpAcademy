@@ -2,6 +2,7 @@ package br.com.levelupacademy.models.course;
 
 import br.com.levelupacademy.models.subcategory.Subcategory;
 import br.com.levelupacademy.models.subcategory.SubcategoryRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -9,24 +10,30 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 public class CourseController {
 
     private final CourseRepository courseRepository;
     private final SubcategoryRepository subcategoryRepository;
+    private final CourseCreateRequestValidator createRequestValidator;
+    private final CourseUpdateRequestValidator updateRequestValidator;
 
-    public CourseController(CourseRepository courseRepository, SubcategoryRepository subcategoryRepository) {
-        this.courseRepository = courseRepository;
-        this.subcategoryRepository = subcategoryRepository;
+    @InitBinder("courseCreateRequest")
+    void initBinderCreateRequest(WebDataBinder dataBinder) {
+        dataBinder.addValidators(createRequestValidator);
+    }
+
+    @InitBinder("courseUpdateRequest")
+    void initBinderUpdateRequest(WebDataBinder dataBinder) {
+        dataBinder.addValidators(updateRequestValidator);
     }
 
     @GetMapping("/admin/courses/{categoryCode}/{subcategoryCode}")

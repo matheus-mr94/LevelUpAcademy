@@ -10,4 +10,13 @@ public interface SubcategoryRepository extends JpaRepository<Subcategory, Long> 
     Optional<Subcategory> findByCode(String subcategoryCode);
 
     List<Subcategory> findAllByOrderByNameAsc();
+
+    boolean existsByCode(String code);
+
+    @Deprecated
+    boolean existsByCodeAndIdNot(String code, Long id);
+
+    default boolean existsByCodeWithDifferentId(String code, Long id) {
+        return existsByCodeAndIdNot(code, id);
+    }
 }

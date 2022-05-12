@@ -1,7 +1,10 @@
 package br.com.levelupacademy.models.course;
 
+import lombok.Getter;
+
 import java.util.List;
 
+@Getter
 public class CourseSimpleDTO {
 
     private String name;
@@ -10,14 +13,6 @@ public class CourseSimpleDTO {
     public CourseSimpleDTO(Course course) {
         this.name = course.getName();
         this.estimatedTimeInHours = course.getEstimatedTimeInHours();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getEstimatedTimeInHours() {
-        return estimatedTimeInHours;
     }
 
     public static List<CourseSimpleDTO> toDTO(List<Course> courses) {
